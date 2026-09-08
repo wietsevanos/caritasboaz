@@ -9,7 +9,7 @@ import {
   Statement,
 } from "@/components/site/primitives";
 import { LineField } from "@/components/site/visuals";
-import communityCircleAsset from "@/assets/community-circle.png.asset.json";
+import heroHuddleAsset from "@/assets/hero-huddle.png.asset.json";
 import peopleTogetherAsset from "@/assets/people-together.png.asset.json";
 import { AcuteNoodBlock } from "@/components/site/AcuteNoodBlock";
 import { HelpCta } from "@/components/site/HelpCta";
@@ -83,7 +83,7 @@ function Home() {
       {/* Hero */}
       <Section tone="white" className="pb-14 pt-12 sm:pb-20 sm:pt-16 lg:pb-24 lg:pt-20">
         <Container>
-          <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:gap-10">
+          <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:items-stretch lg:gap-10">
             <div>
               <Reveal>
               <Eyebrow className="hidden text-clay sm:block">
@@ -112,11 +112,11 @@ function Home() {
                 </div>
               </Reveal>
             </div>
-            <Reveal delay={200}>
+            <Reveal delay={200} className="flex flex-col">
               <img
-                src={communityCircleAsset.url}
-                alt="Mensen die samen in een kring staan"
-                className="w-full max-w-none -mx-5 sm:mx-0 sm:max-w-2xl lg:max-w-none"
+                src={heroHuddleAsset.url}
+                alt="Mensen die elkaar steunen"
+                className="w-full rounded-sm object-cover lg:h-full"
                 loading="eager"
                 width="1024"
                 height="1024"
