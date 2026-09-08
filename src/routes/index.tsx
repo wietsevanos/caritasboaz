@@ -82,7 +82,7 @@ function Home() {
       {/* Hero */}
       <Section tone="white" className="pb-14 pt-12 sm:pb-20 sm:pt-16 lg:pb-24 lg:pt-20">
         <Container>
-          <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16">
+          <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:gap-10">
             <div>
               <Reveal>
                 <Eyebrow className="hidden text-clay sm:block">
@@ -121,7 +121,7 @@ function Home() {
               <img
                 src={communityCircleAsset.url}
                 alt="Mensen die samen in een kring staan"
-                className="w-full max-w-lg mx-auto sm:max-w-xl lg:max-w-none"
+                className="w-full max-w-none -mx-5 sm:mx-0 sm:max-w-2xl lg:max-w-none"
                 loading="eager"
                 width="1024"
                 height="1024"
