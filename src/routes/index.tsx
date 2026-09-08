@@ -8,7 +8,8 @@ import {
   SectionHeading,
   Statement,
 } from "@/components/site/primitives";
-import { HeroVisual, LineField } from "@/components/site/visuals";
+import { LineField } from "@/components/site/visuals";
+import handsTogetherAsset from "@/assets/hands-together.png.asset.json";
 import { AcuteNoodBlock } from "@/components/site/AcuteNoodBlock";
 import { HelpCta } from "@/components/site/HelpCta";
 import { EXAMPLES, PLACES } from "@/lib/site";
@@ -117,7 +118,14 @@ function Home() {
               </Reveal>
             </div>
             <Reveal delay={200}>
-              <HeroVisual />
+              <img
+                src={handsTogetherAsset.url}
+                alt="Mensen die elkaar steunen"
+                className="w-full max-w-md mx-auto lg:max-w-none"
+                loading="eager"
+                width="1024"
+                height="1024"
+              />
             </Reveal>
           </div>
         </Container>
