@@ -38,7 +38,7 @@ export function Header() {
         <div className="flex h-16 items-center justify-between gap-4 sm:h-[4.5rem]">
           <Link
             to="/"
-            className="font-display text-[0.95rem] font-bold uppercase tracking-[0.16em] text-foreground"
+            className="shrink-0 whitespace-nowrap font-display text-[0.8rem] font-bold uppercase tracking-[0.12em] text-foreground sm:text-[0.95rem] sm:tracking-[0.16em]"
             onClick={() => setOpen(false)}
           >
             Caritas BOAZ
@@ -65,7 +65,7 @@ export function Header() {
           <div className="flex items-center gap-2">
             <Link
               to="/hulp-aanvragen"
-              className="inline-flex rounded-sm bg-primary px-4 py-2.5 font-display text-[0.85rem] font-semibold text-primary-foreground transition-[background-color,transform] duration-200 hover:-translate-y-0.5 hover:bg-primary-soft sm:px-5 sm:text-[0.9rem]"
+              className="inline-flex shrink-0 whitespace-nowrap rounded-sm bg-primary px-4 py-2.5 font-display text-[0.85rem] font-semibold text-primary-foreground transition-[background-color,transform] duration-200 hover:-translate-y-0.5 hover:bg-primary-soft sm:px-5 sm:text-[0.9rem]"
             >
               Hulp aanvragen
             </Link>
@@ -75,7 +75,7 @@ export function Header() {
               aria-controls="mobiel-menu"
               aria-label={open ? "Menu sluiten" : "Menu openen"}
               onClick={() => setOpen((v) => !v)}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-sm border border-border text-foreground transition-colors hover:bg-secondary lg:hidden"
+              className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-sm border border-border text-foreground transition-colors hover:bg-secondary lg:hidden"
             >
               {open ? (
                 <X className="h-5 w-5" aria-hidden="true" />
