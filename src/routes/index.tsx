@@ -10,6 +10,8 @@ import {
 } from "@/components/site/primitives";
 import { LineField } from "@/components/site/visuals";
 import communityCircleAsset from "@/assets/community-circle.png.asset.json";
+import peopleTogetherAsset from "@/assets/people-together.png.asset.json";
+import helpingHandsAsset from "@/assets/helping-hands.png.asset.json";
 import { AcuteNoodBlock } from "@/components/site/AcuteNoodBlock";
 import { HelpCta } from "@/components/site/HelpCta";
 import { EXAMPLES, PLACES } from "@/lib/site";
@@ -209,6 +211,20 @@ function Home() {
         </Container>
       </Section>
 
+      {/* Beeld: samen */}
+      <Section as="div" tone="white" className="py-0">
+        <Reveal>
+          <img
+            src={peopleTogetherAsset.url}
+            alt="Mensen die elkaar ondersteunen"
+            className="w-full object-cover max-h-[26rem] sm:max-h-[30rem] lg:max-h-[34rem]"
+            loading="lazy"
+            width="1920"
+            height="800"
+          />
+        </Reveal>
+      </Section>
+
       {/* Waarom Caritas BOAZ */}
       <Section tone="sand" labelledBy="waarom">
         <LineField className="opacity-70" stroke="var(--clay)" />
@@ -244,6 +260,20 @@ function Home() {
             ))}
           </div>
         </Container>
+      </Section>
+
+      {/* Beeld: helpende handen */}
+      <Section as="div" tone="white" className="py-0">
+        <Reveal>
+          <img
+            src={helpingHandsAsset.url}
+            alt="Mensen die elkaar een handje helpen"
+            className="w-full object-cover max-h-[26rem] sm:max-h-[30rem] lg:max-h-[34rem]"
+            loading="lazy"
+            width="1920"
+            height="800"
+          />
+        </Reveal>
       </Section>
 
       {/* Voorbeelden preview */}
