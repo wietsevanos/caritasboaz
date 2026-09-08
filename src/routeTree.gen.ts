@@ -10,33 +10,81 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as GeschiedenisRouteImport } from './routes/geschiedenis'
+import { Route as OverOnsRouteImport } from './routes/over-ons'
+import { Route as PrivacyverklaringRouteImport } from './routes/privacyverklaring'
+import { Route as VoorbeeldenRouteImport } from './routes/voorbeelden'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GeschiedenisRoute = GeschiedenisRouteImport.update({
+  id: '/geschiedenis',
+  path: '/geschiedenis',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OverOnsRoute = OverOnsRouteImport.update({
+  id: '/over-ons',
+  path: '/over-ons',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyverklaringRoute = PrivacyverklaringRouteImport.update({
+  id: '/privacyverklaring',
+  path: '/privacyverklaring',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VoorbeeldenRoute = VoorbeeldenRouteImport.update({
+  id: '/voorbeelden',
+  path: '/voorbeelden',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/geschiedenis': typeof GeschiedenisRoute
+  '/over-ons': typeof OverOnsRoute
+  '/privacyverklaring': typeof PrivacyverklaringRoute
+  '/voorbeelden': typeof VoorbeeldenRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/geschiedenis': typeof GeschiedenisRoute
+  '/over-ons': typeof OverOnsRoute
+  '/privacyverklaring': typeof PrivacyverklaringRoute
+  '/voorbeelden': typeof VoorbeeldenRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/geschiedenis': typeof GeschiedenisRoute
+  '/over-ons': typeof OverOnsRoute
+  '/privacyverklaring': typeof PrivacyverklaringRoute
+  '/voorbeelden': typeof VoorbeeldenRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/geschiedenis' | '/over-ons' | '/privacyverklaring' | '/voorbeelden'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    '/' | '/geschiedenis' | '/over-ons' | '/privacyverklaring' | '/voorbeelden'
+  id:
+    | '__root__'
+    | '/'
+    | '/geschiedenis'
+    | '/over-ons'
+    | '/privacyverklaring'
+    | '/voorbeelden'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  GeschiedenisRoute: typeof GeschiedenisRoute
+  OverOnsRoute: typeof OverOnsRoute
+  PrivacyverklaringRoute: typeof PrivacyverklaringRoute
+  VoorbeeldenRoute: typeof VoorbeeldenRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +96,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/geschiedenis': {
+      id: '/geschiedenis'
+      path: '/geschiedenis'
+      fullPath: '/geschiedenis'
+      preLoaderRoute: typeof GeschiedenisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/over-ons': {
+      id: '/over-ons'
+      path: '/over-ons'
+      fullPath: '/over-ons'
+      preLoaderRoute: typeof OverOnsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacyverklaring': {
+      id: '/privacyverklaring'
+      path: '/privacyverklaring'
+      fullPath: '/privacyverklaring'
+      preLoaderRoute: typeof PrivacyverklaringRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/voorbeelden': {
+      id: '/voorbeelden'
+      path: '/voorbeelden'
+      fullPath: '/voorbeelden'
+      preLoaderRoute: typeof VoorbeeldenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  GeschiedenisRoute: GeschiedenisRoute,
+  OverOnsRoute: OverOnsRoute,
+  PrivacyverklaringRoute: PrivacyverklaringRoute,
+  VoorbeeldenRoute: VoorbeeldenRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
