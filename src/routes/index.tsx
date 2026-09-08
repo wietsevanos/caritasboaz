@@ -84,18 +84,18 @@ function Home() {
           <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16">
             <div>
               <Reveal>
-              <Eyebrow className="hidden sm:block">
-                Bloemendaal · Overveen · Aerdenhout · Zandvoort
-              </Eyebrow>
-              <div className="flex items-center gap-3 sm:hidden">
-                <span
-                  className="h-px w-7 bg-clay"
-                  aria-hidden="true"
-                />
-                <span className="font-display text-sm font-semibold uppercase tracking-[0.16em] text-clay">
-                  Ondersteuning dichtbij huis
-                </span>
-              </div>
+                <Eyebrow className="hidden text-clay sm:block">
+                  Voor mensen in nood
+                </Eyebrow>
+                <div className="flex items-center gap-3 sm:hidden">
+                  <span
+                    className="h-px w-7 bg-clay"
+                    aria-hidden="true"
+                  />
+                  <span className="font-display text-sm font-semibold uppercase tracking-[0.16em] text-clay">
+                    Voor mensen in nood
+                  </span>
+                </div>
               <h1 className="mt-6 text-[2.15rem] sm:text-[3.1rem] lg:text-[3.6rem]">
                   Samen helpen wanneer hulp nodig is.
                 </h1>
@@ -172,32 +172,29 @@ function Home() {
             id="waar-wij-helpen"
             eyebrow="Wat wij doen"
             title="Waar wij kunnen helpen"
+            align="left"
           />
-          <ul className="mt-14 space-y-px">
+          <ul className="mt-12 grid gap-px border-t border-border sm:grid-cols-2 lg:grid-cols-4">
             {HELP_ITEMS.map((item, i) => (
               <Reveal
                 as="li"
                 key={item.number}
                 delay={i * 80}
-                className="group relative border-t border-border py-8 last:border-b sm:py-10"
+                className="group border-b border-border bg-background p-6 transition-colors duration-200 hover:bg-secondary sm:border-b-0 sm:border-r sm:p-8 last:sm:border-r-0"
               >
                 <span
-                  className={`absolute left-0 top-0 h-px w-0 transition-[width] duration-500 ease-out group-hover:w-full ${item.accent}`}
+                  className={`block h-1 w-8 rounded-sm ${item.accent}`}
                   aria-hidden="true"
                 />
-                <div
-                  className={`grid gap-4 sm:grid-cols-[6rem_minmax(0,1fr)] sm:gap-10 ${
-                    i % 2 === 1 ? "lg:pl-24" : ""
-                  }`}
-                >
-                  <span className="font-display text-3xl font-semibold text-border-strong transition-colors duration-300 group-hover:text-foreground sm:text-4xl">
-                    {item.number}
-                  </span>
-                  <div className="max-w-2xl transition-transform duration-300 group-hover:translate-x-1">
-                    <h3 className="text-xl sm:text-2xl">{item.title}</h3>
-                    <p className="mt-3 text-muted-foreground">{item.text}</p>
-                  </div>
-                </div>
+                <span className="mt-6 block font-display text-3xl font-semibold text-border-strong transition-colors duration-300 group-hover:text-foreground">
+                  {item.number}
+                </span>
+                <h3 className="mt-3 text-lg font-semibold leading-snug sm:text-xl">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {item.text}
+                </p>
               </Reveal>
             ))}
           </ul>
