@@ -337,7 +337,7 @@ function HulpAanvragen() {
                     />
                     Meer informatie
                   </legend>
-                  <div className="grid gap-6 lg:grid-cols-[1fr_2fr]">
+                  <div className="grid gap-6">
                     <div>
                       <p className="font-medium">
                         Heeft u al contact gehad met andere instanties?
@@ -349,7 +349,7 @@ function HulpAanvragen() {
                         {["Ja", "Nee", "Onbekend"].map((option) => (
                           <label
                             key={option}
-                            className="flex flex-1 cursor-pointer items-center gap-3 rounded-sm border border-input px-4 py-3 transition-colors hover:border-border-strong hover:bg-secondary has-[:checked]:border-primary has-[:checked]:bg-secondary sm:flex-none sm:min-w-[8rem]"
+                            className="flex min-w-[7rem] flex-1 cursor-pointer items-center gap-3 rounded-sm border border-input px-5 py-3 transition-colors hover:border-border-strong hover:bg-secondary has-[:checked]:border-primary has-[:checked]:bg-secondary sm:flex-none"
                           >
                             <input
                               type="radio"
