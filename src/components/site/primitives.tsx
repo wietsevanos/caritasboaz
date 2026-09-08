@@ -88,14 +88,17 @@ export function Eyebrow({
 export function Statement({
   children,
   className,
+  id,
   as: Tag = "p",
 }: {
   children: ReactNode;
   className?: string;
+  id?: string;
   as?: "p" | "h2" | "blockquote";
 }) {
   return (
     <Tag
+      id={id}
       className={cn(
         "font-display text-[1.75rem] font-semibold leading-[1.15] tracking-[-0.02em] sm:text-4xl lg:text-[2.75rem]",
         className,
