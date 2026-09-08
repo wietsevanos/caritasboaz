@@ -9,7 +9,7 @@ import {
   Statement,
 } from "@/components/site/primitives";
 import { LineField } from "@/components/site/visuals";
-import handsTogetherAsset from "@/assets/hands-together.png.asset.json";
+import communityCircleAsset from "@/assets/community-circle.png.asset.json";
 import { AcuteNoodBlock } from "@/components/site/AcuteNoodBlock";
 import { HelpCta } from "@/components/site/HelpCta";
 import { EXAMPLES, PLACES } from "@/lib/site";
@@ -119,8 +119,8 @@ function Home() {
             </div>
             <Reveal delay={200}>
               <img
-                src={handsTogetherAsset.url}
-                alt="Mensen die elkaar steunen"
+                src={communityCircleAsset.url}
+                alt="Mensen die samen in een kring staan"
                 className="w-full max-w-md mx-auto lg:max-w-none"
                 loading="eager"
                 width="1024"
