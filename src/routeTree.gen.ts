@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as GeschiedenisRouteImport } from './routes/geschiedenis'
+import { Route as HulpAanvragenRouteImport } from './routes/hulp-aanvragen'
+import { Route as OverOnsRouteImport } from './routes/over-ons'
+import { Route as PrivacyverklaringRouteImport } from './routes/privacyverklaring'
+import { Route as VoorbeeldenRouteImport } from './routes/voorbeelden'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GeschiedenisRoute = GeschiedenisRouteImport.update({
+  id: '/geschiedenis',
+  path: '/geschiedenis',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HulpAanvragenRoute = HulpAanvragenRouteImport.update({
+  id: '/hulp-aanvragen',
+  path: '/hulp-aanvragen',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OverOnsRoute = OverOnsRouteImport.update({
+  id: '/over-ons',
+  path: '/over-ons',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyverklaringRoute = PrivacyverklaringRouteImport.update({
+  id: '/privacyverklaring',
+  path: '/privacyverklaring',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VoorbeeldenRoute = VoorbeeldenRouteImport.update({
+  id: '/voorbeelden',
+  path: '/voorbeelden',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/geschiedenis': typeof GeschiedenisRoute
+  '/hulp-aanvragen': typeof HulpAanvragenRoute
+  '/over-ons': typeof OverOnsRoute
+  '/privacyverklaring': typeof PrivacyverklaringRoute
+  '/voorbeelden': typeof VoorbeeldenRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/geschiedenis': typeof GeschiedenisRoute
+  '/hulp-aanvragen': typeof HulpAanvragenRoute
+  '/over-ons': typeof OverOnsRoute
+  '/privacyverklaring': typeof PrivacyverklaringRoute
+  '/voorbeelden': typeof VoorbeeldenRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/geschiedenis': typeof GeschiedenisRoute
+  '/hulp-aanvragen': typeof HulpAanvragenRoute
+  '/over-ons': typeof OverOnsRoute
+  '/privacyverklaring': typeof PrivacyverklaringRoute
+  '/voorbeelden': typeof VoorbeeldenRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/contact'
+    | '/geschiedenis'
+    | '/hulp-aanvragen'
+    | '/over-ons'
+    | '/privacyverklaring'
+    | '/voorbeelden'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/contact'
+    | '/geschiedenis'
+    | '/hulp-aanvragen'
+    | '/over-ons'
+    | '/privacyverklaring'
+    | '/voorbeelden'
+  id:
+    | '__root__'
+    | '/'
+    | '/contact'
+    | '/geschiedenis'
+    | '/hulp-aanvragen'
+    | '/over-ons'
+    | '/privacyverklaring'
+    | '/voorbeelden'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactRoute: typeof ContactRoute
+  GeschiedenisRoute: typeof GeschiedenisRoute
+  HulpAanvragenRoute: typeof HulpAanvragenRoute
+  OverOnsRoute: typeof OverOnsRoute
+  PrivacyverklaringRoute: typeof PrivacyverklaringRoute
+  VoorbeeldenRoute: typeof VoorbeeldenRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/geschiedenis': {
+      id: '/geschiedenis'
+      path: '/geschiedenis'
+      fullPath: '/geschiedenis'
+      preLoaderRoute: typeof GeschiedenisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hulp-aanvragen': {
+      id: '/hulp-aanvragen'
+      path: '/hulp-aanvragen'
+      fullPath: '/hulp-aanvragen'
+      preLoaderRoute: typeof HulpAanvragenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/over-ons': {
+      id: '/over-ons'
+      path: '/over-ons'
+      fullPath: '/over-ons'
+      preLoaderRoute: typeof OverOnsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacyverklaring': {
+      id: '/privacyverklaring'
+      path: '/privacyverklaring'
+      fullPath: '/privacyverklaring'
+      preLoaderRoute: typeof PrivacyverklaringRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/voorbeelden': {
+      id: '/voorbeelden'
+      path: '/voorbeelden'
+      fullPath: '/voorbeelden'
+      preLoaderRoute: typeof VoorbeeldenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactRoute: ContactRoute,
+  GeschiedenisRoute: GeschiedenisRoute,
+  HulpAanvragenRoute: HulpAanvragenRoute,
+  OverOnsRoute: OverOnsRoute,
+  PrivacyverklaringRoute: PrivacyverklaringRoute,
+  VoorbeeldenRoute: VoorbeeldenRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
