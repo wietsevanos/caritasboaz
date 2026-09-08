@@ -237,14 +237,12 @@ function Home() {
               </p>
             </Reveal>
           </div>
-          <div className="mt-14 grid gap-8 sm:grid-cols-3 sm:gap-10">
+          <div className="mt-14 grid items-stretch gap-8 sm:grid-cols-3 sm:gap-10">
             {VALUES.map((value, i) => (
               <Reveal
                 key={value.word}
                 delay={i * 110}
-                className={`border-l-2 border-clay/40 pl-5 sm:pl-6 ${
-                  i === 1 ? "sm:mt-10" : i === 2 ? "sm:mt-20" : ""
-                }`}
+                className="flex h-full flex-col border-l-[3px] border-clay pl-5 sm:pl-6"
               >
                 <h3 className="font-display text-2xl font-semibold sm:text-[1.75rem]">
                   {value.word}
