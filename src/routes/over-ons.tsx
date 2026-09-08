@@ -1,4 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowUpRight } from "lucide-react";
+import bloemendaalAsset from "@/assets/regions/bloemendaal.png.asset.json";
+import overveenAsset from "@/assets/regions/overveen.png.asset.json";
+import aerdenhoutAsset from "@/assets/regions/aerdenhout.png.asset.json";
+import zandvoortAsset from "@/assets/regions/zandvoort.png.asset.json";
 import {
   Container,
   Eyebrow,
@@ -9,7 +14,6 @@ import {
 } from "@/components/site/primitives";
 import { LineField } from "@/components/site/visuals";
 import { HelpCta } from "@/components/site/HelpCta";
-import { PLACES } from "@/lib/site";
 
 const TITLE = "Over Caritas BOAZ — charitatieve hulp in de regio";
 const DESCRIPTION =
@@ -22,6 +26,8 @@ export const Route = createFileRoute("/over-ons")({
       { name: "description", content: DESCRIPTION },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: OverOns,
@@ -65,6 +71,29 @@ const CORE_VALUES = [
   },
 ];
 
+const REGIONS = [
+  {
+    name: "Bloemendaal",
+    image: bloemendaalAsset.url,
+    position: "object-center",
+  },
+  {
+    name: "Overveen",
+    image: overveenAsset.url,
+    position: "object-center",
+  },
+  {
+    name: "Aerdenhout",
+    image: aerdenhoutAsset.url,
+    position: "object-center",
+  },
+  {
+    name: "Zandvoort",
+    image: zandvoortAsset.url,
+    position: "object-center",
+  },
+] as const;
+
 function OverOns() {
   return (
     <>
@@ -82,19 +111,33 @@ function OverOns() {
               persoonlijke nood.
             </p>
           </Reveal>
-          <Reveal delay={120} className="mt-12 grid gap-px border-y border-border sm:grid-cols-4">
-            {PLACES.map((place, i) => (
-              <div
-                key={place}
-                className="group border-border py-6 sm:border-r sm:last:border-r-0"
+          <Reveal delay={120} className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {REGIONS.map((region) => (
+              <Link
+                key={region.name}
+                to="/contact"
+                aria-label={`Contact voor ${region.name}`}
+                className="group relative aspect-[4/5] overflow-hidden rounded-sm bg-muted focus-visible:outline-offset-4"
               >
-                <span className="font-display text-sm font-semibold text-border-strong">
-                  0{i + 1}
-                </span>
-                <p className="mt-2 font-display text-lg font-semibold transition-transform duration-300 group-hover:translate-x-1">
-                  {place}
-                </p>
-              </div>
+                <img
+                  src={region.image}
+                  alt={`Omgeving van ${region.name}`}
+                  loading="lazy"
+                  className={`h-full w-full object-cover ${region.position} transition-transform duration-700 ease-out group-hover:scale-[1.025]`}
+                />
+                <div
+                  className="absolute inset-0 bg-gradient-to-t from-footer/90 via-footer/10 to-transparent"
+                  aria-hidden="true"
+                />
+                <div className="absolute inset-x-0 bottom-0 grid grid-cols-[minmax(0,1fr)_auto] items-end gap-3 p-5 text-footer-foreground sm:p-6">
+                  <h2 className="min-w-0 truncate text-xl font-semibold">
+                    {region.name}
+                  </h2>
+                  <span className="grid size-9 shrink-0 place-items-center border border-footer-foreground/45 transition-colors duration-300 group-hover:bg-footer-foreground group-hover:text-footer">
+                    <ArrowUpRight className="size-4" aria-hidden="true" />
+                  </span>
+                </div>
+              </Link>
             ))}
           </Reveal>
         </Container>
