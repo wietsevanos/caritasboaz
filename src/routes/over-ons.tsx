@@ -4,6 +4,7 @@ import bloemendaalAsset from "@/assets/regions/bloemendaal.png.asset.json";
 import overveenAsset from "@/assets/regions/overveen.png.asset.json";
 import aerdenhoutAsset from "@/assets/regions/aerdenhout.png.asset.json";
 import zandvoortAsset from "@/assets/regions/zandvoort.png.asset.json";
+import helpingHandsAsset from "@/assets/helping-hands.png.asset.json";
 import {
   Container,
   Eyebrow,
@@ -200,15 +201,27 @@ function OverOns() {
 
       <Section tone="sand">
         <LineField stroke="var(--clay)" />
-        <Container size="narrow" className="relative text-center">
-          <Reveal>
-            <Statement>Caritas BOAZ zijn we samen.</Statement>
-            <p className="mt-6 text-muted-foreground sm:text-lg">
-              Vanuit betrokkenheid bij de lokale gemeenschap ondersteunen wij
-              mensen en initiatieven wanneer reguliere instanties niet
-              voldoende kunnen helpen.
-            </p>
-          </Reveal>
+        <Container className="relative">
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+            <Reveal>
+              <img
+                src={helpingHandsAsset.url}
+                alt="Mensen die elkaar een handje helpen"
+                className="w-full rounded-sm object-cover max-h-[24rem] sm:max-h-[28rem] lg:max-h-[32rem]"
+                loading="lazy"
+                width="1200"
+                height="800"
+              />
+            </Reveal>
+            <Reveal delay={120} className="text-center lg:text-left">
+              <Statement>Caritas BOAZ zijn we samen.</Statement>
+              <p className="mt-6 text-muted-foreground sm:text-lg">
+                Vanuit betrokkenheid bij de lokale gemeenschap ondersteunen wij
+                mensen en initiatieven wanneer reguliere instanties niet
+                voldoende kunnen helpen.
+              </p>
+            </Reveal>
+          </div>
         </Container>
       </Section>
 
