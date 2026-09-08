@@ -84,10 +84,19 @@ function Home() {
           <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16">
             <div>
               <Reveal>
-                <Eyebrow>
-                  Bloemendaal · Overveen · Aerdenhout · Zandvoort
-                </Eyebrow>
-                <h1 className="mt-6 text-[2.15rem] sm:text-[3.1rem] lg:text-[3.6rem]">
+              <Eyebrow className="hidden sm:block">
+                Bloemendaal · Overveen · Aerdenhout · Zandvoort
+              </Eyebrow>
+              <div className="flex items-center gap-3 sm:hidden">
+                <span
+                  className="h-px w-7 bg-clay"
+                  aria-hidden="true"
+                />
+                <span className="font-display text-sm font-semibold uppercase tracking-[0.16em] text-clay">
+                  Ondersteuning dichtbij huis
+                </span>
+              </div>
+              <h1 className="mt-6 text-[2.15rem] sm:text-[3.1rem] lg:text-[3.6rem]">
                   Samen helpen wanneer hulp nodig is.
                 </h1>
                 <p className="mt-6 max-w-xl text-muted-foreground sm:text-lg">
