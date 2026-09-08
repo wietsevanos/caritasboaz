@@ -206,17 +206,19 @@ function Home() {
       </Section>
 
       {/* Beeld: samen */}
-      <Section as="div" tone="white" className="py-0">
-        <Reveal>
-          <img
-            src={peopleTogetherAsset.url}
-            alt="Mensen die elkaar ondersteunen"
-            className="w-full object-cover max-h-[26rem] sm:max-h-[30rem] lg:max-h-[34rem]"
-            loading="lazy"
-            width="1920"
-            height="800"
-          />
-        </Reveal>
+      <Section as="div" tone="white">
+        <Container>
+          <Reveal>
+            <img
+              src={peopleTogetherAsset.url}
+              alt="Mensen die elkaar ondersteunen"
+              className="w-full rounded-sm object-cover max-h-[26rem] sm:max-h-[30rem] lg:max-h-[34rem]"
+              loading="lazy"
+              width="1920"
+              height="800"
+            />
+          </Reveal>
+        </Container>
       </Section>
 
       {/* Waarom Caritas BOAZ */}
