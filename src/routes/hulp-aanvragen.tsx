@@ -155,13 +155,13 @@ function HulpAanvragen() {
       </Section>
 
       <Section tone="white" className="pt-0 sm:pt-0 lg:pt-0">
-        <Container size="narrow" className="px-5 sm:px-8">
+        <Container size="default" className="px-5 sm:px-8">
           {submitted ? (
             <div
               ref={successRef}
               tabIndex={-1}
               role="status"
-              className="rounded-sm border border-sage-strong/40 bg-sage p-8 sm:p-10"
+              className="mx-auto max-w-3xl rounded-sm border border-sage-strong/40 bg-sage p-8 sm:p-10"
             >
               <h2 className="text-2xl sm:text-3xl">Bedankt voor uw bericht.</h2>
               <p className="mt-4 text-muted-foreground">
@@ -177,179 +177,223 @@ function HulpAanvragen() {
               </Button>
             </div>
           ) : (
-            <form
-              noValidate
-              onSubmit={handleSubmit}
-              className="rounded-sm border border-border p-6 sm:p-9"
-            >
-              <div className="grid gap-6 sm:grid-cols-2">
-                <div>
-                  <label htmlFor={fid("naam")} className="font-medium">
-                    Naam
-                  </label>
-                  <input
-                    id={fid("naam")}
-                    name="naam"
-                    type="text"
-                    autoComplete="name"
-                    required
-                    maxLength={100}
-                    aria-invalid={Boolean(errors.naam)}
-                    aria-describedby={describedBy("naam")}
-                    className={fieldClass}
-                  />
-                  <FieldError id={eid("naam")} message={errors.naam} />
-                </div>
-                <div>
-                  <label htmlFor={fid("email")} className="font-medium">
-                    E-mailadres
-                  </label>
-                  <input
-                    id={fid("email")}
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    inputMode="email"
-                    required
-                    maxLength={255}
-                    aria-invalid={Boolean(errors.email)}
-                    aria-describedby={describedBy("email")}
-                    className={fieldClass}
-                  />
-                  <FieldError id={eid("email")} message={errors.email} />
-                </div>
-                <div>
-                  <label htmlFor={fid("telefoon")} className="font-medium">
-                    Telefoonnummer
-                  </label>
-                  <input
-                    id={fid("telefoon")}
-                    name="telefoon"
-                    type="tel"
-                    autoComplete="tel"
-                    inputMode="tel"
-                    required
-                    maxLength={30}
-                    aria-invalid={Boolean(errors.telefoon)}
-                    aria-describedby={describedBy("telefoon")}
-                    className={fieldClass}
-                  />
-                  <FieldError id={eid("telefoon")} message={errors.telefoon} />
-                </div>
-                <div>
-                  <label htmlFor={fid("woonplaats")} className="font-medium">
-                    Woonplaats
-                  </label>
-                  <input
-                    id={fid("woonplaats")}
-                    name="woonplaats"
-                    type="text"
-                    autoComplete="address-level2"
-                    required
-                    maxLength={80}
-                    aria-invalid={Boolean(errors.woonplaats)}
-                    aria-describedby={describedBy("woonplaats")}
-                    className={fieldClass}
-                  />
-                  <FieldError id={eid("woonplaats")} message={errors.woonplaats} />
-                </div>
+            <div className="mx-auto max-w-5xl">
+              <div className="mb-8 text-center lg:mb-10">
+                <h2 className="text-2xl font-medium sm:text-3xl">Uw aanvraag</h2>
+                <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
+                  Vul het formulier zo volledig mogelijk in. Hoe meer we weten,
+                  hoe gerichter we kunnen meekijken.
+                </p>
               </div>
 
-              <div className="mt-8">
-                <label htmlFor={fid("onderwerp")} className="font-medium">
-                  Waar gaat uw hulpvraag over?
-                </label>
-                <select
-                  id={fid("onderwerp")}
-                  name="onderwerp"
-                  required
-                  defaultValue=""
-                  aria-invalid={Boolean(errors.onderwerp)}
-                  aria-describedby={describedBy("onderwerp")}
-                  className={fieldClass}
-                >
-                  <option value="" disabled>
-                    Maak een keuze
-                  </option>
-                  {SUBJECTS.map((subject) => (
-                    <option key={subject} value={subject}>
-                      {subject}
-                    </option>
-                  ))}
-                </select>
-                <FieldError id={eid("onderwerp")} message={errors.onderwerp} />
-              </div>
-
-              <div className="mt-8">
-                <label htmlFor={fid("situatie")} className="font-medium">
-                  Kunt u kort vertellen wat er speelt?
-                </label>
-                <textarea
-                  id={fid("situatie")}
-                  name="situatie"
-                  rows={7}
-                  required
-                  maxLength={2000}
-                  aria-invalid={Boolean(errors.situatie)}
-                  aria-describedby={describedBy("situatie")}
-                  className={fieldClass}
-                />
-                <FieldError id={eid("situatie")} message={errors.situatie} />
-              </div>
-
-              <fieldset className="mt-8">
-                <legend className="font-medium">
-                  Heeft u al contact gehad met andere instanties?
-                </legend>
-                <div
-                  className="mt-3 grid gap-3 sm:grid-cols-3"
-                  aria-describedby={describedBy("instanties")}
-                >
-                  {["Ja", "Nee", "Onbekend"].map((option) => (
-                    <label
-                      key={option}
-                      className="flex cursor-pointer items-center gap-3 rounded-sm border border-input px-4 py-3 transition-colors hover:border-border-strong hover:bg-secondary has-[:checked]:border-primary has-[:checked]:bg-secondary"
-                    >
+              <form
+                noValidate
+                onSubmit={handleSubmit}
+                className="rounded-sm border border-border bg-background p-6 sm:p-10 lg:p-12"
+              >
+                <fieldset>
+                  <legend className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.14em] text-primary-soft">
+                    <span
+                      className="h-px w-6 bg-primary-soft/60"
+                      aria-hidden="true"
+                    />
+                    Uw gegevens
+                  </legend>
+                  <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+                    <div>
+                      <label htmlFor={fid("naam")} className="font-medium">
+                        Naam
+                      </label>
                       <input
-                        type="radio"
-                        name="instanties"
-                        value={option}
-                        className="h-4 w-4 accent-[var(--primary)]"
+                        id={fid("naam")}
+                        name="naam"
+                        type="text"
+                        autoComplete="name"
+                        required
+                        maxLength={100}
+                        aria-invalid={Boolean(errors.naam)}
+                        aria-describedby={describedBy("naam")}
+                        className={fieldClass}
                       />
-                      <span>{option}</span>
-                    </label>
-                  ))}
+                      <FieldError id={eid("naam")} message={errors.naam} />
+                    </div>
+                    <div>
+                      <label htmlFor={fid("email")} className="font-medium">
+                        E-mailadres
+                      </label>
+                      <input
+                        id={fid("email")}
+                        name="email"
+                        type="email"
+                        autoComplete="email"
+                        inputMode="email"
+                        required
+                        maxLength={255}
+                        aria-invalid={Boolean(errors.email)}
+                        aria-describedby={describedBy("email")}
+                        className={fieldClass}
+                      />
+                      <FieldError id={eid("email")} message={errors.email} />
+                    </div>
+                    <div>
+                      <label htmlFor={fid("telefoon")} className="font-medium">
+                        Telefoonnummer
+                      </label>
+                      <input
+                        id={fid("telefoon")}
+                        name="telefoon"
+                        type="tel"
+                        autoComplete="tel"
+                        inputMode="tel"
+                        required
+                        maxLength={30}
+                        aria-invalid={Boolean(errors.telefoon)}
+                        aria-describedby={describedBy("telefoon")}
+                        className={fieldClass}
+                      />
+                      <FieldError id={eid("telefoon")} message={errors.telefoon} />
+                    </div>
+                    <div>
+                      <label htmlFor={fid("woonplaats")} className="font-medium">
+                        Woonplaats
+                      </label>
+                      <input
+                        id={fid("woonplaats")}
+                        name="woonplaats"
+                        type="text"
+                        autoComplete="address-level2"
+                        required
+                        maxLength={80}
+                        aria-invalid={Boolean(errors.woonplaats)}
+                        aria-describedby={describedBy("woonplaats")}
+                        className={fieldClass}
+                      />
+                      <FieldError id={eid("woonplaats")} message={errors.woonplaats} />
+                    </div>
+                  </div>
+                </fieldset>
+
+                <div className="my-8 border-t border-border lg:my-10" aria-hidden="true" />
+
+                <fieldset>
+                  <legend className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.14em] text-primary-soft">
+                    <span
+                      className="h-px w-6 bg-primary-soft/60"
+                      aria-hidden="true"
+                    />
+                    Uw hulpvraag
+                  </legend>
+                  <div className="grid gap-6 lg:grid-cols-[1fr_2fr]">
+                    <div>
+                      <label htmlFor={fid("onderwerp")} className="font-medium">
+                        Waar gaat het over?
+                      </label>
+                      <select
+                        id={fid("onderwerp")}
+                        name="onderwerp"
+                        required
+                        defaultValue=""
+                        aria-invalid={Boolean(errors.onderwerp)}
+                        aria-describedby={describedBy("onderwerp")}
+                        className={fieldClass}
+                      >
+                        <option value="" disabled>
+                          Maak een keuze
+                        </option>
+                        {SUBJECTS.map((subject) => (
+                          <option key={subject} value={subject}>
+                            {subject}
+                          </option>
+                        ))}
+                      </select>
+                      <FieldError id={eid("onderwerp")} message={errors.onderwerp} />
+                    </div>
+                    <div>
+                      <label htmlFor={fid("situatie")} className="font-medium">
+                        Kunt u kort vertellen wat er speelt?
+                      </label>
+                      <textarea
+                        id={fid("situatie")}
+                        name="situatie"
+                        rows={6}
+                        required
+                        maxLength={2000}
+                        aria-invalid={Boolean(errors.situatie)}
+                        aria-describedby={describedBy("situatie")}
+                        className={fieldClass}
+                      />
+                      <FieldError id={eid("situatie")} message={errors.situatie} />
+                    </div>
+                  </div>
+                </fieldset>
+
+                <div className="my-8 border-t border-border lg:my-10" aria-hidden="true" />
+
+                <fieldset>
+                  <legend className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.14em] text-primary-soft">
+                    <span
+                      className="h-px w-6 bg-primary-soft/60"
+                      aria-hidden="true"
+                    />
+                    Meer informatie
+                  </legend>
+                  <div className="grid gap-6 lg:grid-cols-[1fr_2fr]">
+                    <div>
+                      <p className="font-medium">
+                        Heeft u al contact gehad met andere instanties?
+                      </p>
+                      <div
+                        className="mt-3 flex flex-wrap gap-3"
+                        aria-describedby={describedBy("instanties")}
+                      >
+                        {["Ja", "Nee", "Onbekend"].map((option) => (
+                          <label
+                            key={option}
+                            className="flex flex-1 cursor-pointer items-center gap-3 rounded-sm border border-input px-4 py-3 transition-colors hover:border-border-strong hover:bg-secondary has-[:checked]:border-primary has-[:checked]:bg-secondary sm:flex-none sm:min-w-[8rem]"
+                          >
+                            <input
+                              type="radio"
+                              name="instanties"
+                              value={option}
+                              className="h-4 w-4 accent-[var(--primary)]"
+                            />
+                            <span>{option}</span>
+                          </label>
+                        ))}
+                      </div>
+                      <FieldError id={eid("instanties")} message={errors.instanties} />
+                    </div>
+                    <div>
+                      <label htmlFor={fid("toevoeging")} className="font-medium">
+                        Wilt u nog iets toevoegen?{" "}
+                        <span className="font-normal text-muted-foreground">
+                          (optioneel)
+                        </span>
+                      </label>
+                      <textarea
+                        id={fid("toevoeging")}
+                        name="toevoeging"
+                        rows={4}
+                        maxLength={1000}
+                        aria-invalid={Boolean(errors.toevoeging)}
+                        aria-describedby={describedBy("toevoeging")}
+                        className={fieldClass}
+                      />
+                      <FieldError id={eid("toevoeging")} message={errors.toevoeging} />
+                    </div>
+                  </div>
+                </fieldset>
+
+                <div className="mt-10 flex flex-col items-start gap-4 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
+                  <p className="max-w-md text-sm text-muted-foreground">
+                    Uw informatie wordt zorgvuldig en vertrouwelijk behandeld.
+                  </p>
+                  <Button type="submit" className="w-full sm:w-auto">
+                    Verstuur aanvraag
+                  </Button>
                 </div>
-                <FieldError id={eid("instanties")} message={errors.instanties} />
-              </fieldset>
-
-              <div className="mt-8">
-                <label htmlFor={fid("toevoeging")} className="font-medium">
-                  Wilt u nog iets toevoegen?{" "}
-                  <span className="font-normal text-muted-foreground">
-                    (optioneel)
-                  </span>
-                </label>
-                <textarea
-                  id={fid("toevoeging")}
-                  name="toevoeging"
-                  rows={4}
-                  maxLength={1000}
-                  aria-invalid={Boolean(errors.toevoeging)}
-                  aria-describedby={describedBy("toevoeging")}
-                  className={fieldClass}
-                />
-                <FieldError id={eid("toevoeging")} message={errors.toevoeging} />
-              </div>
-
-              <p className="mt-8 text-sm text-muted-foreground">
-                Uw informatie wordt zorgvuldig en vertrouwelijk behandeld.
-              </p>
-
-              <Button type="submit" className="mt-6 w-full sm:w-auto">
-                Verstuur aanvraag
-              </Button>
-            </form>
+              </form>
+            </div>
           )}
         </Container>
       </Section>
