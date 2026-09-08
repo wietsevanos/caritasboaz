@@ -256,20 +256,6 @@ function Home() {
         </Container>
       </Section>
 
-      {/* Beeld: helpende handen */}
-      <Section as="div" tone="white" className="py-0">
-        <Reveal>
-          <img
-            src={helpingHandsAsset.url}
-            alt="Mensen die elkaar een handje helpen"
-            className="w-full object-cover max-h-[26rem] sm:max-h-[30rem] lg:max-h-[34rem]"
-            loading="lazy"
-            width="1920"
-            height="800"
-          />
-        </Reveal>
-      </Section>
-
       {/* Voorbeelden preview */}
       <Section tone="white" labelledBy="voorbeelden-preview">
         <Container>
