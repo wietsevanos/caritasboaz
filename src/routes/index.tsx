@@ -87,18 +87,12 @@ function Home() {
           <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:gap-10">
             <div>
               <Reveal>
-                <Eyebrow className="hidden text-clay sm:block">
-                  Voor mensen in nood
-                </Eyebrow>
-                <div className="flex items-center gap-3 sm:hidden">
-                  <span
-                    className="h-px w-7 bg-clay"
-                    aria-hidden="true"
-                  />
-                  <span className="font-display text-sm font-semibold uppercase tracking-[0.16em] text-clay">
-                    Voor mensen in nood
-                  </span>
-                </div>
+              <Eyebrow className="hidden text-clay sm:block">
+                Voor mensen in nood
+              </Eyebrow>
+              <Eyebrow className="text-clay sm:hidden">
+                Voor mensen in nood
+              </Eyebrow>
               <h1 className="mt-6 text-[2.15rem] sm:text-[3.1rem] lg:text-[3.6rem]">
                   Samen helpen wanneer hulp nodig is.
                 </h1>
@@ -243,14 +237,12 @@ function Home() {
               </p>
             </Reveal>
           </div>
-          <div className="mt-14 grid gap-8 sm:grid-cols-3 sm:gap-10">
+          <div className="mt-14 grid items-stretch gap-8 sm:grid-cols-3 sm:gap-10">
             {VALUES.map((value, i) => (
               <Reveal
                 key={value.word}
                 delay={i * 110}
-                className={`border-l-2 border-clay/40 pl-5 sm:pl-6 ${
-                  i === 1 ? "sm:mt-10" : i === 2 ? "sm:mt-20" : ""
-                }`}
+                className="flex h-full flex-col border-l-[3px] border-clay pl-5 sm:pl-6"
               >
                 <h3 className="font-display text-2xl font-semibold sm:text-[1.75rem]">
                   {value.word}
