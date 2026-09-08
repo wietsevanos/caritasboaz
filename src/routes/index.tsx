@@ -121,7 +121,7 @@ function Home() {
               <img
                 src={communityCircleAsset.url}
                 alt="Mensen die samen in een kring staan"
-                className="w-full max-w-md mx-auto lg:max-w-none"
+                className="w-full max-w-lg mx-auto sm:max-w-xl lg:max-w-none"
                 loading="eager"
                 width="1024"
                 height="1024"
