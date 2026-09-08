@@ -4,6 +4,7 @@ import bloemendaalAsset from "@/assets/regions/bloemendaal.png.asset.json";
 import overveenAsset from "@/assets/regions/overveen.png.asset.json";
 import aerdenhoutAsset from "@/assets/regions/aerdenhout.png.asset.json";
 import zandvoortAsset from "@/assets/regions/zandvoort.png.asset.json";
+import helpingHandsAsset from "@/assets/helping-hands.png.asset.json";
 import {
   Container,
   Eyebrow,
