@@ -75,7 +75,7 @@ type FieldName = keyof z.infer<typeof schema>;
 type Errors = Partial<Record<FieldName, string>>;
 
 const fieldClass =
-  "mt-2 w-full rounded-sm border border-input bg-background px-4 py-3 text-base transition-colors placeholder:text-muted-foreground/70 hover:border-border-strong focus:border-primary focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring aria-[invalid=true]:border-destructive";
+  "mt-2 w-full rounded-sm border border-input bg-background px-4 py-3 text-base transition-colors placeholder:text-muted-foreground/70 hover:border-border-strong focus:border-primary focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring aria-[invalid=true]:border-destructive sm:px-5 sm:py-4";
 
 function HulpAanvragen() {
   const [errors, setErrors] = useState<Errors>({});
