@@ -134,7 +134,7 @@ export function ButtonLink({
 }) {
   return (
     <Link
-      to={to}
+      to={to as never}
       className={cn(buttonBase, buttonVariants[variant], className)}
     >
       {children}
