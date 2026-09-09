@@ -169,7 +169,7 @@ function Home() {
       </Section>
 
       {/* Waar wij kunnen helpen */}
-      <Section tone="white" labelledBy="waar-wij-helpen">
+      <Section tone="white" labelledBy="waar-wij-helpen" className="pt-10 pb-16 sm:pt-12 sm:pb-20 lg:pt-14 lg:pb-28">
         <Container>
           <SectionHeading
             id="waar-wij-helpen"
@@ -205,7 +205,7 @@ function Home() {
       </Section>
 
       {/* Beeld: samen */}
-      <Section as="div" tone="white">
+      <Section as="div" tone="white" className="pb-6 pt-16 sm:pb-8 sm:pt-20 lg:pb-10 lg:pt-24">
         <Container>
           <Reveal>
             <img
