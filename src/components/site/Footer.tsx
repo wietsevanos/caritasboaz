@@ -14,7 +14,7 @@ export function Footer() {
   return (
     <footer className="bg-footer text-footer-foreground">
       <Container size="wide">
-        <div className="flex flex-col items-start justify-between gap-8 py-8 sm:flex-row sm:items-center sm:gap-6">
+        <div className="flex flex-col items-start justify-between gap-8 pt-8 pb-24 sm:flex-row sm:items-center sm:gap-6 sm:pb-8">
           <div className="flex items-center gap-3.5">
             <img
               src={logoAsset.url}
