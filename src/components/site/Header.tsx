@@ -39,15 +39,15 @@ export function Header() {
         <div className="flex h-16 items-center justify-between gap-4 sm:h-[4.5rem]">
           <Link
             to="/"
-            className="flex shrink-0 items-center gap-2.5 whitespace-nowrap font-display text-[0.8rem] font-bold uppercase tracking-[0.12em] text-foreground sm:gap-3 sm:text-[0.95rem] sm:tracking-[0.16em]"
+            className="flex shrink-0 items-center gap-2.5 whitespace-nowrap font-display text-[0.95rem] font-bold uppercase tracking-[0.12em] text-foreground sm:gap-3 sm:text-[1.05rem] sm:tracking-[0.16em]"
             onClick={() => setOpen(false)}
           >
             <img
               src={logoAsset.url}
               alt=""
-              className="h-7 w-7 rounded-sm object-contain sm:h-8 sm:w-8"
-              width="32"
-              height="32"
+              className="h-8 w-8 rounded-sm object-contain sm:h-9 sm:w-9"
+              width="36"
+              height="36"
               aria-hidden="true"
             />
             Caritas BOAZ

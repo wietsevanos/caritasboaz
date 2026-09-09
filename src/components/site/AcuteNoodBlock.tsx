@@ -53,7 +53,7 @@ export function AcuteNoodBlock({
   if (bare) return block;
 
   return (
-    <Section tone="white" className="py-12 sm:py-16">
+    <Section tone="sand" className="py-12 sm:py-16">
       <Container>{block}</Container>
     </Section>
   );
