@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { NAV_LINKS } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { Container } from "./primitives";
+import logoAsset from "@/assets/logo.png.asset.json";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
