@@ -50,7 +50,7 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="border-t border-footer-foreground/15 py-6 text-sm text-footer-muted">
+        <div className="border-t border-footer-foreground/15 py-6 pb-24 text-sm text-footer-muted sm:pb-6 lg:pb-6">
           <p>
             © {new Date().getFullYear()} Caritas BOAZ. Alle rechten voorbehouden.
           </p>
