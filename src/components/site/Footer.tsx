@@ -28,7 +28,7 @@ export function Footer() {
               <p className="font-display text-lg font-bold uppercase tracking-[0.14em] sm:text-xl">
                 Caritas BOAZ
               </p>
-              <p className="mt-1.5 max-w-[16rem] text-sm leading-snug text-footer-muted">
+              <p className="mt-1.5 text-sm leading-snug text-footer-muted">
                 Bloemendaal · Overveen · Aerdenhout · Zandvoort
               </p>
             </div>
