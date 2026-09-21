@@ -32,7 +32,11 @@ export async function downloadAanvraagPdf(samenvatting: AanvraagSamenvatting) {
   pdf.setFont("helvetica", "normal");
   pdf.setFontSize(9);
   pdf.setTextColor(102, 112, 124);
-  pdf.text(`Datum: ${new Intl.DateTimeFormat("nl-NL").format(new Date())}`, margin, y);
+  pdf.text(
+    `Datum: ${new Intl.DateTimeFormat("nl-NL", { timeZone: "Europe/Amsterdam" }).format(new Date())}`,
+    margin,
+    y,
+  );
   y += 5;
   pdf.text(`Bestemming: ${samenvatting.commissie.naam}`, margin, y);
   y += 11;
@@ -67,12 +71,18 @@ export async function downloadAanvraagPdf(samenvatting: AanvraagSamenvatting) {
     y += 6;
   }
 
-  addPageIfNeeded(18);
-  pdf.setDrawColor(220, 226, 231);
-  pdf.line(margin, y, pageWidth - margin, y);
-  y += 7;
-  pdf.setFontSize(8.5);
-  pdf.setTextColor(102, 112, 124);
-  pdf.text("Dit document is lokaal aangemaakt vanuit de aanvraag bij Caritas BOAZ.", margin, y);
+  const pageCount = pdf.getNumberOfPages();
+  for (let page = 1; page <= pageCount; page += 1) {
+    pdf.setPage(page);
+    pdf.setDrawColor(220, 226, 231);
+    pdf.line(margin, pageHeight - 17, pageWidth - margin, pageHeight - 17);
+    pdf.setFontSize(8.5);
+    pdf.setTextColor(102, 112, 124);
+    pdf.text(
+      "Dit document is lokaal aangemaakt vanuit de aanvraag bij Caritas BOAZ.",
+      margin,
+      pageHeight - 11,
+    );
+  }
   pdf.save(`caritas-boaz-aanvraag-${new Date().toISOString().slice(0, 10)}.pdf`);
 }
