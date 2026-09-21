@@ -30,6 +30,11 @@ export const Route = createFileRoute("/voorbeelden")({
 const ITEMS = [
   {
     label: "Persoonlijke ondersteuning",
+    text: "Financiële hulp bij de aanschaf van huishoudelijke apparatuur.",
+    span: "sm:col-span-5",
+  },
+  {
+    label: "Persoonlijke ondersteuning",
     text: "Een schenking voor de aanschaf van een stofzuiger voor een statushouder.",
     span: "sm:col-span-7",
   },
@@ -60,7 +65,7 @@ const ITEMS = [
   },
   {
     label: "Zandvoort",
-    text: "Gevulde rugzakjes voor de jeugd in de zomer en financiële aandacht voor gezinnen met weinig financiële ruimte rond Kerst en Pasen.",
+    text: "Gevulde rugzakjes voor de jeugd in de zomer en financiële ondersteuning voor gezinnen die dat nodig hebben rond Kerst en Pasen.",
     span: "sm:col-span-12",
   },
 ];
