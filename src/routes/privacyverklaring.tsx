@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Container, Eyebrow, Reveal, Section } from "@/components/site/primitives";
-import { ACUTE_CONTACT } from "@/lib/site";
 
 const TITLE = "Privacyverklaring — Caritas BOAZ";
 const DESCRIPTION =
@@ -13,6 +12,8 @@ export const Route = createFileRoute("/privacyverklaring")({
       { name: "description", content: DESCRIPTION },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Privacy,
@@ -80,16 +81,8 @@ function Privacy() {
           <Reveal className="mt-10 rounded-sm bg-sky p-7">
             <h2 className="text-xl">Vragen over privacy</h2>
             <p className="mt-3 text-muted-foreground">
-              Heeft u een vraag over uw gegevens? Neem contact op via de
-              e-mailadressen op de contactpagina of met{" "}
-              {ACUTE_CONTACT.name} via{" "}
-              <a
-                href={`mailto:${ACUTE_CONTACT.email}`}
-                className="link-underline text-primary"
-              >
-                {ACUTE_CONTACT.email}
-              </a>
-              .
+               Heeft u een vraag over uw gegevens? Neem contact op via de
+               e-mailadressen op de contactpagina.
             </p>
           </Reveal>
         </Container>

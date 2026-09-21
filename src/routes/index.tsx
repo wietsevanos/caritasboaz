@@ -5,15 +5,9 @@ import {
   Eyebrow,
   Reveal,
   Section,
-  SectionHeading,
-  Statement,
 } from "@/components/site/primitives";
-import { LineField } from "@/components/site/visuals";
 import heroHuddleAsset from "@/assets/hero-huddle.png.asset.json";
-import peopleTogetherAsset from "@/assets/people-together.png.asset.json";
-import { AcuteNoodBlock } from "@/components/site/AcuteNoodBlock";
-import { HelpCta } from "@/components/site/HelpCta";
-import { EXAMPLES, PLACES } from "@/lib/site";
+import generationsTogetherAsset from "@/assets/generations-together.jpg";
 
 const TITLE = "Caritas BOAZ — samen helpen wanneer hulp nodig is";
 const DESCRIPTION =
@@ -26,6 +20,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: DESCRIPTION },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Home,
@@ -33,48 +29,13 @@ export const Route = createFileRoute("/")({
 
 const HELP_ITEMS = [
   {
-    number: "01",
-    title: "Tijdelijke financiële ondersteuning",
+    title: "Tijdelijke persoonlijke ondersteuning",
     text: "Voor mensen die tijdelijk financiële problemen ervaren en niet voldoende geholpen kunnen worden door reguliere instanties.",
-    accent: "bg-primary",
   },
   {
-    number: "02",
-    title: "Persoonlijke nood",
-    text: "Aandacht en ondersteuning voor mensen die in een moeilijke of benarde situatie terecht zijn gekomen.",
-    accent: "bg-sage-strong",
-  },
-  {
-    number: "03",
     title: "Maatschappelijke projecten",
     text: "Ondersteuning van lokale initiatieven die bijdragen aan het welzijn van mensen binnen de regio.",
-    accent: "bg-sky-strong",
   },
-  {
-    number: "04",
-    title: "Acute nood",
-    text: "Bij acute persoonlijke of sociale nood kan contact worden opgenomen met de juiste contactpersoon.",
-    accent: "bg-clay",
-  },
-];
-
-const VALUES = [
-  {
-    word: "Praktisch",
-    text: "We kijken naar concrete mogelijkheden om te helpen.",
-  },
-  {
-    word: "Persoonlijk",
-    text: "Achter iedere hulpvraag staat een mens en een verhaal.",
-  },
-  { word: "Betrokken", text: "We geloven in naar elkaar omkijken." },
-];
-
-const EXAMPLE_TONES = [
-  "bg-background border border-border",
-  "bg-sky",
-  "bg-sage",
-  "bg-sand",
 ];
 
 function Home() {
@@ -97,17 +58,13 @@ function Home() {
                 </h1>
                 <p className="mt-6 max-w-xl text-muted-foreground sm:text-lg">
                   Caritas BOAZ biedt ondersteuning aan mensen in tijdelijke
-                  financiële of persoonlijke nood in Bloemendaal, Overveen,
-                  Aerdenhout en Zandvoort.
+                  financiële of persoonlijke nood in <strong className="font-semibold text-clay">B</strong>loemendaal, <strong className="font-semibold text-clay">O</strong>verveen, <strong className="font-semibold text-clay">A</strong>erdenhout en <strong className="font-semibold text-clay">Z</strong>andvoort en omstreken.
                 </p>
               </Reveal>
               <Reveal delay={120}>
-                <div className="mt-9 grid gap-3 sm:max-w-[30rem] sm:grid-cols-2">
+                <div className="mt-9 sm:max-w-[15rem]">
                   <ButtonLink to="/hulp-aanvragen" className="w-full">
                     Hulp aanvragen
-                  </ButtonLink>
-                  <ButtonLink to="/over-ons" variant="outline" className="w-full">
-                    Meer over Caritas BOAZ
                   </ButtonLink>
                 </div>
               </Reveal>
@@ -129,7 +86,7 @@ function Home() {
       {/* Introductie */}
       <Section tone="sky" labelledBy="introductie">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-20">
+          <div className="max-w-3xl">
             <Reveal>
               <Eyebrow>Introductie</Eyebrow>
               <h2 id="introductie" className="mt-5 text-[1.9rem] sm:text-4xl lg:text-[2.7rem]">
@@ -142,115 +99,33 @@ function Home() {
                 andere mogelijkheden niet voldoende zijn.
               </p>
             </Reveal>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Wat wij doen */}
+      <Section tone="white" labelledBy="wat-wij-doen">
+        <Container>
+          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
             <div>
-              <p className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-primary-soft">
-                BOAZ staat voor
-              </p>
-              <ul className="mt-6 border-t border-primary/15">
-                {PLACES.map((place, i) => (
-                  <Reveal
-                    as="li"
-                    key={place}
-                    delay={i * 90}
-                    className="group grid grid-cols-[auto_minmax(0,1fr)] items-center gap-5 border-b border-primary/15 py-5 transition-colors hover:bg-background/50"
-                  >
-                    <span className="font-display text-2xl font-semibold text-primary/35 transition-colors group-hover:text-clay sm:text-3xl">
-                      0{i + 1}
-                    </span>
-                    <span className="font-display text-xl font-semibold transition-transform duration-300 group-hover:translate-x-1 sm:text-2xl">
-                      {place}
-                    </span>
+              <Reveal>
+                <Eyebrow>Wat wij doen</Eyebrow>
+                <h2 id="wat-wij-doen" className="mt-4 text-[1.8rem] sm:text-4xl lg:text-[2.6rem]">
+                  Ondersteuning dichtbij
+                </h2>
+              </Reveal>
+              <div className="mt-9 border-t border-border">
+                {HELP_ITEMS.map((item, i) => (
+                  <Reveal key={item.title} delay={i * 80} className="border-b border-border py-6">
+                    <h3 className="text-xl font-semibold">{item.title}</h3>
+                    <p className="mt-3 text-muted-foreground">{item.text}</p>
                   </Reveal>
                 ))}
-              </ul>
+              </div>
             </div>
-          </div>
-        </Container>
-      </Section>
-
-      {/* Waar wij kunnen helpen */}
-      <Section tone="white" labelledBy="waar-wij-helpen" className="pt-10 pb-16 sm:pt-12 sm:pb-20 lg:pt-14 lg:pb-28">
-        <Container>
-          <SectionHeading
-            id="waar-wij-helpen"
-            eyebrow="Wat wij doen"
-            title="Waar wij kunnen helpen"
-            align="left"
-          />
-          <ul className="mt-12 grid gap-px border-t border-border sm:grid-cols-2 lg:grid-cols-4">
-            {HELP_ITEMS.map((item, i) => (
-              <Reveal
-                as="li"
-                key={item.number}
-                delay={i * 80}
-                className="group border-b border-border bg-background p-6 transition-colors duration-200 hover:bg-secondary sm:border-b-0 sm:border-r sm:p-8 last:sm:border-r-0"
-              >
-                <span
-                  className={`block h-1 w-8 rounded-sm ${item.accent}`}
-                  aria-hidden="true"
-                />
-                <span className="mt-6 block font-display text-3xl font-semibold text-border-strong transition-colors duration-300 group-hover:text-foreground">
-                  {item.number}
-                </span>
-                <h3 className="mt-3 text-lg font-semibold leading-snug sm:text-xl">
-                  {item.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  {item.text}
-                </p>
-              </Reveal>
-            ))}
-          </ul>
-        </Container>
-      </Section>
-
-      {/* Beeld: samen */}
-      <Section as="div" tone="white" className="pb-6 pt-16 sm:pb-8 sm:pt-20 lg:pb-10 lg:pt-24">
-        <Container>
-          <Reveal>
-            <img
-              src={peopleTogetherAsset.url}
-              alt="Mensen die elkaar ondersteunen"
-              className="w-full rounded-sm object-cover max-h-[26rem] sm:max-h-[30rem] lg:max-h-[34rem]"
-              loading="lazy"
-              width="1920"
-              height="800"
-            />
-          </Reveal>
-        </Container>
-      </Section>
-
-      {/* Waarom Caritas BOAZ */}
-      <Section tone="sand" labelledBy="waarom">
-        <LineField className="opacity-70" stroke="var(--clay)" />
-        <Container className="relative">
-          <div className="max-w-3xl">
-            <Reveal>
-              <Eyebrow className="text-clay">Waarom Caritas BOAZ</Eyebrow>
-              <Statement as="h2" id="waarom" className="mt-5">
-                Niemand zou er alleen voor moeten staan.
-              </Statement>
-              <p className="mt-6 max-w-2xl text-muted-foreground sm:text-lg">
-                Caritas BOAZ zet zich in voor mensen die tijdelijk extra
-                ondersteuning kunnen gebruiken. Vanuit betrokkenheid bij de
-                lokale gemeenschap kijken we naar wat nodig is en waar we
-                praktisch kunnen helpen.
-              </p>
+            <Reveal delay={120}>
+              <img src={generationsTogetherAsset} alt="Kinderen, volwassenen en ouderen samen" className="aspect-[16/10] w-full rounded-sm object-cover" loading="lazy" width={1600} height={912} />
             </Reveal>
-          </div>
-          <div className="mt-14 grid items-stretch gap-8 sm:grid-cols-3 sm:gap-10">
-            {VALUES.map((value, i) => (
-              <Reveal
-                key={value.word}
-                delay={i * 110}
-                className="flex h-full flex-col border-l-[3px] border-clay pl-5 sm:pl-6"
-              >
-                <h3 className="font-display text-2xl font-semibold sm:text-[1.75rem]">
-                  {value.word}
-                </h3>
-                <p className="mt-3 text-muted-foreground">{value.text}</p>
-              </Reveal>
-            ))}
           </div>
         </Container>
       </Section>
@@ -258,51 +133,19 @@ function Home() {
       {/* Voorbeelden preview */}
       <Section tone="white" labelledBy="voorbeelden-preview">
         <Container>
-          <SectionHeading
-            id="voorbeelden-preview"
-            eyebrow="Voorbeelden"
-            title="Een greep uit wat wij doen."
-          />
-          <div className="mt-14 grid gap-4 sm:grid-cols-6">
-            {EXAMPLES.map((example, i) => (
-              <Reveal
-                key={example.label}
-                delay={i * 90}
-                className={[
-                  "group rounded-sm p-6 transition-[transform,border-color,background-color] duration-300 hover:-translate-y-1 sm:p-8",
-                  EXAMPLE_TONES[i],
-                  i === 0
-                    ? "sm:col-span-4"
-                    : i === 1
-                      ? "sm:col-span-2"
-                      : i === 2
-                        ? "sm:col-span-2"
-                        : "sm:col-span-4",
-                ].join(" ")}
-              >
-                <p className="font-display text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-primary-soft">
-                  {example.label}
-                </p>
-                <p className="mt-4 font-display text-lg font-medium sm:text-xl">
-                  {example.text}
-                </p>
-              </Reveal>
-            ))}
-          </div>
-          <div className="mt-10 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-            <p className="max-w-xl text-sm text-muted-foreground">
-              Om privacy te beschermen worden situaties en projecten anoniem
-              weergegeven.
-            </p>
-            <ButtonLink to="/voorbeelden" variant="outline">
-              Bekijk alle voorbeelden
+          <Reveal className="grid gap-7 border-y border-border py-9 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:py-11">
+            <div>
+              <Eyebrow>Voorbeelden</Eyebrow>
+              <h2 id="voorbeelden-preview" className="mt-4 text-[1.8rem] sm:text-4xl">
+                Bekijk voorbeelden van hulp die Caritas BOAZ biedt.
+              </h2>
+            </div>
+            <ButtonLink to="/voorbeelden" variant="outline" className="w-full sm:w-auto">
+              Bekijk voorbeelden
             </ButtonLink>
-          </div>
+          </Reveal>
         </Container>
       </Section>
-
-      <AcuteNoodBlock />
-      <HelpCta />
     </>
   );
 }
