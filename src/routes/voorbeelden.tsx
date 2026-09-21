@@ -31,42 +31,50 @@ const ITEMS = [
   {
     label: "Persoonlijke ondersteuning",
     text: "Financiële hulp bij de aanschaf van huishoudelijke apparatuur.",
-    span: "sm:col-span-5",
+    span: "md:col-span-8",
+    tone: "border border-border-strong bg-background",
   },
   {
     label: "Persoonlijke ondersteuning",
     text: "Een schenking voor de aanschaf van een stofzuiger voor een statushouder.",
-    span: "sm:col-span-7",
+    span: "md:col-span-4",
+    tone: "bg-sky",
   },
   {
     label: "Persoonlijke ondersteuning",
     text: "Financiële ondersteuning bij minder inkomsten vanwege een operatie.",
-    span: "sm:col-span-5",
+    span: "md:col-span-4",
+    tone: "bg-sage",
   },
   {
     label: "Wonen",
     text: "Een donatie voor een laminaatvloer.",
-    span: "sm:col-span-5",
+    span: "md:col-span-8",
+    tone: "bg-sand",
   },
   {
     label: "Jeugd",
     text: "Financiële ondersteuning voor jeugdproject Timmerdorp Bloemendaal.",
-    span: "sm:col-span-7",
+    span: "md:col-span-6",
+    tone: "bg-sky",
   },
   {
     label: "Ontmoeting",
     text: "Financiële ondersteuning voor een tuinproject voor ouderen en kinderen in Vogelenzang.",
-    span: "sm:col-span-7",
+    span: "md:col-span-6",
+    tone: "border border-border-strong bg-background",
   },
   {
     label: "Lokale goede doelen",
     text: "Jaarlijkse donaties aan verschillende goede doelen, waaronder Stem in de Stad, FUN en Youth for Christ.",
-    span: "sm:col-span-5",
+    span: "md:col-span-5",
+    tone: "bg-sand",
   },
   {
     label: "Zandvoort",
     text: "Gevulde rugzakjes voor de jeugd in de zomer en financiële ondersteuning voor gezinnen die dat nodig hebben rond Kerst en Pasen.",
-    span: "sm:col-span-12",
+    span: "md:col-span-7",
+    tone: "bg-sage",
   },
 ];
 
@@ -82,14 +90,21 @@ function Voorbeelden() {
         </Container>
       </Section>
 
-      <Section tone="sky">
+      <Section tone="white" className="pt-12 sm:pt-16 lg:pt-20">
         <Container>
-          <div className="grid gap-4 sm:grid-cols-12">
+          <Reveal>
+            <Eyebrow>Voorbeelden</Eyebrow>
+            <h2 className="mt-5 text-[2rem] sm:text-[2.6rem]">
+              Een greep uit wat wij doen.
+            </h2>
+          </Reveal>
+
+          <div className="mt-10 grid auto-rows-fr gap-4 md:grid-cols-12 sm:mt-12">
             {ITEMS.map((item, i) => (
               <Reveal
                 key={item.text}
                 delay={i * 90}
-                className={`group rounded-sm border border-primary/10 bg-background p-7 transition-[transform,border-color] duration-300 hover:-translate-y-1 sm:p-9 lg:p-10 ${item.span}`}
+                className={`group min-h-48 rounded-sm p-7 transition-transform duration-300 hover:-translate-y-1 sm:p-8 lg:min-h-52 ${item.span} ${item.tone}`}
               >
                 <p className="font-display text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-primary-soft">
                   {item.label}
@@ -99,21 +114,17 @@ function Voorbeelden() {
                 >
                   {item.text}
                 </p>
-                <span
-                  aria-hidden="true"
-                  className="mt-7 block h-px w-12 bg-primary/30 transition-all duration-500 group-hover:w-24"
-                />
               </Reveal>
             ))}
           </div>
-        </Container>
-      </Section>
 
-      <Section tone="sage" className="py-14 sm:py-18">
-        <Container>
-          <Reveal className="grid gap-6 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
-            <div><Eyebrow>Zorgvuldig gedeeld</Eyebrow><h2 className="mt-4 text-2xl sm:text-3xl">Privacy staat voorop</h2><p className="mt-4 max-w-2xl text-muted-foreground">Deze voorbeelden laten concreet zien welke ondersteuning is geboden. Persoonlijke situaties blijven altijd anoniem.</p></div>
-            <ButtonLink to="/hulp-aanvragen" variant="outline" className="w-full sm:w-auto">Hulp aanvragen</ButtonLink>
+          <Reveal className="mt-10 grid gap-6 border-t border-border pt-8 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
+            <p className="max-w-2xl text-sm text-muted-foreground sm:text-base">
+              Om privacy te beschermen worden persoonlijke situaties altijd anoniem weergegeven.
+            </p>
+            <ButtonLink to="/hulp-aanvragen" variant="outline" className="w-full sm:w-auto">
+              Hulp aanvragen
+            </ButtonLink>
           </Reveal>
         </Container>
       </Section>
