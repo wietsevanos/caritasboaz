@@ -77,6 +77,8 @@ export type AanvraagData = {
   eigenBijdrage: string;
   onderbouwing: string;
   bestanden: { name: string; size: number }[];
+  datumOndertekening: string;
+  handtekening: string;
   verklaring: boolean;
 };
 
@@ -98,8 +100,24 @@ export const LEGE_AANVRAAG: AanvraagData = {
   eigenBijdrage: "",
   onderbouwing: "",
   bestanden: [],
+  datumOndertekening: "",
+  handtekening: "",
   verklaring: false,
 };
+
+export function vandaagInNederland(): string {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Europe/Amsterdam",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date());
+}
+
+export function formatDatum(input: string): string {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(input);
+  return match ? `${match[3]}-${match[2]}-${match[1]}` : input;
+}
 
 /* --------------------------------- bedragen -------------------------------- */
 
@@ -169,6 +187,7 @@ export type StapId =
   | "hulpvraag"
   | "kosten"
   | "onderbouwing"
+  | "ondertekening"
   | "controleren";
 
 export const STAPPEN: { id: StapId; kort: string; titel: string }[] = [
@@ -179,6 +198,7 @@ export const STAPPEN: { id: StapId; kort: string; titel: string }[] = [
   { id: "hulpvraag", kort: "Hulpvraag", titel: "Waarvoor vraagt u ondersteuning aan?" },
   { id: "kosten", kort: "Kosten", titel: "Wat zijn de kosten?" },
   { id: "onderbouwing", kort: "Onderbouwing", titel: "Vertel ons iets meer over uw aanvraag" },
+  { id: "ondertekening", kort: "Ondertekening", titel: "Datum & ondertekening" },
   { id: "controleren", kort: "Controleren", titel: "Controleer uw aanvraag" },
 ];
 
@@ -260,6 +280,15 @@ export function valideerStap(stap: StapId, data: AanvraagData): Fouten {
   if (stap === "onderbouwing" && data.onderbouwing.trim().length < 10) {
     fouten.onderbouwing =
       "Vertel kort waarom deze ondersteuning nodig is. Een paar regels is genoeg.";
+  }
+
+  if (stap === "ondertekening") {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(data.datumOndertekening)) {
+      fouten.datumOndertekening = "Vul een geldige datum in.";
+    }
+    if (data.handtekening.trim().length < 2) {
+      fouten.handtekening = "Vul uw volledige naam in als ondertekening.";
+    }
   }
 
   if (stap === "controleren" && !data.verklaring) {
@@ -355,6 +384,13 @@ export function maakSamenvatting(
               waarde: file.name,
             }))
           : [{ label: "Bijlagen", waarde: "Geen bijlagen toegevoegd" }],
+      },
+      {
+        titel: "Datum & ondertekening",
+        regels: [
+          { label: "Datum", waarde: formatDatum(data.datumOndertekening) },
+          { label: "Ondertekend door", waarde: data.handtekening.trim() },
+        ],
       },
     ],
   };
