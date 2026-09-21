@@ -59,18 +59,37 @@ function OverOns() {
 
       <Section tone="sky" id="bestuur" className="scroll-mt-20">
         <Container>
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] lg:gap-16">
-            <Reveal>
-              <Eyebrow>Organisatie</Eyebrow>
-              <h2 className="mt-4 text-3xl sm:text-4xl">Bestuur</h2>
-              <p className="mt-5 max-w-md text-muted-foreground">Bestuur bestaat uit de volgende leden:</p>
-              <p className="mt-6">Het bestuur is te bereiken op <a href="mailto:info@caritasboaz.nl" className="link-underline break-words font-medium text-primary">info@caritasboaz.nl</a>.</p>
+          <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+            <Reveal className="flex min-w-0 flex-col justify-between lg:col-span-4">
+              <div>
+                <Eyebrow>Organisatie</Eyebrow>
+                <h2 className="mt-4 text-3xl sm:text-4xl">Bestuur</h2>
+                <p className="mt-5 max-w-sm text-muted-foreground sm:text-lg">
+                  Het bestuur bestaat uit de volgende leden:
+                </p>
+              </div>
+
+              <div className="mt-8 rounded-sm border border-primary/10 bg-background/70 p-5 sm:p-6 lg:mt-12">
+                <p className="font-display text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-primary-soft">
+                  Contact
+                </p>
+                <p className="mt-3 text-sm text-muted-foreground">
+                  Het bestuur is te bereiken op
+                </p>
+                <a
+                  href="mailto:info@caritasboaz.nl"
+                  className="link-underline mt-1 inline-block break-words font-display text-[0.95rem] font-semibold text-primary sm:text-base"
+                >
+                  info@caritasboaz.nl
+                </a>
+              </div>
             </Reveal>
-            <Reveal delay={100}>
-              <dl className="grid border-y border-primary/15 sm:grid-cols-2">
+            <Reveal delay={100} className="min-w-0 lg:col-span-8">
+              <dl className="grid gap-4 sm:grid-cols-2">
                 {[["Voorzitter", "Henriëtte Maasen"], ["Secretaris", "Elsbeth Blomjous"], ["Penningmeester", "Lex Bouchier"], ["Lid", "Maria Heijne"], ["Lid", "Oda Smets"]].map(([role, name]) => (
-                  <div key={name} className="border-b border-primary/15 py-5 last:border-b-0 sm:min-h-24 sm:px-6 sm:first:pl-0 sm:[&:nth-child(odd)]:border-r sm:[&:nth-last-child(-n+2)]:border-b-0">
-                    <dt className="text-sm text-muted-foreground">{role}</dt><dd className="mt-1 font-display font-semibold">{name}</dd>
+                  <div key={name} className="group min-h-32 rounded-sm border border-primary/10 bg-background p-6 transition-[transform,border-color] duration-300 hover:-translate-y-0.5 hover:border-primary/30 sm:p-7">
+                    <dt className="font-display text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-primary-soft">{role}</dt>
+                    <dd className="mt-3 font-display text-xl font-semibold leading-snug">{name}</dd>
                   </div>
                 ))}
               </dl>
