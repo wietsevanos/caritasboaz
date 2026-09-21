@@ -47,7 +47,8 @@ export async function downloadAanvraagPdf(samenvatting: AanvraagSamenvatting) {
       const tekst = `${regel.label}: ${waarde}`;
       return pdf.splitTextToSize(tekst, contentWidth - 10) as string[];
     });
-    const boxHeight = 10 + regels.length * 5;
+    const hasSignature = sectie.titel === "Datum & ondertekening" && samenvatting.handtekening;
+    const boxHeight = 10 + regels.length * 5 + (hasSignature ? 18 : 0);
     addPageIfNeeded(boxHeight + 4);
 
     pdf.setFillColor(245, 248, 250);
@@ -67,6 +68,16 @@ export async function downloadAanvraagPdf(samenvatting: AanvraagSamenvatting) {
       const lines = pdf.splitTextToSize(`${regel.label}: ${regel.waarde || "—"}`, contentWidth - 10) as string[];
       pdf.text(lines, margin + 5, y);
       y += lines.length * 5;
+    }
+    if (hasSignature) {
+      try {
+        pdf.addImage(samenvatting.handtekening, "PNG", margin + 5, y, 48, 16, undefined, "FAST");
+        y += 18;
+      } catch {
+        pdf.setTextColor(102, 112, 124);
+        pdf.text("Handtekening is geplaatst.", margin + 5, y);
+        y += 5;
+      }
     }
     y += 3;
   }

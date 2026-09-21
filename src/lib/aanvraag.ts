@@ -286,8 +286,8 @@ export function valideerStap(stap: StapId, data: AanvraagData): Fouten {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(data.datumOndertekening)) {
       fouten.datumOndertekening = "Vul een geldige datum in.";
     }
-    if (data.handtekening.trim().length < 2) {
-      fouten.handtekening = "Vul uw volledige naam in als ondertekening.";
+    if (!data.handtekening.startsWith("data:image/png;base64,")) {
+      fouten.handtekening = "Plaats uw handtekening in het tekenvlak.";
     }
   }
 
@@ -308,6 +308,7 @@ export function stapIsCompleet(stap: StapId, data: AanvraagData): boolean {
 export type AanvraagSamenvatting = {
   commissie: { id: CommissieId; naam: string; email: string };
   secties: { titel: string; regels: { label: string; waarde: string }[] }[];
+  handtekening: string;
 };
 
 export function maakSamenvatting(
@@ -335,6 +336,7 @@ export function maakSamenvatting(
 
   return {
     commissie: { id: commissieId, ...COMMISSIES[commissieId] },
+    handtekening: data.handtekening,
     secties: [
       { titel: "Aanvrager", regels: aanvrager },
       {
@@ -389,7 +391,7 @@ export function maakSamenvatting(
         titel: "Datum & ondertekening",
         regels: [
           { label: "Datum", waarde: formatDatum(data.datumOndertekening) },
-          { label: "Ondertekend door", waarde: data.handtekening.trim() },
+          { label: "Handtekening", waarde: "Geplaatst" },
         ],
       },
     ],

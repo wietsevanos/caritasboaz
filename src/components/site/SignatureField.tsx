@@ -17,20 +17,23 @@ export function SignatureField({
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const padRef = useRef<SignaturePad | null>(null);
   const valueRef = useRef(value);
+  const onChangeRef = useRef(onChange);
   const errorId = useId();
 
   useEffect(() => {
     valueRef.current = value;
-  }, [value]);
+    onChangeRef.current = onChange;
+  }, [onChange, value]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    const primary = getComputedStyle(canvas).getPropertyValue("--primary").trim();
     const pad = new SignaturePad(canvas, {
       minWidth: 1,
       maxWidth: 2.4,
-      penColor: "#233f58",
+      penColor: primary || "currentColor",
       backgroundColor: "rgba(255,255,255,0)",
     });
     padRef.current = pad;
@@ -51,7 +54,7 @@ export function SignatureField({
     resize();
 
     const save = () => {
-      if (!pad.isEmpty()) onChange(pad.toDataURL("image/png"));
+      if (!pad.isEmpty()) onChangeRef.current(pad.toDataURL("image/png"));
     };
     pad.addEventListener("endStroke", save);
 
@@ -61,7 +64,7 @@ export function SignatureField({
       pad.off();
       padRef.current = null;
     };
-  }, [onChange]);
+  }, []);
 
   function clear() {
     padRef.current?.clear();

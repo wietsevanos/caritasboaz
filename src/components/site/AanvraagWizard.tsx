@@ -2,6 +2,7 @@ import { useMemo, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { ArrowLeft, ArrowRight, Check, Download, FileText, LockKeyhole, PenLine, ShieldCheck } from "lucide-react";
 import { Button, ButtonLink } from "@/components/site/primitives";
+import { SignatureField } from "@/components/site/SignatureField";
 import {
   ChoiceCard,
   FieldError,
@@ -532,16 +533,16 @@ export function AanvraagWizard() {
 
           {stap.id === "ondertekening" ? (
             <div className="rounded-sm border border-primary/10 bg-muted/55 p-5 sm:p-7">
-              <div className="mb-6 flex justify-center gap-3 border-b border-border pb-5 text-left">
+              <div className="mx-auto mb-6 flex max-w-lg justify-center gap-3 border-b border-border pb-5 text-left">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-secondary text-primary">
                   <PenLine className="h-5 w-5" aria-hidden="true" />
                 </span>
                 <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
-                  Rond uw aanvraag af met de datum en uw volledige naam als ondertekening.
+                  Rond uw aanvraag af met de datum en plaats daarna uw handtekening.
                 </p>
               </div>
-              <div className="grid gap-6 sm:grid-cols-2">
-                <div>
+              <div className="grid items-stretch gap-5 md:grid-cols-2">
+                <div className="flex min-h-72 flex-col rounded-sm border border-border bg-background p-5 sm:p-6">
                   <TextField
                     label="Datum"
                     name="datumOndertekening"
@@ -550,15 +551,15 @@ export function AanvraagWizard() {
                     onChange={(value) => set("datumOndertekening", value)}
                     error={fouten.datumOndertekening}
                   />
+                  <div className="mt-5 flex flex-1 items-end">
+                    <div className="w-full border-t border-border pt-4 text-sm text-muted-foreground">
+                      Controleer of de datum klopt voordat u verdergaat.
+                    </div>
+                  </div>
                 </div>
-                <TextField
-                  label="Handtekening"
-                  name="handtekening"
+                <SignatureField
                   value={data.handtekening}
                   onChange={(value) => set("handtekening", value)}
-                  autoComplete="name"
-                  placeholder="Uw volledige naam"
-                  hint="Uw ingevulde naam geldt als ondertekening."
                   error={fouten.handtekening}
                 />
               </div>
@@ -615,6 +616,16 @@ export function AanvraagWizard() {
                           </div>
                         ))}
                       </dl>
+                      {sectie.titel === "Datum & ondertekening" && samenvatting.handtekening ? (
+                        <div className="mt-4 border-t border-border pt-4">
+                          <p className="text-sm text-muted-foreground">Handtekening</p>
+                          <img
+                            src={samenvatting.handtekening}
+                            alt="Geplaatste handtekening"
+                            className="mt-2 h-20 w-full max-w-72 object-contain object-left"
+                          />
+                        </div>
+                      ) : null}
                     </section>
                   ))}
                 </div>
