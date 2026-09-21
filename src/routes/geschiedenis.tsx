@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
-  ButtonLink,
   Container,
   Eyebrow,
   Reveal,
