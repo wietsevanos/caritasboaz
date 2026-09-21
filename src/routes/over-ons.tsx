@@ -64,7 +64,7 @@ function OverOns() {
               <Eyebrow>Organisatie</Eyebrow>
               <h2 className="mt-4 text-3xl sm:text-4xl">Bestuur</h2>
               <p className="mt-5 max-w-md text-muted-foreground">Bestuur bestaat uit de volgende leden:</p>
-              <p className="mt-6">Het bestuur is te bereiken op <a href="mailto:info@caritasboaz.nl" className="link-underline break-all font-medium text-primary">info@caritasboaz.nl</a>.</p>
+              <p className="mt-6">Het bestuur is te bereiken op <a href="mailto:info@caritasboaz.nl" className="link-underline break-words font-medium text-primary">info@caritasboaz.nl</a>.</p>
             </Reveal>
             <Reveal delay={100}>
               <dl className="grid border-y border-primary/15 sm:grid-cols-2">
@@ -91,14 +91,14 @@ function OverOns() {
               <div id="commissie-bloemendaal-overveen" className="scroll-mt-28">
                 <p className="font-display text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-primary-soft">Commissie</p>
                 <h3 className="mt-4 text-2xl">Bloemendaal/Overveen</h3>
-                <p className="mt-6"><a href="mailto:bloemendaal.overveen@caritasboaz.nl" className="link-underline break-all font-medium text-primary">bloemendaal.overveen@caritasboaz.nl</a></p>
+                <p className="mt-6"><a href="mailto:bloemendaal.overveen@caritasboaz.nl" className="link-underline break-words text-[0.95rem] font-medium text-primary sm:text-base">bloemendaal.overveen@caritasboaz.nl</a></p>
               </div>
             </Reveal>
             <Reveal as="section" delay={100} className="rounded-sm border border-border bg-sand p-7 sm:p-9">
               <div id="commissie-aerdenhout-zandvoort" className="scroll-mt-28">
                 <p className="font-display text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-primary-soft">Commissie</p>
                 <h3 className="mt-4 text-2xl">Aerdenhout/Zandvoort</h3>
-                <p className="mt-6"><a href="mailto:aerdenhout.zandvoort@caritasboaz.nl" className="link-underline break-all font-medium text-primary">aerdenhout.zandvoort@caritasboaz.nl</a></p>
+                <p className="mt-6"><a href="mailto:aerdenhout.zandvoort@caritasboaz.nl" className="link-underline break-words text-[0.95rem] font-medium text-primary sm:text-base">aerdenhout.zandvoort@caritasboaz.nl</a></p>
               </div>
             </Reveal>
           </div>

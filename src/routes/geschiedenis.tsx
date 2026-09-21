@@ -45,11 +45,6 @@ function Geschiedenis() {
               <h1 className="mt-6 text-[2.1rem] sm:text-[3rem] lg:text-[3.3rem]">
                 Een geschiedenis van omzien naar elkaar.
               </h1>
-              <p className="mt-6 max-w-2xl text-muted-foreground sm:text-lg">
-                Caritas BOAZ komt voort uit een lange traditie van
-                naastenliefde binnen de parochies van Bloemendaal, Overveen,
-                Aerdenhout en Zandvoort.
-              </p>
             </Reveal>
             <Reveal delay={120}>
               <img src={communityCircleAsset.url} alt="Mensen verbonden met hun omgeving" className="aspect-[4/3] w-full rounded-sm object-cover" width="1024" height="1024" />
@@ -109,12 +104,22 @@ function Geschiedenis() {
 
       <Section tone="sage">
         <Container>
-          <Reveal className="max-w-3xl">
+          <Reveal>
             <Eyebrow>Archief</Eyebrow>
-            <h2 className="mt-4 text-3xl sm:text-4xl">Historische informatie</h2>
-            <p className="mt-5 text-muted-foreground">De historische informatie en belangrijke momenten worden later zorgvuldig toegevoegd op basis van het boekje van Henriëtte.</p>
-            <ButtonLink to="/contact" variant="outline" className="mt-7">Neem contact op</ButtonLink>
+            <h2 className="mt-4 text-3xl sm:text-4xl">Historisch materiaal</h2>
           </Reveal>
+          <div className="mt-9 grid gap-4 sm:grid-cols-2">
+            <Reveal className="rounded-sm border border-primary/10 bg-background/75 p-7 sm:p-8">
+              <p className="font-display text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-primary-soft">Beeldmateriaal</p>
+              <h3 className="mt-4 text-xl">Foto’s uit het archief</h3>
+              <p className="mt-3 text-muted-foreground">Ruimte voor historisch beeldmateriaal dat later zorgvuldig wordt toegevoegd.</p>
+            </Reveal>
+            <Reveal delay={90} className="rounded-sm border border-primary/10 bg-background/75 p-7 sm:p-8">
+              <p className="font-display text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-primary-soft">Documenten</p>
+              <h3 className="mt-4 text-xl">Het boekje van Henriëtte</h3>
+              <p className="mt-3 text-muted-foreground">De historische informatie wordt later aangevuld op basis van het boekje.</p>
+            </Reveal>
+          </div>
         </Container>
       </Section>
 
