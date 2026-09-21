@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
 import {
   ButtonLink,
   Container,
@@ -39,75 +38,46 @@ const HELP_ITEMS = [
   },
 ];
 
-const BOAZ_PLACES = [
-  { letter: "B", place: "Bloemendaal" },
-  { letter: "O", place: "Overveen" },
-  { letter: "A", place: "Aerdenhout" },
-  { letter: "Z", place: "Zandvoort" },
-] as const;
-
 function Home() {
   return (
     <>
       {/* Hero */}
-      <Section tone="sky" className="bg-sky/55 pb-12 pt-10 sm:pb-16 sm:pt-14 lg:pb-20 lg:pt-16">
-        <Container size="wide">
-          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-12 xl:gap-16">
-            <div className="min-w-0 lg:py-5">
+      <Section tone="white" className="pb-14 pt-12 sm:pb-20 sm:pt-16 lg:pb-24 lg:pt-20">
+        <Container>
+          <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:items-stretch lg:gap-10">
+            <div>
               <Reveal>
-                <Eyebrow className="text-clay">Voor mensen in nood</Eyebrow>
-                <h1 className="mt-5 text-[2.7rem] leading-[1.04] tracking-normal sm:mt-6 sm:text-[3.65rem] lg:text-[3.75rem] xl:text-[4.35rem]">
-                  <span className="block sm:whitespace-nowrap">Samen helpen</span>
-                  <span className="block">wanneer</span>
-                  <span className="block whitespace-nowrap">hulp nodig is<span className="text-clay">.</span></span>
+              <Eyebrow className="hidden text-clay sm:block">
+                Voor mensen in nood
+              </Eyebrow>
+              <Eyebrow className="text-clay sm:hidden">
+                Voor mensen in nood
+              </Eyebrow>
+              <h1 className="mt-6 text-[2.15rem] sm:text-[3.1rem] lg:text-[3.6rem]">
+                  Samen helpen wanneer hulp nodig is.
                 </h1>
-                <p className="mt-6 max-w-[35rem] text-muted-foreground sm:text-lg">
-                  Caritas BOAZ biedt ondersteuning aan mensen in tijdelijke financiële of persoonlijke nood in Bloemendaal, Overveen, Aerdenhout en Zandvoort en omstreken.
+                <p className="mt-6 max-w-xl text-muted-foreground sm:text-lg">
+                  Caritas BOAZ biedt ondersteuning aan mensen in tijdelijke
+                  financiële of persoonlijke nood in <strong className="font-semibold text-clay">B</strong>loemendaal, <strong className="font-semibold text-clay">O</strong>verveen, <strong className="font-semibold text-clay">A</strong>erdenhout en <strong className="font-semibold text-clay">Z</strong>andvoort en omstreken.
                 </p>
               </Reveal>
               <Reveal delay={120}>
-                <div className="mt-8 sm:max-w-[14rem]">
-                  <ButtonLink to="/hulp-aanvragen" className="w-full group">
+                <div className="mt-9 sm:max-w-[15rem]">
+                  <ButtonLink to="/hulp-aanvragen" className="w-full">
                     Hulp aanvragen
-                    <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
                   </ButtonLink>
                 </div>
               </Reveal>
-
-              <Reveal delay={180}>
-                <div className="mt-9 border-t border-primary/15 pt-5" aria-label="BOAZ staat voor Bloemendaal, Overveen, Aerdenhout en Zandvoort">
-                  <p className="font-display text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-primary-soft">
-                    BOAZ staat voor
-                  </p>
-                  <dl className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2">
-                    {BOAZ_PLACES.map(({ letter, place }) => (
-                      <div key={letter} className="group flex min-w-0 items-center gap-2 py-1">
-                        <dt className="flex h-7 w-7 shrink-0 items-center justify-center rounded-sm bg-clay-soft font-display text-sm font-bold text-clay transition-[background-color,color,transform] duration-200 group-hover:-translate-y-0.5 group-hover:bg-clay group-hover:text-primary-foreground">
-                          {letter}
-                        </dt>
-                        <dd className="min-w-0 text-[0.78rem] font-semibold text-foreground transition-colors duration-200 group-hover:text-clay sm:text-sm">
-                          {place}
-                        </dd>
-                      </div>
-                    ))}
-                  </dl>
-                </div>
-              </Reveal>
             </div>
-            <Reveal delay={160} className="relative min-w-0">
-              <div className="relative overflow-hidden rounded-sm bg-sky sm:mx-0">
-                <div className="absolute inset-x-[8%] top-[9%] h-px bg-primary/10" aria-hidden="true" />
-                <div className="absolute bottom-[10%] left-[6%] h-20 w-20 rounded-sm bg-sage/65" aria-hidden="true" />
-                <img
-                  src={togetherIllustrationAsset.url}
-                  alt="Mensen die elkaar steunen"
-                  className="relative z-10 aspect-[6/5] w-full object-contain object-center sm:aspect-[7/5] lg:aspect-[6/5] lg:scale-[1.04]"
-                  loading="eager"
-                  fetchPriority="high"
-                  width="1024"
-                  height="1024"
-                />
-              </div>
+            <Reveal delay={200} className="flex flex-col">
+              <img
+                src={togetherIllustrationAsset.url}
+                alt="Mensen die elkaar steunen"
+                className="w-full rounded-sm object-cover lg:h-full"
+                loading="eager"
+                width="1024"
+                height="1024"
+              />
             </Reveal>
           </div>
         </Container>
