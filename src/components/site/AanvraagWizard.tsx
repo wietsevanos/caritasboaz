@@ -65,7 +65,9 @@ export function AanvraagWizard() {
     const eerste = Object.keys(volgende)[0];
     if (!eerste) return;
     requestAnimationFrame(() => {
-      const el = document.querySelector<HTMLElement>(`[name="${eerste}"]`);
+      const el = document.querySelector<HTMLElement>(
+        `[name="${eerste}"], [data-field="${eerste}"]`,
+      );
       if (el) {
         el.scrollIntoView({ block: "center", behavior: "smooth" });
         el.focus({ preventScroll: true });
