@@ -139,7 +139,10 @@ function Contact() {
           </div>
         </Container>
       </Section>
-      <HelpCtaSection title="Wilt u financiële ondersteuning aanvragen?" />
+      <HelpCtaSection
+        title="Wilt u financiële ondersteuning aanvragen?"
+        color="clay"
+      />
 
     </>
   );
