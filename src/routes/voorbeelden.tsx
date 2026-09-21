@@ -87,7 +87,7 @@ function Voorbeelden() {
           <div className="grid gap-4 sm:grid-cols-12">
             {ITEMS.map((item, i) => (
               <Reveal
-                key={item.label}
+                key={item.text}
                 delay={i * 90}
                 className={`group rounded-sm border border-primary/10 bg-background p-7 transition-[transform,border-color] duration-300 hover:-translate-y-1 sm:p-9 lg:p-10 ${item.span}`}
               >
