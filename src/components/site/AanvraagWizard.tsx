@@ -18,7 +18,6 @@ import {
   commissieVoorPlaats,
   COMMISSIES,
   formatEuro,
-  formatIban,
   gevraagdeBijdrage,
   maakSamenvatting,
   parseBedrag,
@@ -682,4 +681,3 @@ function BedragVeld({
   );
 }
 
-export { formatIban };
