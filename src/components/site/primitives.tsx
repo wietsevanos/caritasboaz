@@ -140,7 +140,7 @@ export function ButtonLink({
   return (
     <Link
       to={to as never}
-      hash={hash}
+      {...(hash ? { hash } : {})}
       className={cn(buttonBase, buttonVariants[variant], className)}
     >
       {children}
