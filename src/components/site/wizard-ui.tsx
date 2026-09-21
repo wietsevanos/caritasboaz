@@ -161,14 +161,14 @@ export function ChoiceCard({
       className={cn(
         "group relative flex min-h-28 w-full flex-col justify-center gap-2 overflow-hidden rounded-sm border p-5 text-left transition-[border-color,background-color,transform,box-shadow] sm:p-6",
         selected
-          ? "border-primary bg-sky shadow-[0_10px_30px_color-mix(in_oklab,var(--primary)_8%,transparent)]"
+          ? "border-primary bg-secondary shadow-[0_8px_24px_color-mix(in_oklab,var(--primary)_6%,transparent)]"
           : "border-border-strong bg-background hover:-translate-y-0.5 hover:border-primary hover:bg-secondary hover:shadow-[0_10px_30px_color-mix(in_oklab,var(--primary)_6%,transparent)]",
       )}
     >
       <span
         aria-hidden="true"
         className={cn(
-          "absolute inset-y-0 left-0 w-1 bg-clay transition-transform",
+          "absolute inset-y-0 left-0 w-1 bg-primary transition-transform",
           selected ? "translate-x-0" : "-translate-x-full group-hover:translate-x-0",
         )}
       />
@@ -212,7 +212,7 @@ export function StepProgress({
 }) {
   const percentage = Math.round(((current + 1) / labels.length) * 100);
   return (
-    <div className="rounded-sm border border-primary/10 bg-sky/55 p-4 sm:p-5">
+    <div className="rounded-sm border border-primary/10 bg-secondary/75 p-4 sm:p-5">
       <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 sm:gap-4">
         <div className="flex h-10 w-10 items-center justify-center rounded-sm bg-primary font-display text-sm font-semibold text-primary-foreground shadow-[0_6px_18px_color-mix(in_oklab,var(--primary)_18%,transparent)]">
           {current + 1}
@@ -243,7 +243,7 @@ export function StepProgress({
             aria-hidden="true"
             className={cn(
               "h-full rounded-sm transition-colors duration-300 motion-reduce:transition-none",
-              index < current ? "bg-sage-strong" : index === current ? "bg-clay" : "bg-background",
+              index <= current ? "bg-primary" : "bg-background",
             )}
           />
         ))}

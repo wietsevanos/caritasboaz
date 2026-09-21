@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowLeft, ArrowRight, Check, FileText, LockKeyhole, ShieldCheck } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Download, FileText, LockKeyhole, ShieldCheck } from "lucide-react";
 import { Button, ButtonLink } from "@/components/site/primitives";
 import {
   ChoiceCard,
@@ -29,6 +29,7 @@ import {
   type StapId,
 } from "@/lib/aanvraag";
 import { verzendAanvraag } from "@/lib/aanvraag.functions";
+import { downloadAanvraagPdf } from "@/lib/aanvraag-pdf";
 import { cn } from "@/lib/utils";
 
 type Fase = "intro" | "stappen" | "verzonden";
@@ -152,8 +153,8 @@ export function AanvraagWizard() {
 
   if (fase === "intro") {
     return (
-      <div ref={topRef} className="mx-auto max-w-3xl py-1 sm:py-3">
-        <div className="max-w-2xl">
+      <div ref={topRef} className="mx-auto max-w-2xl py-1 text-center sm:py-3">
+        <div className="mx-auto max-w-2xl">
           <p className="font-display text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-clay">Aanvraag hulp</p>
           <h1 className="mt-4 text-[2rem] sm:text-[2.7rem]">Stap voor stap hulp aanvragen</h1>
           <p className="mt-5 text-muted-foreground sm:text-lg">
@@ -162,9 +163,9 @@ export function AanvraagWizard() {
           </p>
         </div>
 
-        <div className="mt-8 grid gap-4 sm:grid-cols-2">
-          <div className="group flex gap-4 rounded-sm border border-sage-strong/20 bg-sage/65 p-5 transition-[transform,border-color] hover:-translate-y-0.5 hover:border-sage-strong/40">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-background text-sage-strong shadow-[0_5px_16px_color-mix(in_oklab,var(--sage-strong)_10%,transparent)]">
+        <div className="mt-8 grid gap-4 text-left sm:grid-cols-2">
+          <div className="group flex gap-4 rounded-sm border border-border bg-muted/55 p-5 transition-[transform,border-color] hover:-translate-y-0.5 hover:border-primary/25">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-background text-primary-soft">
               <Check className="h-5 w-5" aria-hidden="true" />
             </span>
             <div>
@@ -172,8 +173,8 @@ export function AanvraagWizard() {
               <p className="mt-1 text-sm leading-relaxed text-muted-foreground">U wordt rustig door alle onderdelen begeleid.</p>
             </div>
           </div>
-          <div className="group flex gap-4 rounded-sm border border-primary/10 bg-sky/65 p-5 transition-[transform,border-color] hover:-translate-y-0.5 hover:border-primary/30">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-background text-primary-soft shadow-[0_5px_16px_color-mix(in_oklab,var(--primary)_8%,transparent)]">
+          <div className="group flex gap-4 rounded-sm border border-border bg-muted/55 p-5 transition-[transform,border-color] hover:-translate-y-0.5 hover:border-primary/25">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-background text-primary-soft">
               <ShieldCheck className="h-5 w-5" aria-hidden="true" />
             </span>
             <div>
@@ -249,16 +250,15 @@ export function AanvraagWizard() {
     <div ref={topRef} className="scroll-mt-24">
       <StepProgress labels={labels} current={stapIndex} />
 
-      <div className="mt-8 sm:mt-10">
-        <div className="flex items-start gap-4">
-          <span aria-hidden="true" className="mt-1 hidden h-10 w-1 rounded-sm bg-clay sm:block" />
+      <div className="mx-auto mt-8 max-w-2xl text-center sm:mt-10">
+        <div>
           <div>
-            <p className="font-display text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-clay">Onderdeel {stapIndex + 1}</p>
-            <h1 className="mt-2 max-w-2xl text-[1.7rem] sm:text-[2.2rem]">{stap.titel}</h1>
+            <p className="font-display text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-primary-soft">Onderdeel {stapIndex + 1}</p>
+            <h1 className="mx-auto mt-2 max-w-2xl text-[1.7rem] sm:text-[2.2rem]">{stap.titel}</h1>
           </div>
         </div>
 
-        <div className="mt-7 max-w-2xl space-y-6">
+        <div className="mt-7 max-w-2xl space-y-6 text-left">
           {stap.id === "voor-wie" ? (
             <>
               <div className="grid gap-4">
@@ -534,6 +534,19 @@ export function AanvraagWizard() {
 
               {samenvatting ? (
                 <div className="grid gap-4">
+                  <div className="flex flex-col items-start justify-between gap-4 rounded-sm border border-primary/15 bg-secondary/65 p-5 sm:flex-row sm:items-center">
+                    <div>
+                      <h2 className="font-display text-lg font-semibold">Bewaar een kopie</h2>
+                      <p className="mt-1 text-sm text-muted-foreground">Download uw volledige aanvraag als overzichtelijke PDF.</p>
+                    </div>
+                    <Button
+                      variant="outline"
+                      className="w-full shrink-0 sm:w-auto"
+                      onClick={() => void downloadAanvraagPdf(samenvatting)}
+                    >
+                      <Download className="h-4 w-4" aria-hidden="true" /> PDF downloaden
+                    </Button>
+                  </div>
                   {samenvatting.secties.map((sectie) => (
                     <section key={sectie.titel} className="rounded-sm border border-border bg-muted/55 p-5 sm:p-6">
                       <div className="flex items-baseline justify-between gap-4">
