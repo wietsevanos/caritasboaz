@@ -100,6 +100,8 @@ function Contact() {
         </Container>
       </Section>
 
+      <div aria-hidden="true" className="h-12 bg-background sm:h-16 lg:h-20" />
+
       <Section tone="sand">
         <LineField stroke="var(--clay)" />
         <Container className="relative">

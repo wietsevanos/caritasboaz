@@ -54,7 +54,7 @@ export function HeroVisual({ className }: { className?: string }) {
   );
 }
 
-/** Rustig bewegend lijnenveld als achtergronddetail. */
+/** Rustig bewegend veld van gelijkmatig verdeelde horizontale lijnen. */
 export function LineField({
   className,
   stroke = "var(--primary)",
@@ -70,12 +70,15 @@ export function LineField({
       className={cn("pointer-events-none absolute inset-0 h-full w-full", className)}
     >
       <g stroke={stroke} strokeWidth="1" fill="none" opacity="0.22">
-        {[0, 1, 2, 3, 4, 5].map((i) => (
-          <path
+        {[35, 80, 125, 170, 215, 260].map((y, i) => (
+          <line
             key={i}
             className="anim-dash"
             style={{ animationDuration: `${28 + i * 6}s` }}
-            d={`M-20 ${40 + i * 45} C160 ${10 + i * 45} 420 ${90 + i * 42} 620 ${30 + i * 46}`}
+            x1="-20"
+            y1={y}
+            x2="620"
+            y2={y}
           />
         ))}
       </g>
