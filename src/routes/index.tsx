@@ -124,7 +124,7 @@ function Home() {
               </div>
             </div>
             <Reveal delay={120}>
-              <img src={generationsTogetherAsset} alt="Kinderen, volwassenen en ouderen samen" className="aspect-[16/10] w-full rounded-sm object-cover" loading="lazy" width={1600} height={912} />
+              <img src={generationsTogetherAsset} alt="Kinderen, volwassenen en ouderen samen" className="aspect-[16/10] w-full rounded-sm object-cover" loading="lazy" width={1600} height={900} />
             </Reveal>
           </div>
         </Container>

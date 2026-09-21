@@ -30,22 +30,8 @@ const ITEMS = [
     label: "Individuele hulp",
     text: "Financiële hulp bij de aanschaf van huishoudelijke apparatuur.",
     tone: "bg-sky",
-    span: "sm:col-span-7",
+    span: "sm:col-span-12",
     size: "text-2xl sm:text-3xl",
-  },
-  {
-    label: "Jeugd en ontmoeting",
-    text: "Ondersteuning om deelname aan een lokaal jeugdkamp mogelijk te maken.",
-    tone: "bg-background border border-border",
-    span: "sm:col-span-5",
-    size: "text-xl sm:text-2xl",
-  },
-  {
-    label: "Buurt en samenleving",
-    text: "Ondersteuning van een initiatief voor ouderen en kinderen.",
-    tone: "bg-sand",
-    span: "sm:col-span-5",
-    size: "text-xl sm:text-2xl",
   },
 ];
 
