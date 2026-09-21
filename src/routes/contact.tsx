@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Container, Eyebrow, Reveal, Section } from "@/components/site/primitives";
 import { LineField } from "@/components/site/visuals";
+import { HelpCtaSection } from "@/components/site/HelpCtaSection";
 
 const TITLE = "Contact — Caritas BOAZ";
 const DESCRIPTION =
@@ -42,14 +43,14 @@ const REGIONS = [
 function Contact() {
   return (
     <>
-      <Section tone="white" className="pb-12 pt-12 sm:pb-16 sm:pt-16">
+      <Section tone="white" className="pb-14 pt-12 sm:pb-20 sm:pt-16 lg:py-24">
         <Container>
-          <Reveal>
+          <Reveal className="mx-auto max-w-3xl text-center">
             <Eyebrow>Contact</Eyebrow>
             <h1 className="mt-6 max-w-3xl text-[2.1rem] sm:text-[3rem] lg:text-[3.3rem]">
               Neem contact met ons op.
             </h1>
-            <p className="mt-6 max-w-2xl text-muted-foreground sm:text-lg">
+            <p className="mx-auto mt-6 max-w-2xl text-muted-foreground sm:text-lg">
               Heeft u een vraag, wilt u meer informatie of wilt u iemand onder
               onze aandacht brengen? Neem gerust contact met ons op.
             </p>
@@ -57,14 +58,14 @@ function Contact() {
         </Container>
       </Section>
 
-      <Section tone="white" className="pt-0 sm:pt-0 lg:pt-0">
+      <Section tone="sky">
         <Container>
           <div className="grid gap-4 sm:grid-cols-2">
             {REGIONS.map((region, i) => (
               <Reveal
                 key={region.label}
                 delay={i * 100}
-                className={`rounded-sm p-7 transition-transform duration-300 hover:-translate-y-1 sm:p-9 ${region.tone}`}
+                className={`rounded-sm border border-primary/10 bg-background p-7 transition-transform duration-300 hover:-translate-y-1 sm:p-9`}
               >
                 <h2 className="font-display text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-primary-soft">
                   {region.label}
@@ -138,6 +139,7 @@ function Contact() {
           </div>
         </Container>
       </Section>
+      <HelpCtaSection title="Wilt u financiële ondersteuning aanvragen?" />
 
     </>
   );
