@@ -8,6 +8,7 @@ import {
 } from "@/components/site/primitives";
 import { HelpCtaSection } from "@/components/site/HelpCtaSection";
 import communityCircleAsset from "@/assets/community-circle.png.asset.json";
+import charitasBookletAsset from "@/assets/charitas-boekje-1953.png.asset.json";
 
 const TITLE = "Geschiedenis van Caritas BOAZ — omzien naar elkaar";
 const DESCRIPTION =
@@ -103,20 +104,24 @@ function Geschiedenis() {
 
       <Section tone="sage">
         <Container>
-          <Reveal>
-            <Eyebrow>Archief</Eyebrow>
-            <h2 className="mt-4 text-3xl sm:text-4xl">Historisch materiaal</h2>
-          </Reveal>
-          <div className="mt-9 grid gap-4 sm:grid-cols-2">
-            <Reveal className="rounded-sm border border-primary/10 bg-background/75 p-7 sm:p-8">
-              <p className="font-display text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-primary-soft">Beeldmateriaal</p>
-              <h3 className="mt-4 text-xl">Foto’s uit het archief</h3>
-              <p className="mt-3 text-muted-foreground">Ruimte voor historisch beeldmateriaal dat later zorgvuldig wordt toegevoegd.</p>
+          <div className="grid items-center gap-10 lg:grid-cols-[minmax(18rem,0.82fr)_minmax(0,1.18fr)] lg:gap-20">
+            <Reveal className="mx-auto w-full max-w-[30rem] lg:mx-0">
+              <div className="rounded-sm border border-primary/10 bg-background p-3 shadow-sm sm:p-4">
+                <img
+                  src={charitasBookletAsset.url}
+                  alt="Omslag van het boekje 100 jaar Charitas uit 1953"
+                  className="aspect-[768/1024] w-full rounded-sm object-cover"
+                  width="768"
+                  height="1024"
+                />
+              </div>
             </Reveal>
-            <Reveal delay={90} className="rounded-sm border border-primary/10 bg-background/75 p-7 sm:p-8">
-              <p className="font-display text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-primary-soft">Documenten</p>
-              <h3 className="mt-4 text-xl">Het boekje van Henriëtte</h3>
-              <p className="mt-3 text-muted-foreground">De historische informatie wordt later aangevuld op basis van het boekje.</p>
+            <Reveal delay={100}>
+              <Eyebrow>Uit het archief</Eyebrow>
+              <h2 className="mt-5 text-3xl sm:text-4xl">Een stukje geschiedenis</h2>
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
+                Dit boekje uit 1953 vertelt over 100 jaar Charitas in Overveen en laat zien hoe de traditie van omzien naar mensen in nood door de jaren heen is ontstaan.
+              </p>
             </Reveal>
           </div>
         </Container>
