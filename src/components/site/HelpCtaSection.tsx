@@ -12,7 +12,7 @@ export function HelpCtaSection({
   color?: "blue" | "clay" | "green";
 }) {
   return (
-    <Section tone="white" className="py-10 sm:py-14 lg:py-16">
+    <Section tone="muted" className="py-10 sm:py-14 lg:py-16">
       <Container size="wide">
         <div
           className={cn(

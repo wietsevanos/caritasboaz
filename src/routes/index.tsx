@@ -6,7 +6,7 @@ import {
   Reveal,
   Section,
 } from "@/components/site/primitives";
-import heroHuddleAsset from "@/assets/hero-huddle.png.asset.json";
+import togetherIllustrationAsset from "@/assets/caritas-samen-in-verbinding.png.asset.json";
 import generationsTogetherAsset from "@/assets/generations-together.jpg";
 
 const TITLE = "Caritas BOAZ — samen helpen wanneer hulp nodig is";
@@ -71,7 +71,7 @@ function Home() {
             </div>
             <Reveal delay={200} className="flex flex-col">
               <img
-                src={heroHuddleAsset.url}
+                src={togetherIllustrationAsset.url}
                 alt="Mensen die elkaar steunen"
                 className="w-full rounded-sm object-cover lg:h-full"
                 loading="eager"
@@ -131,7 +131,7 @@ function Home() {
       </Section>
 
       {/* Voorbeelden preview */}
-      <Section tone="white" labelledBy="voorbeelden-preview">
+      <Section tone="sky" labelledBy="voorbeelden-preview" className="bg-sky/45">
         <Container>
           <Reveal className="grid gap-7 border-y border-border py-9 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:py-11">
             <div>
