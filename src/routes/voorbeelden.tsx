@@ -38,25 +38,25 @@ const ITEMS = [
     label: "Persoonlijke ondersteuning",
     text: "Een schenking voor de aanschaf van een stofzuiger voor een statushouder.",
     span: "md:col-span-4",
-    tone: "bg-sky",
+    tone: "border border-primary/10 bg-sky-strong/20",
   },
   {
     label: "Persoonlijke ondersteuning",
     text: "Financiële ondersteuning bij minder inkomsten vanwege een operatie.",
     span: "md:col-span-4",
-    tone: "bg-sage",
+    tone: "border border-primary/10 bg-sage",
   },
   {
     label: "Wonen",
     text: "Een donatie voor een laminaatvloer.",
     span: "md:col-span-8",
-    tone: "bg-sand",
+    tone: "border border-clay/15 bg-sand",
   },
   {
     label: "Jeugd",
     text: "Financiële ondersteuning voor jeugdproject Timmerdorp Bloemendaal.",
     span: "md:col-span-6",
-    tone: "bg-sky",
+    tone: "border border-primary/10 bg-sky-strong/20",
   },
   {
     label: "Ontmoeting",
@@ -68,13 +68,13 @@ const ITEMS = [
     label: "Lokale goede doelen",
     text: "Jaarlijkse donaties aan verschillende goede doelen, waaronder Stem in de Stad, FUN en Youth for Christ.",
     span: "md:col-span-5",
-    tone: "bg-sand",
+    tone: "border border-clay/15 bg-sand",
   },
   {
     label: "Zandvoort",
     text: "Gevulde rugzakjes voor de jeugd in de zomer en financiële ondersteuning voor gezinnen die dat nodig hebben rond Kerst en Pasen.",
     span: "md:col-span-7",
-    tone: "bg-sage",
+    tone: "border border-primary/10 bg-sage",
   },
 ];
 
