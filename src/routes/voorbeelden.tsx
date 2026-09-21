@@ -6,6 +6,8 @@ import {
   Reveal,
   Section,
 } from "@/components/site/primitives";
+import { HelpCtaSection } from "@/components/site/HelpCtaSection";
+import helpingHandsAsset from "@/assets/helping-hands.png.asset.json";
 
 const TITLE = "Voorbeelden van ondersteuning — Caritas BOAZ";
 const DESCRIPTION =
@@ -38,30 +40,23 @@ const ITEMS = [
 function Voorbeelden() {
   return (
     <>
-      <Section tone="white" className="pb-12 pt-12 sm:pb-16 sm:pt-16">
+      <Section tone="white" className="pb-14 pt-12 sm:pb-20 sm:pt-16 lg:py-24">
         <Container>
-          <Reveal>
-            <Eyebrow>Voorbeelden</Eyebrow>
-            <h1 className="mt-6 max-w-3xl text-[2.1rem] sm:text-[3rem] lg:text-[3.3rem]">
-              Voorbeelden van ondersteuning
-            </h1>
-            <p className="mt-6 max-w-2xl text-muted-foreground sm:text-lg">
-              Caritas BOAZ ondersteunt mensen en initiatieven op verschillende
-              manieren. Om privacy te beschermen worden persoonlijke situaties
-              altijd anoniem weergegeven.
-            </p>
-          </Reveal>
+          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,0.8fr)] lg:gap-16">
+            <Reveal><Eyebrow>Voorbeelden</Eyebrow><h1 className="mt-6 max-w-3xl text-[2.1rem] sm:text-[3rem] lg:text-[3.3rem]">Voorbeelden van ondersteuning</h1><p className="mt-6 max-w-2xl text-muted-foreground sm:text-lg">Caritas BOAZ ondersteunt mensen en initiatieven op verschillende manieren. Om privacy te beschermen worden persoonlijke situaties altijd anoniem weergegeven.</p></Reveal>
+            <Reveal delay={120}><img src={helpingHandsAsset.url} alt="Handen die ondersteuning bieden" className="aspect-[4/3] w-full rounded-sm object-cover" width="1024" height="1024" /></Reveal>
+          </div>
         </Container>
       </Section>
 
-      <Section tone="white" className="pt-0 sm:pt-0 lg:pt-0">
+      <Section tone="sky">
         <Container>
           <div className="grid gap-4 sm:grid-cols-12">
             {ITEMS.map((item, i) => (
               <Reveal
                 key={item.label}
                 delay={i * 90}
-                className={`group rounded-sm p-7 transition-[transform,border-color] duration-300 hover:-translate-y-1 sm:p-10 ${item.tone} ${item.span}`}
+                className={`group rounded-sm border border-primary/10 bg-background p-7 transition-[transform,border-color] duration-300 hover:-translate-y-1 sm:p-10 lg:p-14 ${item.span}`}
               >
                 <p className="font-display text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-primary-soft">
                   {item.label}
@@ -78,12 +73,18 @@ function Voorbeelden() {
               </Reveal>
             ))}
           </div>
-          <div className="mt-9 flex flex-col items-start gap-5 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
-            <p className="max-w-xl text-sm text-muted-foreground">De overige voorbeelden worden later aangevuld. Persoonlijke situaties blijven altijd anoniem.</p>
-            <ButtonLink to="/hulp-aanvragen">Hulp aanvragen</ButtonLink>
-          </div>
         </Container>
       </Section>
+
+      <Section tone="sage" className="py-14 sm:py-18">
+        <Container>
+          <Reveal className="grid gap-6 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
+            <div><Eyebrow>Zorgvuldig gedeeld</Eyebrow><h2 className="mt-4 text-2xl sm:text-3xl">Privacy staat voorop</h2><p className="mt-4 max-w-2xl text-muted-foreground">De overige voorbeelden worden later aangevuld. Persoonlijke situaties blijven altijd anoniem.</p></div>
+            <ButtonLink to="/hulp-aanvragen" variant="outline" className="w-full sm:w-auto">Hulp aanvragen</ButtonLink>
+          </Reveal>
+        </Container>
+      </Section>
+      <HelpCtaSection title="Heeft u zelf ondersteuning nodig?" />
 
     </>
   );

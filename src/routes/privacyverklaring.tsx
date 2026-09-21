@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Container, Eyebrow, Reveal, Section } from "@/components/site/primitives";
+import { ButtonLink, Container, Eyebrow, Reveal, Section } from "@/components/site/primitives";
 
 const TITLE = "Privacyverklaring — Caritas BOAZ";
 const DESCRIPTION =
@@ -64,26 +64,29 @@ function Privacy() {
         </Container>
       </Section>
 
-      <Section tone="white" className="pt-0 sm:pt-0 lg:pt-0">
-        <Container size="narrow">
-          <div className="space-y-px">
+      <Section tone="sky">
+        <Container>
+          <div className="grid gap-px overflow-hidden rounded-sm border border-primary/10 bg-border lg:grid-cols-2">
             {BLOCKS.map((block, i) => (
               <Reveal
                 key={block.title}
                 delay={i * 60}
-                className="border-t border-border py-7 last:border-b"
+                className="bg-background p-7 sm:p-9"
               >
                 <h2 className="text-xl sm:text-2xl">{block.title}</h2>
                 <p className="mt-3 text-muted-foreground">{block.text}</p>
               </Reveal>
             ))}
           </div>
-          <Reveal className="mt-10 rounded-sm bg-sky p-7">
+           <Reveal className="mt-10 grid gap-6 rounded-sm bg-sage p-7 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:p-9">
+            <div>
             <h2 className="text-xl">Vragen over privacy</h2>
             <p className="mt-3 text-muted-foreground">
                Heeft u een vraag over uw gegevens? Neem contact op via de
                e-mailadressen op de contactpagina.
             </p>
+            </div>
+            <ButtonLink to="/contact" variant="outline" className="w-full sm:w-auto">Naar contact</ButtonLink>
           </Reveal>
         </Container>
       </Section>
