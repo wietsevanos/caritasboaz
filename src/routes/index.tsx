@@ -52,14 +52,14 @@ function Home() {
       {/* Hero */}
       <Section tone="sky" className="bg-sky/55 pb-12 pt-10 sm:pb-16 sm:pt-14 lg:pb-20 lg:pt-16">
         <Container size="wide">
-          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:gap-12 xl:gap-16">
+          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-12 xl:gap-16">
             <div className="min-w-0 lg:py-5">
               <Reveal>
                 <Eyebrow className="text-clay">Voor mensen in nood</Eyebrow>
-                <h1 className="mt-5 max-w-[11ch] text-[2.7rem] leading-[1.04] tracking-normal sm:mt-6 sm:text-[4rem] lg:text-[4.35rem] xl:text-[4.7rem]">
-                  <span className="block">Samen helpen</span>
+                <h1 className="mt-5 text-[2.7rem] leading-[1.04] tracking-normal sm:mt-6 sm:text-[3.65rem] lg:text-[3.75rem] xl:text-[4.35rem]">
+                  <span className="block sm:whitespace-nowrap">Samen helpen</span>
                   <span className="block">wanneer</span>
-                  <span className="block">hulp nodig is<span className="text-clay">.</span></span>
+                  <span className="block whitespace-nowrap">hulp nodig is<span className="text-clay">.</span></span>
                 </h1>
                 <p className="mt-6 max-w-[35rem] text-muted-foreground sm:text-lg">
                   Caritas BOAZ biedt ondersteuning aan mensen in tijdelijke financiële of persoonlijke nood in Bloemendaal, Overveen, Aerdenhout en Zandvoort en omstreken.
@@ -79,13 +79,13 @@ function Home() {
                   <p className="font-display text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-primary-soft">
                     BOAZ staat voor
                   </p>
-                  <dl className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
+                  <dl className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2">
                     {BOAZ_PLACES.map(({ letter, place }) => (
                       <div key={letter} className="group flex min-w-0 items-center gap-2 py-1">
                         <dt className="flex h-7 w-7 shrink-0 items-center justify-center rounded-sm bg-clay-soft font-display text-sm font-bold text-clay transition-[background-color,color,transform] duration-200 group-hover:-translate-y-0.5 group-hover:bg-clay group-hover:text-primary-foreground">
                           {letter}
                         </dt>
-                        <dd className="min-w-0 truncate text-[0.78rem] font-semibold text-foreground transition-colors duration-200 group-hover:text-clay sm:text-sm lg:text-[0.78rem] xl:text-sm">
+                        <dd className="min-w-0 text-[0.78rem] font-semibold text-foreground transition-colors duration-200 group-hover:text-clay sm:text-sm">
                           {place}
                         </dd>
                       </div>
