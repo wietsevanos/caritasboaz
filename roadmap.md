@@ -12,3 +12,4 @@
 - [x] Hulp aanvragen als zelfstandige, rustige aanvraagomgeving uitvoeren en controleren
 - [x] Aanvraagstart, voortgang en formulierkop technisch-elegant verfijnen en controleren
 - [x] Aanvraagkleur vereenvoudigen, alles centreren en PDF-download toevoegen
+- [x] Professionelere formulierkop en stap Datum & ondertekening toevoegen aan flow, controle en PDF

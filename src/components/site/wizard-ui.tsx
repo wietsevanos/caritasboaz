@@ -79,7 +79,7 @@ export function TextField({
   name: string;
   value: string;
   onChange: (value: string) => void;
-  type?: "text" | "email" | "tel";
+  type?: "text" | "email" | "tel" | "date";
   autoComplete?: string | undefined;
   inputMode?: "text" | "email" | "tel" | "decimal" | undefined;
   placeholder?: string | undefined;
@@ -212,7 +212,8 @@ export function StepProgress({
 }) {
   const percentage = Math.round(((current + 1) / labels.length) * 100);
   return (
-    <div className="rounded-sm border border-primary/10 bg-secondary/75 p-4 sm:p-5">
+    <div className="relative overflow-hidden rounded-sm border border-primary/10 bg-secondary/75 p-4 sm:p-5">
+      <span aria-hidden="true" className="absolute inset-y-0 left-0 w-1 bg-clay" />
       <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 sm:gap-4">
         <div className="flex h-10 w-10 items-center justify-center rounded-sm bg-primary font-display text-sm font-semibold text-primary-foreground shadow-[0_6px_18px_color-mix(in_oklab,var(--primary)_18%,transparent)]">
           {current + 1}

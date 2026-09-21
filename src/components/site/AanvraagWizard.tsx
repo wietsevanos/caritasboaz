@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowLeft, ArrowRight, Check, Download, FileText, LockKeyhole, ShieldCheck } from "lucide-react";
+import { ArrowLeft, ArrowRight, CalendarDays, Check, Download, FileText, LockKeyhole, PenLine, ShieldCheck } from "lucide-react";
 import { Button, ButtonLink } from "@/components/site/primitives";
 import {
   ChoiceCard,
@@ -23,6 +23,7 @@ import {
   maakSamenvatting,
   parseBedrag,
   stapIsCompleet,
+  vandaagInNederland,
   valideerStap,
   type AanvraagData,
   type Fouten,
@@ -38,7 +39,10 @@ type Verzendstatus = "idle" | "bezig" | "mislukt" | "niet-ingesteld";
 export function AanvraagWizard() {
   const [fase, setFase] = useState<Fase>("intro");
   const [stapIndex, setStapIndex] = useState(0);
-  const [data, setData] = useState<AanvraagData>(LEGE_AANVRAAG);
+  const [data, setData] = useState<AanvraagData>(() => ({
+    ...LEGE_AANVRAAG,
+    datumOndertekening: vandaagInNederland(),
+  }));
   const [fouten, setFouten] = useState<Fouten>({});
   const [bestandsFout, setBestandsFout] = useState<string | null>(null);
   const [status, setStatus] = useState<Verzendstatus>("idle");
@@ -526,6 +530,42 @@ export function AanvraagWizard() {
             </>
           ) : null}
 
+          {stap.id === "ondertekening" ? (
+            <div className="rounded-sm border border-primary/10 bg-muted/55 p-5 sm:p-7">
+              <div className="mb-6 flex justify-center gap-3 border-b border-border pb-5 text-left">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-secondary text-primary">
+                  <PenLine className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
+                  Rond uw aanvraag af met de datum en uw volledige naam als ondertekening.
+                </p>
+              </div>
+              <div className="grid gap-6 sm:grid-cols-2">
+                <div className="relative">
+                  <CalendarDays className="pointer-events-none absolute right-4 top-[3.15rem] z-10 h-4 w-4 text-primary-soft" aria-hidden="true" />
+                  <TextField
+                    label="Datum"
+                    name="datumOndertekening"
+                    type="date"
+                    value={data.datumOndertekening}
+                    onChange={(value) => set("datumOndertekening", value)}
+                    error={fouten.datumOndertekening}
+                  />
+                </div>
+                <TextField
+                  label="Handtekening"
+                  name="handtekening"
+                  value={data.handtekening}
+                  onChange={(value) => set("handtekening", value)}
+                  autoComplete="name"
+                  placeholder="Uw volledige naam"
+                  hint="Uw ingevulde naam geldt als ondertekening."
+                  error={fouten.handtekening}
+                />
+              </div>
+            </div>
+          ) : null}
+
           {stap.id === "controleren" ? (
             <>
               <p className="text-muted-foreground">
@@ -670,6 +710,7 @@ function stapVoorSectie(titel: string): number {
     Kosten: "kosten",
     Onderbouwing: "onderbouwing",
     Bijlagen: "onderbouwing",
+    "Datum & ondertekening": "ondertekening",
   };
   const id = map[titel];
   const index = STAPPEN.findIndex((item) => item.id === id);
