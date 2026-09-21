@@ -68,7 +68,7 @@ export async function downloadAanvraagPdf(samenvatting: AanvraagSamenvatting) {
       pdf.text(lines, margin + 5, y);
       y += lines.length * 5.5;
     }
-    y += 6;
+    y += 4;
   }
 
   const pageCount = pdf.getNumberOfPages();

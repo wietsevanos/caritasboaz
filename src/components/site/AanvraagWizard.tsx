@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowLeft, ArrowRight, CalendarDays, Check, Download, FileText, LockKeyhole, PenLine, ShieldCheck } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Download, FileText, LockKeyhole, PenLine, ShieldCheck } from "lucide-react";
 import { Button, ButtonLink } from "@/components/site/primitives";
 import {
   ChoiceCard,
@@ -541,8 +541,7 @@ export function AanvraagWizard() {
                 </p>
               </div>
               <div className="grid gap-6 sm:grid-cols-2">
-                <div className="relative">
-                  <CalendarDays className="pointer-events-none absolute right-4 top-[3.15rem] z-10 h-4 w-4 text-primary-soft" aria-hidden="true" />
+                <div>
                   <TextField
                     label="Datum"
                     name="datumOndertekening"
