@@ -9,31 +9,33 @@ export function HelpCtaSection({
 }: {
   title?: string;
   text?: string;
-  color?: "blue" | "clay";
+  color?: "blue" | "clay" | "green";
 }) {
   return (
     <Section tone="white" className="py-10 sm:py-14 lg:py-16">
       <Container size="wide">
         <div
           className={cn(
-            "relative overflow-hidden rounded-sm px-6 py-12 text-primary-foreground sm:px-10 sm:py-14 lg:px-16 lg:py-16",
-            color === "blue" ? "bg-primary" : "bg-clay",
+            "relative overflow-hidden rounded-sm px-6 py-12 sm:px-10 sm:py-14 lg:px-16 lg:py-16",
+            color === "blue" && "bg-primary text-primary-foreground",
+            color === "clay" && "bg-clay text-primary-foreground",
+            color === "green" && "bg-sage text-foreground",
           )}
         >
-          <DriftingShapes />
+          {color !== "green" ? <DriftingShapes /> : null}
           <Reveal className="relative grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-12">
             <div className="max-w-2xl">
-              <Eyebrow className="text-primary-foreground/75">Hulp nodig?</Eyebrow>
-              <h2 className="mt-4 text-[1.9rem] text-primary-foreground sm:text-4xl">
+              <Eyebrow className={color === "green" ? "text-clay" : "text-primary-foreground/75"}>Hulp nodig?</Eyebrow>
+              <h2 className={cn("mt-4 text-[1.9rem] sm:text-4xl", color !== "green" && "text-primary-foreground")}>
                 {title}
               </h2>
-              <p className="mt-4 max-w-xl text-primary-foreground/80 sm:text-lg">
+              <p className={cn("mt-4 max-w-xl sm:text-lg", color === "green" ? "text-muted-foreground" : "text-primary-foreground/80")}>
                 {text}
               </p>
             </div>
             <ButtonLink
               to="/hulp-aanvragen"
-              variant="ghostLight"
+              variant={color === "green" ? "primary" : "ghostLight"}
               className="w-full lg:w-auto"
             >
               Hulp aanvragen

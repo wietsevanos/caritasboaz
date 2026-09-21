@@ -124,15 +124,11 @@ function OverOns() {
         </Container>
       </Section>
 
-      <Section tone="sage" className="py-14 sm:py-18">
-        <Container>
-          <Reveal className="grid gap-7 border-l-[3px] border-clay pl-6 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end sm:pl-8">
-            <div><Eyebrow className="text-clay">Aanvragen</Eyebrow><h2 className="mt-4 text-2xl sm:text-3xl">Financiële ondersteuning aanvragen</h2><p className="mt-4 max-w-2xl text-muted-foreground">Hebt u of uw organisatie behoefte aan financiële ondersteuning? Vul het aanvraagformulier in.</p></div>
-            <ButtonLink to="/hulp-aanvragen" className="w-full sm:w-auto">Hulp aanvragen</ButtonLink>
-          </Reveal>
-        </Container>
-      </Section>
-      <HelpCtaSection title="Kunnen wij iets voor u betekenen?" />
+      <HelpCtaSection
+        title="Financiële ondersteuning aanvragen"
+        text="Hebt u of uw organisatie behoefte aan financiële ondersteuning? Vul het aanvraagformulier in."
+        color="green"
+      />
     </>
   );
 }

@@ -90,7 +90,7 @@ function Voorbeelden() {
         </Container>
       </Section>
 
-      <Section tone="white" className="pt-12 sm:pt-16 lg:pt-20">
+      <Section tone="sky" className="pt-12 sm:pt-16 lg:pt-20">
         <Container>
           <Reveal>
             <Eyebrow>Voorbeelden</Eyebrow>
