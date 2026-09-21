@@ -2,7 +2,7 @@ import { useId, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 export const inputClass =
-  "mt-2 w-full rounded-sm border border-input bg-background px-4 py-3.5 text-base transition-colors placeholder:text-muted-foreground/70 hover:border-border-strong focus:border-primary focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring aria-[invalid=true]:border-destructive";
+  "mt-2 w-full rounded-sm border border-input bg-background px-4 py-3.5 text-base transition-[border-color,box-shadow] placeholder:text-muted-foreground/70 hover:border-border-strong focus:border-primary focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring aria-[invalid=true]:border-destructive";
 
 export function FieldError({ id, message }: { id: string; message?: string | undefined }) {
   if (!message) return null;
@@ -159,10 +159,10 @@ export function ChoiceCard({
       onClick={onSelect}
       aria-pressed={selected}
       className={cn(
-        "flex w-full flex-col gap-2 rounded-sm border p-5 text-left transition-colors sm:p-6",
+        "group flex min-h-28 w-full flex-col justify-center gap-2 rounded-sm border p-5 text-left transition-[border-color,background-color,transform] sm:p-6",
         selected
           ? "border-primary bg-sky"
-          : "border-border-strong bg-background hover:border-primary hover:bg-secondary",
+          : "border-border-strong bg-background hover:-translate-y-0.5 hover:border-primary hover:bg-secondary",
       )}
     >
       <span className="flex items-center gap-3">
@@ -190,7 +190,7 @@ export function ChoiceCard({
         <span className="font-display text-lg font-semibold">{title}</span>
       </span>
       {description ? (
-        <span className="text-muted-foreground">{description}</span>
+        <span className="pl-8 text-sm leading-relaxed text-muted-foreground sm:text-base">{description}</span>
       ) : null}
     </button>
   );
@@ -205,19 +205,20 @@ export function StepProgress({
 }) {
   const percentage = Math.round(((current + 1) / labels.length) * 100);
   return (
-    <div className="max-w-2xl">
+    <div>
+      <p className="font-display text-sm font-semibold text-foreground">Uw aanvraag</p>
       <div className="grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-4">
-        <p className="min-w-0 text-sm font-semibold text-foreground">
+        <p className="mt-1 min-w-0 text-sm font-semibold text-foreground">
           <span className="text-muted-foreground">Stap {current + 1} van {labels.length}</span>
           <span aria-hidden="true" className="mx-2 text-border-strong">·</span>
           <span>{labels[current]}</span>
         </p>
-        <p className="shrink-0 text-sm tabular-nums text-muted-foreground" aria-hidden="true">
+        <p className="mt-1 shrink-0 text-sm tabular-nums text-muted-foreground" aria-hidden="true">
           {percentage}%
         </p>
       </div>
       <div
-        className="mt-3 h-1.5 w-full overflow-hidden rounded-sm bg-muted"
+        className="mt-4 h-2 w-full overflow-hidden rounded-sm bg-muted"
         role="progressbar"
         aria-valuemin={0}
         aria-valuemax={100}
