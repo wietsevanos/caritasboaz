@@ -1,7 +1,10 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { HeartHandshake } from "lucide-react";
 
 export function StickyHelpButton() {
+  const { pathname } = useLocation();
+  if (pathname.startsWith("/hulp-aanvragen")) return null;
+
   return (
     <Link
       to="/hulp-aanvragen"
