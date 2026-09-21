@@ -47,18 +47,18 @@ export async function downloadAanvraagPdf(samenvatting: AanvraagSamenvatting) {
       const tekst = `${regel.label}: ${waarde}`;
       return pdf.splitTextToSize(tekst, contentWidth - 10) as string[];
     });
-    const boxHeight = 12 + regels.length * 5.5;
-    addPageIfNeeded(boxHeight + 6);
+    const boxHeight = 10 + regels.length * 5;
+    addPageIfNeeded(boxHeight + 4);
 
     pdf.setFillColor(245, 248, 250);
     pdf.setDrawColor(220, 226, 231);
     pdf.roundedRect(margin, y, contentWidth, boxHeight, 1.5, 1.5, "FD");
-    y += 7;
+    y += 6;
     pdf.setFont("helvetica", "bold");
     pdf.setFontSize(11);
     pdf.setTextColor(48, 79, 105);
     pdf.text(sectie.titel, margin + 5, y);
-    y += 6;
+    y += 5;
     pdf.setFont("helvetica", "normal");
     pdf.setFontSize(9.5);
     pdf.setTextColor(43, 52, 63);
@@ -66,9 +66,9 @@ export async function downloadAanvraagPdf(samenvatting: AanvraagSamenvatting) {
     for (const regel of sectie.regels) {
       const lines = pdf.splitTextToSize(`${regel.label}: ${regel.waarde || "—"}`, contentWidth - 10) as string[];
       pdf.text(lines, margin + 5, y);
-      y += lines.length * 5.5;
+      y += lines.length * 5;
     }
-    y += 4;
+    y += 3;
   }
 
   const pageCount = pdf.getNumberOfPages();
