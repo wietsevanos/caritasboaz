@@ -126,11 +126,13 @@ type ButtonVariant = keyof typeof buttonVariants;
 
 export function ButtonLink({
   to,
+  hash,
   children,
   variant = "primary",
   className,
 }: {
   to: string;
+  hash?: string;
   children: ReactNode;
   variant?: ButtonVariant;
   className?: string;
@@ -138,6 +140,7 @@ export function ButtonLink({
   return (
     <Link
       to={to as never}
+      {...(hash ? { hash } : {})}
       className={cn(buttonBase, buttonVariants[variant], className)}
     >
       {children}

@@ -5,10 +5,7 @@ import {
   Reveal,
   Section,
   SectionHeading,
-  Statement,
 } from "@/components/site/primitives";
-import { LineField } from "@/components/site/visuals";
-import { HelpCta } from "@/components/site/HelpCta";
 
 const TITLE = "Geschiedenis van Caritas BOAZ — omzien naar elkaar";
 const DESCRIPTION =
@@ -21,6 +18,8 @@ export const Route = createFileRoute("/geschiedenis")({
       { name: "description", content: DESCRIPTION },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Geschiedenis,
@@ -37,7 +36,7 @@ function Geschiedenis() {
     <>
       <Section tone="white" className="pb-12 pt-12 sm:pb-16 sm:pt-16">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
+          <div className="max-w-3xl">
             <Reveal>
               <Eyebrow>Geschiedenis</Eyebrow>
               <h1 className="mt-6 text-[2.1rem] sm:text-[3rem] lg:text-[3.3rem]">
@@ -46,24 +45,10 @@ function Geschiedenis() {
               <p className="mt-6 max-w-2xl text-muted-foreground sm:text-lg">
                 Caritas BOAZ komt voort uit een lange traditie van
                 naastenliefde binnen de parochies van Bloemendaal, Overveen,
-                Aerdenhout en Zandvoort. Op deze pagina brengen we die
-                geschiedenis samen.
+                Aerdenhout en Zandvoort.
               </p>
             </Reveal>
-            <Reveal delay={140} className="relative min-h-[220px] rounded-sm bg-sky/70">
-              <LineField />
-            </Reveal>
           </div>
-        </Container>
-      </Section>
-
-      <Section tone="sand">
-        <Container size="narrow">
-          <Reveal>
-            <Statement>
-              Zorg voor de ander is hier al generaties lang gewoon.
-            </Statement>
-          </Reveal>
         </Container>
       </Section>
 
@@ -72,7 +57,7 @@ function Geschiedenis() {
           <SectionHeading
             eyebrow="Tijdlijn"
             title="Belangrijke momenten"
-            intro="De historische teksten en momenten worden aangevuld met informatie uit het historische boekje over Caritas BOAZ."
+            intro="De inhoud van de tijdlijn wordt later aangevuld met informatie uit het boekje van Henriëtte."
           />
           {TIMELINE.length > 0 ? (
             <ol className="mt-14 space-y-px">
@@ -99,43 +84,14 @@ function Geschiedenis() {
                 De tijdlijn wordt binnenkort gevuld.
               </p>
               <p className="mt-3 max-w-2xl text-muted-foreground">
-                De historische informatie uit het boekje over Caritas BOAZ wordt
-                hier toegevoegd: belangrijke momenten, jaartallen en verhalen uit
-                de parochies.
+                De historische informatie en belangrijke momenten worden later
+                zorgvuldig toegevoegd op basis van het boekje van Henriëtte.
               </p>
             </Reveal>
           )}
         </Container>
       </Section>
 
-      <Section tone="sage">
-        <Container>
-          <div className="grid gap-6 sm:grid-cols-2 lg:gap-8">
-            <Reveal className="rounded-sm border border-primary/15 bg-background/70 p-8">
-              <Eyebrow>Afbeeldingen</Eyebrow>
-              <h2 className="mt-4 text-xl sm:text-2xl">
-                Beeldmateriaal uit het archief
-              </h2>
-              <p className="mt-3 text-muted-foreground">
-                Ruimte voor historische foto's en beeldmateriaal, met korte
-                toelichting per afbeelding.
-              </p>
-            </Reveal>
-            <Reveal delay={110} className="rounded-sm border border-primary/15 bg-background/70 p-8">
-              <Eyebrow>Documenten</Eyebrow>
-              <h2 className="mt-4 text-xl sm:text-2xl">
-                Documenten en publicaties
-              </h2>
-              <p className="mt-3 text-muted-foreground">
-                Ruimte voor documenten uit het historische boekje en andere
-                publicaties over Caritas BOAZ.
-              </p>
-            </Reveal>
-          </div>
-        </Container>
-      </Section>
-
-      <HelpCta />
     </>
   );
 }

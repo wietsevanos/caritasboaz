@@ -1,13 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
   Container,
+  ButtonLink,
   Eyebrow,
   Reveal,
   Section,
-  Statement,
 } from "@/components/site/primitives";
-import { AcuteNoodBlock } from "@/components/site/AcuteNoodBlock";
-import { HelpCta } from "@/components/site/HelpCta";
 
 const TITLE = "Voorbeelden van ondersteuning — Caritas BOAZ";
 const DESCRIPTION =
@@ -20,6 +18,8 @@ export const Route = createFileRoute("/voorbeelden")({
       { name: "description", content: DESCRIPTION },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Voorbeelden,
@@ -28,30 +28,9 @@ export const Route = createFileRoute("/voorbeelden")({
 const ITEMS = [
   {
     label: "Individuele hulp",
-    text: "Tijdelijke ondersteuning bij noodzakelijke kosten.",
+    text: "Financiële hulp bij de aanschaf van huishoudelijke apparatuur.",
     tone: "bg-sky",
-    span: "sm:col-span-7",
-    size: "text-2xl sm:text-3xl",
-  },
-  {
-    label: "Jeugd en ontmoeting",
-    text: "Ondersteuning om deelname aan een lokaal jeugdkamp mogelijk te maken.",
-    tone: "bg-background border border-border",
-    span: "sm:col-span-5",
-    size: "text-xl sm:text-2xl",
-  },
-  {
-    label: "Buurt en samenleving",
-    text: "Ondersteuning van een initiatief voor ouderen en kinderen.",
-    tone: "bg-sand",
-    span: "sm:col-span-5",
-    size: "text-xl sm:text-2xl",
-  },
-  {
-    label: "Acute nood",
-    text: "Hulp bij een onverwachte tijdelijke noodsituatie.",
-    tone: "bg-sage",
-    span: "sm:col-span-7",
+    span: "sm:col-span-12",
     size: "text-2xl sm:text-3xl",
   },
 ];
@@ -99,23 +78,13 @@ function Voorbeelden() {
               </Reveal>
             ))}
           </div>
-          <p className="mt-8 max-w-xl text-sm text-muted-foreground">
-            Om privacy te beschermen worden situaties en projecten anoniem
-            weergegeven.
-          </p>
+          <div className="mt-9 flex flex-col items-start gap-5 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
+            <p className="max-w-xl text-sm text-muted-foreground">De overige voorbeelden worden later aangevuld. Persoonlijke situaties blijven altijd anoniem.</p>
+            <ButtonLink to="/hulp-aanvragen">Hulp aanvragen</ButtonLink>
+          </div>
         </Container>
       </Section>
 
-      <Section tone="sand">
-        <Container size="narrow" className="text-center">
-          <Reveal>
-            <Statement>Samen kijken we wat mogelijk is.</Statement>
-          </Reveal>
-        </Container>
-      </Section>
-
-      <AcuteNoodBlock />
-      <HelpCta />
     </>
   );
 }

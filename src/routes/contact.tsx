@@ -1,20 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  ButtonLink,
-  Container,
-  Eyebrow,
-  Reveal,
-  Section,
-  SectionHeading,
-  Statement,
-} from "@/components/site/primitives";
-import { AcuteNoodBlock } from "@/components/site/AcuteNoodBlock";
+import { Container, Eyebrow, Reveal, Section } from "@/components/site/primitives";
 import { LineField } from "@/components/site/visuals";
-import { ACUTE_CONTACT } from "@/lib/site";
 
 const TITLE = "Contact — Caritas BOAZ";
 const DESCRIPTION =
-  "Contactgegevens van Caritas BOAZ voor Bloemendaal en Overveen, Aerdenhout en Zandvoort, en het contact bij acute nood.";
+  "Contactgegevens van Caritas BOAZ voor Bloemendaal en Overveen en voor Aerdenhout en Zandvoort.";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -23,6 +13,8 @@ export const Route = createFileRoute("/contact")({
       { name: "description", content: DESCRIPTION },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Contact,
@@ -104,9 +96,6 @@ function Contact() {
               </Reveal>
             ))}
           </div>
-          <Reveal delay={160} className="mt-4">
-            <AcuteNoodBlock bare />
-          </Reveal>
         </Container>
       </Section>
 
@@ -116,9 +105,9 @@ function Contact() {
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-20">
             <Reveal>
               <Eyebrow className="text-clay">Steun ons</Eyebrow>
-              <Statement as="h2" className="mt-5">
+              <h2 className="mt-5 text-[1.8rem] sm:text-4xl lg:text-[2.6rem]">
                 Steun ons
-              </Statement>
+              </h2>
               <p className="mt-6 text-muted-foreground sm:text-lg">
                 Alle activiteiten van Caritas BOAZ worden gefinancierd uit giften
                 en legaten. Met financiële steun kunnen wij ons blijven inzetten
@@ -150,32 +139,6 @@ function Contact() {
         </Container>
       </Section>
 
-      <Section tone="white">
-        <Container>
-          <div className="grid gap-8 rounded-sm border border-border p-7 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:p-10">
-            <div>
-              <SectionHeading
-                eyebrow="Doe mee"
-                title="Doe mee"
-                intro="Wilt u zich inzetten voor Caritas BOAZ en bijdragen aan de Caritas commissie bij u in de buurt?"
-              />
-              <p className="mt-6 font-display text-lg font-semibold">
-                Caritas BOAZ zijn we samen.
-              </p>
-            </div>
-            <ButtonLink to="/hulp-aanvragen" className="w-full sm:w-auto">
-              Neem contact op
-            </ButtonLink>
-          </div>
-          <p className="mt-8 text-sm text-muted-foreground">
-            Bij acute nood: {ACUTE_CONTACT.name},{" "}
-            <a href={ACUTE_CONTACT.phoneHref} className="link-underline text-primary">
-              {ACUTE_CONTACT.phone}
-            </a>
-            .
-          </p>
-        </Container>
-      </Section>
     </>
   );
 }

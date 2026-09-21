@@ -7,9 +7,7 @@ import {
   Eyebrow,
   Reveal,
   Section,
-  Statement,
 } from "@/components/site/primitives";
-import { AcuteNoodBlock } from "@/components/site/AcuteNoodBlock";
 
 const TITLE = "Hulp aanvragen — Caritas BOAZ";
 const DESCRIPTION =
@@ -22,6 +20,8 @@ export const Route = createFileRoute("/hulp-aanvragen")({
       { name: "description", content: DESCRIPTION },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: HulpAanvragen,
@@ -130,7 +130,7 @@ function HulpAanvragen() {
     <>
       <Section tone="white" className="pb-10 pt-12 sm:pb-14 sm:pt-16">
         <Container>
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] lg:gap-16">
+          <div className="max-w-3xl">
             <Reveal>
               <Eyebrow>Hulp aanvragen</Eyebrow>
               <h1 className="mt-6 text-[2.1rem] sm:text-[3rem]">
@@ -140,14 +140,6 @@ function HulpAanvragen() {
                 Soms komt iemand tijdelijk in een situatie terecht waarin extra
                 hulp nodig is. Vertel ons gerust wat er speelt. We bekijken
                 zorgvuldig of en hoe Caritas BOAZ mogelijk kan helpen.
-              </p>
-            </Reveal>
-            <Reveal delay={120} className="self-center rounded-sm bg-sky p-7">
-              <Statement className="text-[1.4rem] sm:text-[1.75rem] lg:text-[1.9rem]">
-                Samen kijken we wat mogelijk is.
-              </Statement>
-              <p className="mt-4 text-sm text-muted-foreground">
-                Uw informatie wordt zorgvuldig en vertrouwelijk behandeld.
               </p>
             </Reveal>
           </div>
@@ -354,7 +346,6 @@ function HulpAanvragen() {
         </Container>
       </Section>
 
-      <AcuteNoodBlock />
     </>
   );
 }
