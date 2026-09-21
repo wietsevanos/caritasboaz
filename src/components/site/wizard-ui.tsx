@@ -205,34 +205,17 @@ export function StepProgress({
 }) {
   const percentage = Math.round(((current + 1) / labels.length) * 100);
   return (
-    <div>
-      <ol className="hidden flex-wrap items-center gap-x-2 gap-y-1 text-sm md:flex">
-        {labels.map((label, index) => (
-          <li key={label} className="flex items-center gap-2">
-            <span
-              className={cn(
-                index === current
-                  ? "font-semibold text-foreground"
-                  : index < current
-                    ? "text-primary-soft"
-                    : "text-muted-foreground",
-              )}
-              aria-current={index === current ? "step" : undefined}
-            >
-              {label}
-            </span>
-            {index < labels.length - 1 ? (
-              <span aria-hidden="true" className="text-border-strong">
-                →
-              </span>
-            ) : null}
-          </li>
-        ))}
-      </ol>
-      <p className="mt-3 text-sm font-medium text-muted-foreground md:mt-4">
-        Stap {current + 1} van {labels.length}:{" "}
-        <span className="text-foreground">{labels[current]}</span>
-      </p>
+    <div className="max-w-2xl">
+      <div className="grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-4">
+        <p className="min-w-0 text-sm font-semibold text-foreground">
+          <span className="text-muted-foreground">Stap {current + 1} van {labels.length}</span>
+          <span aria-hidden="true" className="mx-2 text-border-strong">·</span>
+          <span>{labels[current]}</span>
+        </p>
+        <p className="shrink-0 text-sm tabular-nums text-muted-foreground" aria-hidden="true">
+          {percentage}%
+        </p>
+      </div>
       <div
         className="mt-3 h-1.5 w-full overflow-hidden rounded-sm bg-muted"
         role="progressbar"
