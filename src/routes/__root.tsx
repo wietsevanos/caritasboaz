@@ -126,6 +126,9 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const isAanvraagRoute = useLocation({
+    select: (location) => location.pathname === "/hulp-aanvragen",
+  });
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -136,13 +139,13 @@ function RootComponent() {
       >
         Naar hoofdinhoud
       </a>
-      <Header />
+      {isAanvraagRoute ? null : <Header />}
       <main id="hoofdinhoud">
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
       </main>
-      <Footer />
-      <StickyHelpButton />
+      {isAanvraagRoute ? null : <Footer />}
+      {isAanvraagRoute ? null : <StickyHelpButton />}
     </QueryClientProvider>
   );
 }

@@ -1,5 +1,6 @@
 import { useMemo, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
+import { ArrowLeft, ArrowRight, Check, FileText, ShieldCheck } from "lucide-react";
 import { Button, ButtonLink } from "@/components/site/primitives";
 import {
   ChoiceCard,
@@ -151,26 +152,35 @@ export function AanvraagWizard() {
 
   if (fase === "intro") {
     return (
-      <div ref={topRef} className="max-w-2xl">
-        <h1 className="text-[2rem] sm:text-[2.6rem]">
-          Hulp aanvragen bij Caritas BOAZ
+      <div ref={topRef} className="mx-auto max-w-2xl py-2 sm:py-4">
+        <p className="font-display text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-clay">
+          Aanvraag hulp
+        </p>
+        <h1 className="mt-4 text-[2rem] sm:text-[2.7rem]">
+          Stap voor stap hulp aanvragen
         </h1>
-        <p className="mt-6 text-muted-foreground sm:text-lg">
+        <p className="mt-5 text-muted-foreground sm:text-lg">
           Heeft u of uw organisatie financiële ondersteuning nodig? We helpen u
           stap voor stap met het indienen van een aanvraag.
         </p>
-        <ul className="mt-6 space-y-2 text-muted-foreground">
-          <li>Het invullen duurt ongeveer enkele minuten.</li>
-          <li>U kunt tijdens het invullen altijd teruggaan en uw antwoorden aanpassen.</li>
-        </ul>
+        <div className="mt-7 grid gap-3 border-y border-border py-5 text-sm text-muted-foreground sm:grid-cols-2 sm:text-base">
+          <p className="flex gap-3">
+            <Check className="mt-0.5 h-5 w-5 shrink-0 text-sage-strong" aria-hidden="true" />
+            <span>U wordt rustig door alle onderdelen begeleid.</span>
+          </p>
+          <p className="flex gap-3">
+            <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-primary-soft" aria-hidden="true" />
+            <span>U kunt altijd teruggaan en antwoorden aanpassen.</span>
+          </p>
+        </div>
         <Button
-          className="mt-9 w-full px-8 py-4 text-base sm:w-auto"
+          className="mt-8 w-full px-8 py-4 text-base sm:w-auto"
           onClick={() => {
             setFase("stappen");
             naarStap(0);
           }}
         >
-          Start aanvraag
+          Start aanvraag <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </Button>
       </div>
     );
@@ -182,11 +192,12 @@ export function AanvraagWizard() {
         ref={topRef}
         tabIndex={-1}
         role="status"
-        className="max-w-2xl rounded-sm border border-sage-strong/40 bg-sage p-7 sm:p-10"
+        className="mx-auto max-w-2xl py-4"
       >
-        <h1 className="text-[1.9rem] sm:text-[2.4rem]">
-          Uw aanvraag is verzonden
-        </h1>
+        <div className="flex h-12 w-12 items-center justify-center rounded-sm bg-sage text-sage-strong">
+          <Check className="h-6 w-6" aria-hidden="true" />
+        </div>
+        <h1 className="mt-6 text-[1.9rem] sm:text-[2.4rem]">Aanvraag ontvangen</h1>
         <p className="mt-5">
           Bedankt voor uw aanvraag. Caritas BOAZ heeft uw gegevens ontvangen.
         </p>
@@ -199,6 +210,14 @@ export function AanvraagWizard() {
             Uw aanvraag is gestuurd naar de {bevestigdeCommissie}.
           </p>
         ) : null}
+        <div className="mt-7 rounded-sm border border-sage-strong/30 bg-sage p-5 sm:p-6">
+          <h2 className="text-lg">Wat gebeurt er nu?</h2>
+          <ol className="mt-3 space-y-2 text-sm text-muted-foreground sm:text-base">
+            <li>1. Uw aanvraag wordt bekeken.</li>
+            <li>2. De commissie beoordeelt de aanvraag.</li>
+            <li>3. U ontvangt bericht over het vervolg.</li>
+          </ol>
+        </div>
         <ButtonLink to="/" variant="outline" className="mt-8 w-full sm:w-auto">
           Terug naar Caritas BOAZ
         </ButtonLink>
@@ -212,17 +231,14 @@ export function AanvraagWizard() {
 
   return (
     <div ref={topRef} className="scroll-mt-24">
-      <p className="font-display text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-clay">
-        Aanvraag hulp
-      </p>
-      <div className="mt-4">
+      <div>
         <StepProgress labels={labels} current={stapIndex} />
       </div>
 
-      <div className="mt-9 max-w-2xl">
-        <h1 className="text-[1.7rem] sm:text-[2.2rem]">{stap.titel}</h1>
+      <div className="mt-10">
+        <h1 className="max-w-2xl text-[1.7rem] sm:text-[2.2rem]">{stap.titel}</h1>
 
-        <div className="mt-7 space-y-6">
+        <div className="mt-7 max-w-2xl space-y-6">
           {stap.id === "voor-wie" ? (
             <>
               <div className="grid gap-4">
@@ -433,7 +449,8 @@ export function AanvraagWizard() {
               />
 
               <div>
-                <h2 className="font-display text-lg font-semibold">
+                <h2 className="flex items-center gap-2 font-display text-lg font-semibold">
+                  <FileText className="h-5 w-5 text-primary-soft" aria-hidden="true" />
                   Heeft u een offerte, factuur of ander document?
                 </h2>
                 <p className="mt-1 text-sm text-muted-foreground">
@@ -496,9 +513,9 @@ export function AanvraagWizard() {
               </p>
 
               {samenvatting ? (
-                <div className="divide-y divide-border rounded-sm border border-border">
+                <div className="grid gap-4">
                   {samenvatting.secties.map((sectie) => (
-                    <section key={sectie.titel} className="p-5 sm:p-6">
+                    <section key={sectie.titel} className="rounded-sm border border-border bg-muted/55 p-5 sm:p-6">
                       <div className="flex items-baseline justify-between gap-4">
                         <h2 className="font-display text-lg font-semibold">
                           {sectie.titel}
@@ -506,7 +523,7 @@ export function AanvraagWizard() {
                         <button
                           type="button"
                           onClick={() => naarStap(stapVoorSectie(sectie.titel))}
-                          className="font-medium text-primary-soft underline underline-offset-4 hover:text-primary"
+                          className="rounded-sm px-2 py-1 font-medium text-primary-soft underline underline-offset-4 hover:bg-sky hover:text-primary"
                         >
                           Wijzigen
                         </button>
@@ -531,7 +548,7 @@ export function AanvraagWizard() {
                 </div>
               ) : null}
 
-              <div className="rounded-sm border border-border bg-muted p-5">
+              <div className="rounded-sm border border-primary/15 bg-sky/60 p-5 sm:p-6">
                 <label className="flex items-start gap-3 font-medium">
                   <input
                     type="checkbox"
@@ -572,7 +589,7 @@ export function AanvraagWizard() {
           ) : null}
         </div>
 
-        <div className="mt-9 flex flex-col gap-4 border-t border-border pt-7 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-4 border-t border-border pt-7 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-col gap-3 sm:flex-row">
             {stapIndex > 0 ? (
               <Button
@@ -580,7 +597,7 @@ export function AanvraagWizard() {
                 className="w-full sm:w-auto"
                 onClick={() => naarStap(stapIndex - 1)}
               >
-                Vorige
+                <ArrowLeft className="h-4 w-4" aria-hidden="true" /> Vorige
               </Button>
             ) : null}
             {stap.id === "controleren" ? (
@@ -593,11 +610,12 @@ export function AanvraagWizard() {
                   ? "Bezig met verzenden…"
                   : status === "mislukt" || status === "niet-ingesteld"
                     ? "Opnieuw proberen"
-                    : "Aanvraag verzenden"}
+                    : "Aanvraag indienen"}
+                {status !== "bezig" ? <ArrowRight className="h-4 w-4" aria-hidden="true" /> : null}
               </Button>
             ) : stap.id === "voor-wie" ? null : (
               <Button className="w-full sm:w-auto" onClick={() => volgende()}>
-                Volgende stap
+                Volgende <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
             )}
           </div>
