@@ -637,8 +637,8 @@ function BedragVeld({
   name: string;
   value: string;
   onChange: (value: string) => void;
-  hint?: string;
-  error?: string;
+  hint?: string | undefined;
+  error?: string | undefined;
 }) {
   const bedrag = parseBedrag(value);
   return (

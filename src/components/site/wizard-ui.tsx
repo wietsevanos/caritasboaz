@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 export const inputClass =
   "mt-2 w-full rounded-sm border border-input bg-background px-4 py-3.5 text-base transition-colors placeholder:text-muted-foreground/70 hover:border-border-strong focus:border-primary focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring aria-[invalid=true]:border-destructive";
 
-export function FieldError({ id, message }: { id: string; message?: string }) {
+export function FieldError({ id, message }: { id: string; message?: string | undefined }) {
   if (!message) return null;
   return (
     <p id={id} role="alert" className="mt-2 text-sm font-medium text-destructive">
@@ -21,8 +21,8 @@ export function Field({
   name,
 }: {
   label: string;
-  hint?: ReactNode;
-  error?: string;
+  hint?: ReactNode | undefined;
+  error?: string | undefined;
   name: string;
   children: (props: {
     id: string;
@@ -74,15 +74,15 @@ export function TextField({
   maxLength = 200,
 }: {
   label: string;
-  hint?: ReactNode;
-  error?: string;
+  hint?: ReactNode | undefined;
+  error?: string | undefined;
   name: string;
   value: string;
   onChange: (value: string) => void;
   type?: "text" | "email" | "tel";
-  autoComplete?: string;
-  inputMode?: "text" | "email" | "tel" | "decimal";
-  placeholder?: string;
+  autoComplete?: string | undefined;
+  inputMode?: "text" | "email" | "tel" | "decimal" | undefined;
+  placeholder?: string | undefined;
   maxLength?: number;
 }) {
   return (
@@ -116,12 +116,12 @@ export function TextAreaField({
   maxLength = 2000,
 }: {
   label: string;
-  hint?: ReactNode;
-  error?: string;
+  hint?: ReactNode | undefined;
+  error?: string | undefined;
   name: string;
   value: string;
   onChange: (value: string) => void;
-  placeholder?: string;
+  placeholder?: string | undefined;
   rows?: number;
   maxLength?: number;
 }) {
