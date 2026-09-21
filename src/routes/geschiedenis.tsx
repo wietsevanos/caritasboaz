@@ -122,7 +122,7 @@ function Geschiedenis() {
         </Container>
       </Section>
 
-      <HelpCtaSection />
+      <HelpCtaSection color="clay" />
 
     </>
   );
