@@ -29,11 +29,44 @@ export const Route = createFileRoute("/voorbeelden")({
 
 const ITEMS = [
   {
-    label: "Individuele hulp",
+    label: "Persoonlijke ondersteuning",
     text: "Financiële hulp bij de aanschaf van huishoudelijke apparatuur.",
-    tone: "bg-sky",
+    span: "sm:col-span-5",
+  },
+  {
+    label: "Persoonlijke ondersteuning",
+    text: "Een schenking voor de aanschaf van een stofzuiger voor een statushouder.",
+    span: "sm:col-span-7",
+  },
+  {
+    label: "Persoonlijke ondersteuning",
+    text: "Financiële ondersteuning bij minder inkomsten vanwege een operatie.",
+    span: "sm:col-span-5",
+  },
+  {
+    label: "Wonen",
+    text: "Een donatie voor een laminaatvloer.",
+    span: "sm:col-span-5",
+  },
+  {
+    label: "Jeugd",
+    text: "Financiële ondersteuning voor jeugdproject Timmerdorp Bloemendaal.",
+    span: "sm:col-span-7",
+  },
+  {
+    label: "Ontmoeting",
+    text: "Financiële ondersteuning voor een tuinproject voor ouderen en kinderen in Vogelenzang.",
+    span: "sm:col-span-7",
+  },
+  {
+    label: "Lokale goede doelen",
+    text: "Jaarlijkse donaties aan verschillende goede doelen, waaronder Stem in de Stad, FUN en Youth for Christ.",
+    span: "sm:col-span-5",
+  },
+  {
+    label: "Zandvoort",
+    text: "Gevulde rugzakjes voor de jeugd in de zomer en financiële ondersteuning voor gezinnen die dat nodig hebben rond Kerst en Pasen.",
     span: "sm:col-span-12",
-    size: "text-2xl sm:text-3xl",
   },
 ];
 
@@ -54,15 +87,15 @@ function Voorbeelden() {
           <div className="grid gap-4 sm:grid-cols-12">
             {ITEMS.map((item, i) => (
               <Reveal
-                key={item.label}
+                key={item.text}
                 delay={i * 90}
-                className={`group rounded-sm border border-primary/10 bg-background p-7 transition-[transform,border-color] duration-300 hover:-translate-y-1 sm:p-10 lg:p-14 ${item.span}`}
+                className={`group rounded-sm border border-primary/10 bg-background p-7 transition-[transform,border-color] duration-300 hover:-translate-y-1 sm:p-9 lg:p-10 ${item.span}`}
               >
                 <p className="font-display text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-primary-soft">
                   {item.label}
                 </p>
                 <p
-                  className={`mt-5 font-display font-semibold leading-snug ${item.size}`}
+                  className="mt-5 font-display text-xl font-semibold leading-snug sm:text-2xl"
                 >
                   {item.text}
                 </p>
@@ -79,7 +112,7 @@ function Voorbeelden() {
       <Section tone="sage" className="py-14 sm:py-18">
         <Container>
           <Reveal className="grid gap-6 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
-            <div><Eyebrow>Zorgvuldig gedeeld</Eyebrow><h2 className="mt-4 text-2xl sm:text-3xl">Privacy staat voorop</h2><p className="mt-4 max-w-2xl text-muted-foreground">De overige voorbeelden worden later aangevuld. Persoonlijke situaties blijven altijd anoniem.</p></div>
+            <div><Eyebrow>Zorgvuldig gedeeld</Eyebrow><h2 className="mt-4 text-2xl sm:text-3xl">Privacy staat voorop</h2><p className="mt-4 max-w-2xl text-muted-foreground">Deze voorbeelden laten concreet zien welke ondersteuning is geboden. Persoonlijke situaties blijven altijd anoniem.</p></div>
             <ButtonLink to="/hulp-aanvragen" variant="outline" className="w-full sm:w-auto">Hulp aanvragen</ButtonLink>
           </Reveal>
         </Container>
