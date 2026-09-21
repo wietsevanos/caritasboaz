@@ -85,7 +85,7 @@ export function SignatureField({
         </div>
         <Button
           type="button"
-          variant="ghost"
+          variant="outline"
           className="h-9 shrink-0 px-2.5 text-sm"
           onClick={clear}
           disabled={!value}
