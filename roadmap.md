@@ -10,3 +10,4 @@
 - [x] Aanvraagflow en foutloze preview controleren
 - [x] Hulpblokken als losse vlakken met witruimte en afwisselende kleuren tonen
 - [x] Hulp aanvragen als zelfstandige, rustige aanvraagomgeving uitvoeren en controleren
+- [x] Aanvraagstart, voortgang en formulierkop technisch-elegant verfijnen en controleren

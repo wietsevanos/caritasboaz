@@ -2,7 +2,7 @@ import { useId, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 export const inputClass =
-  "mt-2 w-full rounded-sm border border-input bg-background px-4 py-3.5 text-base transition-[border-color,box-shadow] placeholder:text-muted-foreground/70 hover:border-border-strong focus:border-primary focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring aria-[invalid=true]:border-destructive";
+  "mt-2 w-full rounded-sm border border-input bg-background px-4 py-3.5 text-base shadow-[inset_0_1px_0_color-mix(in_oklab,var(--primary)_3%,transparent)] transition-[border-color,box-shadow,background-color] placeholder:text-muted-foreground/70 hover:border-border-strong focus:border-primary focus:bg-background focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring aria-[invalid=true]:border-destructive";
 
 export function FieldError({ id, message }: { id: string; message?: string | undefined }) {
   if (!message) return null;
@@ -159,12 +159,19 @@ export function ChoiceCard({
       onClick={onSelect}
       aria-pressed={selected}
       className={cn(
-        "group flex min-h-28 w-full flex-col justify-center gap-2 rounded-sm border p-5 text-left transition-[border-color,background-color,transform] sm:p-6",
+        "group relative flex min-h-28 w-full flex-col justify-center gap-2 overflow-hidden rounded-sm border p-5 text-left transition-[border-color,background-color,transform,box-shadow] sm:p-6",
         selected
-          ? "border-primary bg-sky"
-          : "border-border-strong bg-background hover:-translate-y-0.5 hover:border-primary hover:bg-secondary",
+          ? "border-primary bg-sky shadow-[0_10px_30px_color-mix(in_oklab,var(--primary)_8%,transparent)]"
+          : "border-border-strong bg-background hover:-translate-y-0.5 hover:border-primary hover:bg-secondary hover:shadow-[0_10px_30px_color-mix(in_oklab,var(--primary)_6%,transparent)]",
       )}
     >
+      <span
+        aria-hidden="true"
+        className={cn(
+          "absolute inset-y-0 left-0 w-1 bg-clay transition-transform",
+          selected ? "translate-x-0" : "-translate-x-full group-hover:translate-x-0",
+        )}
+      />
       <span className="flex items-center gap-3">
         <span
           aria-hidden="true"
@@ -205,30 +212,41 @@ export function StepProgress({
 }) {
   const percentage = Math.round(((current + 1) / labels.length) * 100);
   return (
-    <div>
-      <p className="font-display text-sm font-semibold text-foreground">Uw aanvraag</p>
-      <div className="grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-4">
-        <p className="mt-1 min-w-0 text-sm font-semibold text-foreground">
-          <span className="text-muted-foreground">Stap {current + 1} van {labels.length}</span>
-          <span aria-hidden="true" className="mx-2 text-border-strong">·</span>
-          <span>{labels[current]}</span>
-        </p>
-        <p className="mt-1 shrink-0 text-sm tabular-nums text-muted-foreground" aria-hidden="true">
-          {percentage}%
-        </p>
+    <div className="rounded-sm border border-primary/10 bg-sky/55 p-4 sm:p-5">
+      <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 sm:gap-4">
+        <div className="flex h-10 w-10 items-center justify-center rounded-sm bg-primary font-display text-sm font-semibold text-primary-foreground shadow-[0_6px_18px_color-mix(in_oklab,var(--primary)_18%,transparent)]">
+          {current + 1}
+        </div>
+        <div className="min-w-0">
+          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-primary-soft">Uw aanvraag</p>
+          <p className="mt-0.5 truncate font-display text-sm font-semibold text-foreground sm:text-base">
+            {labels[current]}
+          </p>
+        </div>
+        <div className="text-right">
+          <p className="text-xs font-medium text-muted-foreground">Stap {current + 1} van {labels.length}</p>
+          <p className="mt-0.5 font-display text-sm font-semibold tabular-nums text-primary" aria-hidden="true">{percentage}%</p>
+        </div>
       </div>
       <div
-        className="mt-4 h-2 w-full overflow-hidden rounded-sm bg-muted"
+        className="mt-4 grid h-1.5 w-full gap-1"
+        style={{ gridTemplateColumns: `repeat(${labels.length}, minmax(0, 1fr))` }}
         role="progressbar"
         aria-valuemin={0}
         aria-valuemax={100}
         aria-valuenow={percentage}
         aria-label="Voortgang van uw aanvraag"
       >
-        <div
-          className="h-full rounded-sm bg-primary transition-[width] duration-300 ease-out motion-reduce:transition-none"
-          style={{ width: `${percentage}%` }}
-        />
+        {labels.map((label, index) => (
+          <span
+            key={label}
+            aria-hidden="true"
+            className={cn(
+              "h-full rounded-sm transition-colors duration-300 motion-reduce:transition-none",
+              index < current ? "bg-sage-strong" : index === current ? "bg-clay" : "bg-background",
+            )}
+          />
+        ))}
       </div>
     </div>
   );
