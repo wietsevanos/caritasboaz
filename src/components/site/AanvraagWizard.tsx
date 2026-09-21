@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowLeft, ArrowRight, Check, FileText, ShieldCheck } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, FileText, LockKeyhole, ShieldCheck } from "lucide-react";
 import { Button, ButtonLink } from "@/components/site/primitives";
 import {
   ChoiceCard,
@@ -152,36 +152,52 @@ export function AanvraagWizard() {
 
   if (fase === "intro") {
     return (
-      <div ref={topRef} className="mx-auto max-w-2xl py-2 sm:py-4">
-        <p className="font-display text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-clay">
-          Aanvraag hulp
-        </p>
-        <h1 className="mt-4 text-[2rem] sm:text-[2.7rem]">
-          Stap voor stap hulp aanvragen
-        </h1>
-        <p className="mt-5 text-muted-foreground sm:text-lg">
-          Heeft u of uw organisatie financiële ondersteuning nodig? We helpen u
-          stap voor stap met het indienen van een aanvraag.
-        </p>
-        <div className="mt-7 grid gap-3 border-y border-border py-5 text-sm text-muted-foreground sm:grid-cols-2 sm:text-base">
-          <p className="flex gap-3">
-            <Check className="mt-0.5 h-5 w-5 shrink-0 text-sage-strong" aria-hidden="true" />
-            <span>U wordt rustig door alle onderdelen begeleid.</span>
-          </p>
-          <p className="flex gap-3">
-            <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-primary-soft" aria-hidden="true" />
-            <span>U kunt altijd teruggaan en antwoorden aanpassen.</span>
+      <div ref={topRef} className="mx-auto max-w-3xl py-1 sm:py-3">
+        <div className="max-w-2xl">
+          <p className="font-display text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-clay">Aanvraag hulp</p>
+          <h1 className="mt-4 text-[2rem] sm:text-[2.7rem]">Stap voor stap hulp aanvragen</h1>
+          <p className="mt-5 text-muted-foreground sm:text-lg">
+            Heeft u of uw organisatie financiële ondersteuning nodig? We helpen u
+            stap voor stap met het indienen van een aanvraag.
           </p>
         </div>
-        <Button
-          className="mt-8 w-full px-8 py-4 text-base sm:w-auto"
-          onClick={() => {
-            setFase("stappen");
-            naarStap(0);
-          }}
-        >
-          Start aanvraag <ArrowRight className="h-4 w-4" aria-hidden="true" />
-        </Button>
+
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          <div className="group flex gap-4 rounded-sm border border-sage-strong/20 bg-sage/65 p-5 transition-[transform,border-color] hover:-translate-y-0.5 hover:border-sage-strong/40">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-background text-sage-strong shadow-[0_5px_16px_color-mix(in_oklab,var(--sage-strong)_10%,transparent)]">
+              <Check className="h-5 w-5" aria-hidden="true" />
+            </span>
+            <div>
+              <h2 className="text-base">Duidelijk begeleid</h2>
+              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">U wordt rustig door alle onderdelen begeleid.</p>
+            </div>
+          </div>
+          <div className="group flex gap-4 rounded-sm border border-primary/10 bg-sky/65 p-5 transition-[transform,border-color] hover:-translate-y-0.5 hover:border-primary/30">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-background text-primary-soft shadow-[0_5px_16px_color-mix(in_oklab,var(--primary)_8%,transparent)]">
+              <ShieldCheck className="h-5 w-5" aria-hidden="true" />
+            </span>
+            <div>
+              <h2 className="text-base">Altijd aanpasbaar</h2>
+              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">U kunt altijd teruggaan en antwoorden aanpassen.</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 flex flex-col gap-5 border-t border-border pt-7 sm:flex-row sm:items-center sm:justify-between">
+          <Button
+            className="w-full px-8 py-4 text-base shadow-[0_10px_28px_color-mix(in_oklab,var(--primary)_18%,transparent)] sm:w-auto"
+            onClick={() => {
+              setFase("stappen");
+              naarStap(0);
+            }}
+          >
+            Start aanvraag <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </Button>
+          <p className="flex items-center justify-center gap-2 text-center text-xs text-muted-foreground sm:max-w-64 sm:text-left">
+            <LockKeyhole className="h-4 w-4 shrink-0 text-clay" aria-hidden="true" />
+            Uw gegevens blijven alleen binnen deze geopende aanvraag beschikbaar.
+          </p>
+        </div>
       </div>
     );
   }
@@ -231,12 +247,16 @@ export function AanvraagWizard() {
 
   return (
     <div ref={topRef} className="scroll-mt-24">
-      <div>
-        <StepProgress labels={labels} current={stapIndex} />
-      </div>
+      <StepProgress labels={labels} current={stapIndex} />
 
-      <div className="mt-10">
-        <h1 className="max-w-2xl text-[1.7rem] sm:text-[2.2rem]">{stap.titel}</h1>
+      <div className="mt-8 sm:mt-10">
+        <div className="flex items-start gap-4">
+          <span aria-hidden="true" className="mt-1 hidden h-10 w-1 rounded-sm bg-clay sm:block" />
+          <div>
+            <p className="font-display text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-clay">Onderdeel {stapIndex + 1}</p>
+            <h1 className="mt-2 max-w-2xl text-[1.7rem] sm:text-[2.2rem]">{stap.titel}</h1>
+          </div>
+        </div>
 
         <div className="mt-7 max-w-2xl space-y-6">
           {stap.id === "voor-wie" ? (
