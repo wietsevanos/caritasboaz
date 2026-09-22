@@ -72,7 +72,9 @@ function maakHtml(
 ${testmelding}
 ${secties}
 <h2 style="margin:24px 0 6px;font-size:15px;color:#2f506b">Handtekening</h2>
-<img src="${samenvatting.handtekening}" alt="Handtekening" style="max-width:280px;border:1px solid #e3e8ec" />
+<img src="cid:handtekening" alt="Handtekening" width="280" style="max-width:280px;border:1px solid #e3e8ec" />
+<p style="margin:8px 0 0;color:#5b6b78;font-size:12px">Ziet u de handtekening niet? Kijk dan in de bijlage <em>handtekening.png</em> of in de PDF van de aanvraag.</p>
+
 </div></body></html>`;
 }
 
