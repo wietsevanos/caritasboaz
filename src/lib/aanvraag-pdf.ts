@@ -9,30 +9,32 @@ async function bouwPdf(samenvatting: AanvraagSamenvatting) {
   const pdf = new jsPDF({ unit: "mm", format: "a4" });
   const pageWidth = pdf.internal.pageSize.getWidth();
   const pageHeight = pdf.internal.pageSize.getHeight();
-  const margin = 20;
+  const margin = 16;
   const contentWidth = pageWidth - margin * 2;
-  let y = 22;
+  let y = 20;
 
   const addPageIfNeeded = (height: number) => {
-    if (y + height <= pageHeight - 20) return;
+    if (y + height <= pageHeight - 16) return;
     pdf.addPage();
-    y = 22;
+    y = 20;
   };
 
+  // Rustige kop: één doorlopende donkerblauwe lijn met direct eronder
+  // een dunnere oranje lijn, beide over de volledige breedte.
   pdf.setFillColor(48, 79, 105);
-  pdf.rect(0, 0, pageWidth, 7, "F");
+  pdf.rect(0, 0, pageWidth, 2.5, "F");
   pdf.setFillColor(181, 104, 69);
-  pdf.rect(0, 7, 52, 2, "F");
+  pdf.rect(0, 2.5, pageWidth, 0.9, "F");
 
   pdf.setTextColor(48, 79, 105);
   pdf.setFont("helvetica", "bold");
-  pdf.setFontSize(18);
+  pdf.setFontSize(16);
   pdf.text("CARITAS BOAZ", margin, y);
-  y += 10;
-  pdf.setTextColor(27, 38, 52);
-  pdf.setFontSize(22);
-  pdf.text("Aanvraag financiële ondersteuning", margin, y);
   y += 8;
+  pdf.setTextColor(27, 38, 52);
+  pdf.setFontSize(20);
+  pdf.text("Aanvraag financiële ondersteuning", margin, y);
+  y += 7;
   pdf.setFont("helvetica", "normal");
   pdf.setFontSize(9);
   pdf.setTextColor(102, 112, 124);
@@ -43,7 +45,7 @@ async function bouwPdf(samenvatting: AanvraagSamenvatting) {
   );
   y += 5;
   pdf.text(`Bestemming: ${samenvatting.commissie.naam}`, margin, y);
-  y += 11;
+  y += 9;
 
   for (const sectie of samenvatting.secties) {
     const regels = sectie.regels.flatMap((regel) => {
@@ -52,38 +54,38 @@ async function bouwPdf(samenvatting: AanvraagSamenvatting) {
       return pdf.splitTextToSize(tekst, contentWidth - 10) as string[];
     });
     const hasSignature = sectie.titel === "Datum & ondertekening" && samenvatting.handtekening;
-    const boxHeight = 10 + regels.length * 5 + (hasSignature ? 18 : 0);
-    addPageIfNeeded(boxHeight + 4);
+    const boxHeight = 8 + regels.length * 4.6 + (hasSignature ? 16 : 0);
+    addPageIfNeeded(boxHeight + 3);
 
     pdf.setFillColor(245, 248, 250);
     pdf.setDrawColor(220, 226, 231);
     pdf.roundedRect(margin, y, contentWidth, boxHeight, 1.5, 1.5, "FD");
-    y += 6;
+    y += 5;
     pdf.setFont("helvetica", "bold");
-    pdf.setFontSize(11);
+    pdf.setFontSize(10.5);
     pdf.setTextColor(48, 79, 105);
     pdf.text(sectie.titel, margin + 5, y);
-    y += 5;
+    y += 4.6;
     pdf.setFont("helvetica", "normal");
-    pdf.setFontSize(9.5);
+    pdf.setFontSize(9);
     pdf.setTextColor(43, 52, 63);
 
     for (const regel of sectie.regels) {
       const lines = pdf.splitTextToSize(`${regel.label}: ${regel.waarde || "—"}`, contentWidth - 10) as string[];
       pdf.text(lines, margin + 5, y);
-      y += lines.length * 5;
+      y += lines.length * 4.6;
     }
     if (hasSignature) {
       try {
-        pdf.addImage(samenvatting.handtekening, "PNG", margin + 5, y, 48, 16, undefined, "FAST");
-        y += 18;
+        pdf.addImage(samenvatting.handtekening, "PNG", margin + 5, y, 44, 14, undefined, "FAST");
+        y += 16;
       } catch {
         pdf.setTextColor(102, 112, 124);
         pdf.text("Handtekening is geplaatst.", margin + 5, y);
         y += 5;
       }
     }
-    y += 3;
+    y += 2.5;
   }
 
   const pageCount = pdf.getNumberOfPages();
