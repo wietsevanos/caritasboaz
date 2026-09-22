@@ -99,5 +99,19 @@ async function bouwPdf(samenvatting: AanvraagSamenvatting) {
       pageHeight - 11,
     );
   }
-  pdf.save(`caritas-boaz-aanvraag-${new Date().toISOString().slice(0, 10)}.pdf`);
+  return pdf;
+}
+
+export async function downloadAanvraagPdf(samenvatting: AanvraagSamenvatting) {
+  const pdf = await bouwPdf(samenvatting);
+  pdf.save(aanvraagPdfBestandsnaam());
+}
+
+/** PDF van de aanvraag als base64 (zonder data-prefix), voor de e-mailbijlage. */
+export async function maakAanvraagPdfBase64(
+  samenvatting: AanvraagSamenvatting,
+): Promise<string> {
+  const pdf = await bouwPdf(samenvatting);
+  const uri = pdf.output("datauristring");
+  return uri.slice(uri.indexOf(",") + 1);
 }
