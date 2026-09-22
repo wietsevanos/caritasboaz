@@ -110,6 +110,41 @@ export const verzendAanvraag = createServerFn({ method: "POST" })
     }
 
     const ontvanger = TEST_ONTVANGER ?? samenvatting.commissie.email;
+    const datumSlug = new Date().toISOString().slice(0, 10);
+
+    type Bijlage = {
+      filename: string;
+      content: string;
+      content_id?: string;
+      content_type?: string;
+    };
+    const bijlagen: Bijlage[] = [];
+
+    // Handtekening als inline bijlage: data-URL's worden door Gmail geblokkeerd.
+    const handtekeningBase64 = samenvatting.handtekening.includes(",")
+      ? samenvatting.handtekening.slice(samenvatting.handtekening.indexOf(",") + 1)
+      : "";
+    if (handtekeningBase64) {
+      bijlagen.push({
+        filename: "handtekening.png",
+        content: handtekeningBase64,
+        content_id: "handtekening",
+        content_type: "image/png",
+      });
+    }
+
+    if (data.pdfBase64) {
+      bijlagen.push({
+        filename: `caritas-boaz-aanvraag-${datumSlug}.pdf`,
+        content: data.pdfBase64,
+        content_type: "application/pdf",
+      });
+    }
+
+    for (const bestand of aanvraag.bestanden) {
+      if (!bestand.content) continue;
+      bijlagen.push({ filename: bestand.name, content: bestand.content });
+    }
 
     const response = await fetch(`${GATEWAY_URL}/emails`, {
       method: "POST",
@@ -123,6 +158,7 @@ export const verzendAanvraag = createServerFn({ method: "POST" })
         to: [ontvanger],
         subject: "Nieuwe hulpaanvraag Caritas BOAZ",
         html: maakHtml(samenvatting, TEST_ONTVANGER),
+        attachments: bijlagen,
       }),
     });
 
