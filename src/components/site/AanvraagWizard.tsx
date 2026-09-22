@@ -17,7 +17,7 @@ import {
   PLAATS_ROUTING,
   STAPPEN,
   UPLOAD,
-  commissieVoorPlaats,
+  commissieVoorAanvraag,
   COMMISSIES,
   formatEuro,
   gevraagdeBijdrage,
