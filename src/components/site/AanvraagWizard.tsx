@@ -402,7 +402,7 @@ export function AanvraagWizard() {
               </div>
               {data.plaats === "Elders" ? (
                 <TextField
-                  id="veld-elders-plaats"
+                  name="eldersPlaats"
                   label="Woonplaats"
                   required
                   value={data.eldersPlaats}
