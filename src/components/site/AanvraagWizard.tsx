@@ -154,7 +154,16 @@ export function AanvraagWizard() {
     }
     setStatus("bezig");
     try {
-      const resultaat = await verzend({ data: { aanvraag: data } });
+      let pdfBase64: string | undefined;
+      const huidigeSamenvatting = maakSamenvatting(data);
+      if (huidigeSamenvatting) {
+        try {
+          pdfBase64 = await maakAanvraagPdfBase64(huidigeSamenvatting);
+        } catch {
+          pdfBase64 = undefined;
+        }
+      }
+      const resultaat = await verzend({ data: { aanvraag: data, pdfBase64 } });
       if (resultaat.status === "verzonden") {
         setBevestigdeCommissie(resultaat.commissie);
         setFase("verzonden");
