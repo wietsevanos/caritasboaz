@@ -132,7 +132,15 @@ export function AanvraagWizard() {
         setBestandsFout(`U kunt maximaal ${UPLOAD.maxFiles} bestanden toevoegen.`);
         break;
       }
-      nieuw.push({ name: file.name, size: file.size });
+      try {
+        nieuw.push({
+          name: file.name,
+          size: file.size,
+          content: await leesBase64(file),
+        });
+      } catch {
+        setBestandsFout("Dit bestand kon niet worden gelezen. Probeer het opnieuw.");
+      }
     }
     setData((huidig) => ({ ...huidig, bestanden: nieuw }));
   }
