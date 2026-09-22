@@ -92,7 +92,8 @@ export type AanvraagData = {
   totaleKosten: string;
   eigenBijdrage: string;
   onderbouwing: string;
-  bestanden: { name: string; size: number }[];
+  /** `content` is base64 zonder data-prefix; nodig om de bijlage mee te sturen. */
+  bestanden: { name: string; size: number; content?: string }[];
   datumOndertekening: string;
   handtekening: string;
   verklaring: boolean;
