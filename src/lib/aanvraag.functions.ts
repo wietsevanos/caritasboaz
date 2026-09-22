@@ -84,7 +84,7 @@ ${secties}
  */
 export const verzendAanvraag = createServerFn({ method: "POST" })
   .inputValidator(
-    (input: { aanvraag: AanvraagData; pdfBase64?: string }) => input,
+    (input: { aanvraag: AanvraagData; pdfBase64?: string | undefined }) => input,
   )
   .handler(async ({ data }): Promise<VerzendResultaat> => {
     const aanvraag: AanvraagData = { ...LEGE_AANVRAAG, ...data.aanvraag };
