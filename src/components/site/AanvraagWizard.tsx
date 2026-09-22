@@ -17,7 +17,7 @@ import {
   PLAATS_ROUTING,
   STAPPEN,
   UPLOAD,
-  commissieVoorPlaats,
+  commissieVoorAanvraag,
   COMMISSIES,
   formatEuro,
   gevraagdeBijdrage,
@@ -251,7 +251,7 @@ export function AanvraagWizard() {
 
   const gevraagd = gevraagdeBijdrage(data);
   const samenvatting = maakSamenvatting(data);
-  const commissieId = commissieVoorPlaats(data.plaats);
+  const commissieId = commissieVoorAanvraag(data);
 
   return (
     <div ref={topRef} className="scroll-mt-24">
@@ -393,7 +393,24 @@ export function AanvraagWizard() {
                     onSelect={() => set("plaats", entry.plaats)}
                   />
                 ))}
+                <ChoiceCard
+                  title="Elders"
+                  description="Bijvoorbeeld Haarlem of Heemstede."
+                  selected={data.plaats === "Elders"}
+                  onSelect={() => set("plaats", "Elders")}
+                />
               </div>
+              {data.plaats === "Elders" ? (
+                <TextField
+                  name="eldersPlaats"
+                  label="Woonplaats (verplicht)"
+                  value={data.eldersPlaats}
+                  onChange={(value) => set("eldersPlaats", value)}
+                  placeholder="Bijvoorbeeld Haarlem"
+                  hint="Uw aanvraag wordt doorgestuurd naar de dichtstbijzijnde commissie van Caritas BOAZ."
+                  error={fouten.eldersPlaats}
+                />
+              ) : null}
               <FieldError id="fout-plaats" message={fouten.plaats} />
               {commissieId ? (
                 <p className="rounded-sm bg-sky px-4 py-3 text-sm">
