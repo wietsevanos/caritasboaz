@@ -251,7 +251,7 @@ export function AanvraagWizard() {
 
   const gevraagd = gevraagdeBijdrage(data);
   const samenvatting = maakSamenvatting(data);
-  const commissieId = commissieVoorPlaats(data.plaats);
+  const commissieId = commissieVoorAanvraag(data);
 
   return (
     <div ref={topRef} className="scroll-mt-24">
