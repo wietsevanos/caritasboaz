@@ -31,7 +31,7 @@ import {
   type StapId,
 } from "@/lib/aanvraag";
 import { verzendAanvraag } from "@/lib/aanvraag.functions";
-import { downloadAanvraagPdf } from "@/lib/aanvraag-pdf";
+import { downloadAanvraagPdf, maakAanvraagPdfBase64 } from "@/lib/aanvraag-pdf";
 import { cn } from "@/lib/utils";
 
 type Fase = "intro" | "stappen" | "verzonden";
@@ -104,7 +104,17 @@ export function AanvraagWizard() {
     volgende(0, volgendeData);
   }
 
-  function voegBestandenToe(lijst: FileList | null) {
+  async function leesBase64(file: File): Promise<string> {
+    const buffer = await file.arrayBuffer();
+    const bytes = new Uint8Array(buffer);
+    let binair = "";
+    for (let i = 0; i < bytes.length; i += 8192) {
+      binair += String.fromCharCode(...bytes.subarray(i, i + 8192));
+    }
+    return btoa(binair);
+  }
+
+  async function voegBestandenToe(lijst: FileList | null) {
     if (!lijst) return;
     setBestandsFout(null);
     const nieuw = [...data.bestanden];
@@ -122,7 +132,15 @@ export function AanvraagWizard() {
         setBestandsFout(`U kunt maximaal ${UPLOAD.maxFiles} bestanden toevoegen.`);
         break;
       }
-      nieuw.push({ name: file.name, size: file.size });
+      try {
+        nieuw.push({
+          name: file.name,
+          size: file.size,
+          content: await leesBase64(file),
+        });
+      } catch {
+        setBestandsFout("Dit bestand kon niet worden gelezen. Probeer het opnieuw.");
+      }
     }
     setData((huidig) => ({ ...huidig, bestanden: nieuw }));
   }
@@ -136,7 +154,16 @@ export function AanvraagWizard() {
     }
     setStatus("bezig");
     try {
-      const resultaat = await verzend({ data: { aanvraag: data } });
+      let pdfBase64: string | undefined;
+      const huidigeSamenvatting = maakSamenvatting(data);
+      if (huidigeSamenvatting) {
+        try {
+          pdfBase64 = await maakAanvraagPdfBase64(huidigeSamenvatting);
+        } catch {
+          pdfBase64 = undefined;
+        }
+      }
+      const resultaat = await verzend({ data: { aanvraag: data, pdfBase64 } });
       if (resultaat.status === "verzonden") {
         setBevestigdeCommissie(resultaat.commissie);
         setFase("verzonden");

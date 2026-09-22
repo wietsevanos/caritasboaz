@@ -72,7 +72,9 @@ function maakHtml(
 ${testmelding}
 ${secties}
 <h2 style="margin:24px 0 6px;font-size:15px;color:#2f506b">Handtekening</h2>
-<img src="${samenvatting.handtekening}" alt="Handtekening" style="max-width:280px;border:1px solid #e3e8ec" />
+<img src="cid:handtekening" alt="Handtekening" width="280" style="max-width:280px;border:1px solid #e3e8ec" />
+<p style="margin:8px 0 0;color:#5b6b78;font-size:12px">Ziet u de handtekening niet? Kijk dan in de bijlage <em>handtekening.png</em> of in de PDF van de aanvraag.</p>
+
 </div></body></html>`;
 }
 
@@ -81,7 +83,9 @@ ${secties}
  * TEST_ONTVANGER; daarna automatisch naar de commissie die bij de plaats hoort.
  */
 export const verzendAanvraag = createServerFn({ method: "POST" })
-  .inputValidator((input: { aanvraag: AanvraagData }) => input)
+  .inputValidator(
+    (input: { aanvraag: AanvraagData; pdfBase64?: string | undefined }) => input,
+  )
   .handler(async ({ data }): Promise<VerzendResultaat> => {
     const aanvraag: AanvraagData = { ...LEGE_AANVRAAG, ...data.aanvraag };
 
@@ -106,6 +110,41 @@ export const verzendAanvraag = createServerFn({ method: "POST" })
     }
 
     const ontvanger = TEST_ONTVANGER ?? samenvatting.commissie.email;
+    const datumSlug = new Date().toISOString().slice(0, 10);
+
+    type Bijlage = {
+      filename: string;
+      content: string;
+      content_id?: string;
+      content_type?: string;
+    };
+    const bijlagen: Bijlage[] = [];
+
+    // Handtekening als inline bijlage: data-URL's worden door Gmail geblokkeerd.
+    const handtekeningBase64 = samenvatting.handtekening.includes(",")
+      ? samenvatting.handtekening.slice(samenvatting.handtekening.indexOf(",") + 1)
+      : "";
+    if (handtekeningBase64) {
+      bijlagen.push({
+        filename: "handtekening.png",
+        content: handtekeningBase64,
+        content_id: "handtekening",
+        content_type: "image/png",
+      });
+    }
+
+    if (data.pdfBase64) {
+      bijlagen.push({
+        filename: `caritas-boaz-aanvraag-${datumSlug}.pdf`,
+        content: data.pdfBase64,
+        content_type: "application/pdf",
+      });
+    }
+
+    for (const bestand of aanvraag.bestanden) {
+      if (!bestand.content) continue;
+      bijlagen.push({ filename: bestand.name, content: bestand.content });
+    }
 
     const response = await fetch(`${GATEWAY_URL}/emails`, {
       method: "POST",
@@ -119,6 +158,7 @@ export const verzendAanvraag = createServerFn({ method: "POST" })
         to: [ontvanger],
         subject: "Nieuwe hulpaanvraag Caritas BOAZ",
         html: maakHtml(samenvatting, TEST_ONTVANGER),
+        attachments: bijlagen,
       }),
     });
 
