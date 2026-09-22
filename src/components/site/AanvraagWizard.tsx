@@ -403,8 +403,7 @@ export function AanvraagWizard() {
               {data.plaats === "Elders" ? (
                 <TextField
                   name="eldersPlaats"
-                  label="Woonplaats"
-                  required
+                  label="Woonplaats (verplicht)"
                   value={data.eldersPlaats}
                   onChange={(value) => set("eldersPlaats", value)}
                   placeholder="Bijvoorbeeld Haarlem"
