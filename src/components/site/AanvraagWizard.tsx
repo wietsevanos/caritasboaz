@@ -104,7 +104,17 @@ export function AanvraagWizard() {
     volgende(0, volgendeData);
   }
 
-  function voegBestandenToe(lijst: FileList | null) {
+  async function leesBase64(file: File): Promise<string> {
+    const buffer = await file.arrayBuffer();
+    const bytes = new Uint8Array(buffer);
+    let binair = "";
+    for (let i = 0; i < bytes.length; i += 8192) {
+      binair += String.fromCharCode(...bytes.subarray(i, i + 8192));
+    }
+    return btoa(binair);
+  }
+
+  async function voegBestandenToe(lijst: FileList | null) {
     if (!lijst) return;
     setBestandsFout(null);
     const nieuw = [...data.bestanden];
