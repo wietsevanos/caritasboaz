@@ -31,7 +31,7 @@ import {
   type StapId,
 } from "@/lib/aanvraag";
 import { verzendAanvraag } from "@/lib/aanvraag.functions";
-import { downloadAanvraagPdf } from "@/lib/aanvraag-pdf";
+import { downloadAanvraagPdf, maakAanvraagPdfBase64 } from "@/lib/aanvraag-pdf";
 import { cn } from "@/lib/utils";
 
 type Fase = "intro" | "stappen" | "verzonden";
