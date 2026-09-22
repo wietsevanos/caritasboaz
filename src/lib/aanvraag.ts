@@ -31,9 +31,24 @@ export const PLAATS_ROUTING = [
 
 export type Plaats = (typeof PLAATS_ROUTING)[number]["plaats"];
 
+/** Optie voor woonplaatsen in de omstreken (bijv. Haarlem of Heemstede). */
+export const ELDERS = "Elders";
+
 export function commissieVoorPlaats(plaats: string): CommissieId | null {
   const match = PLAATS_ROUTING.find((entry) => entry.plaats === plaats);
   return match ? match.commissie : null;
+}
+
+/**
+ * Bepaalt de commissie voor een aanvraag.
+ * Plaatsen in de omstreken ("Elders") gaan standaard naar Bloemendaal/Overveen;
+ * pas dit aan als Caritas BOAZ dat anders wil verdelen.
+ */
+export function commissieVoorAanvraag(data: {
+  plaats: string;
+}): CommissieId | null {
+  if (data.plaats === ELDERS) return "bloemendaal-overveen";
+  return commissieVoorPlaats(data.plaats);
 }
 
 export const HULP_TYPES = [
@@ -71,6 +86,7 @@ export type AanvraagData = {
   ontvangerNaam: string;
   ontvangerIban: string;
   plaats: string;
+  eldersPlaats: string;
   hulpType: string;
   hulpOmschrijving: string;
   totaleKosten: string;
@@ -94,6 +110,7 @@ export const LEGE_AANVRAAG: AanvraagData = {
   ontvangerNaam: "",
   ontvangerIban: "",
   plaats: "",
+  eldersPlaats: "",
   hulpType: "",
   hulpOmschrijving: "",
   totaleKosten: "",
@@ -249,8 +266,13 @@ export function valideerStap(stap: StapId, data: AanvraagData): Fouten {
     }
   }
 
-  if (stap === "regio" && !commissieVoorPlaats(data.plaats)) {
-    fouten.plaats = "Kies een plaats om verder te gaan.";
+  if (stap === "regio") {
+    if (!commissieVoorAanvraag(data)) {
+      fouten.plaats = "Kies een plaats om verder te gaan.";
+    } else if (data.plaats === ELDERS && data.eldersPlaats.trim().length < 2) {
+      fouten.eldersPlaats =
+        "Vul de woonplaats in, bijvoorbeeld Haarlem of Heemstede.";
+    }
   }
 
   if (stap === "hulpvraag") {
@@ -314,8 +336,12 @@ export type AanvraagSamenvatting = {
 export function maakSamenvatting(
   data: AanvraagData,
 ): AanvraagSamenvatting | null {
-  const commissieId = commissieVoorPlaats(data.plaats);
+  const commissieId = commissieVoorAanvraag(data);
   if (!commissieId) return null;
+  const plaatsWeergave =
+    data.plaats === ELDERS
+      ? `Elders: ${data.eldersPlaats.trim()}`
+      : data.plaats;
   const gevraagd = gevraagdeBijdrage(data);
   const totaal = parseBedrag(data.totaleKosten);
   const eigen = parseBedrag(data.eigenBijdrage) ?? 0;
@@ -349,7 +375,7 @@ export function maakSamenvatting(
       {
         titel: "Regio",
         regels: [
-          { label: "Plaats", waarde: data.plaats },
+          { label: "Plaats", waarde: plaatsWeergave },
           { label: "Commissie", waarde: COMMISSIES[commissieId].naam },
         ],
       },
