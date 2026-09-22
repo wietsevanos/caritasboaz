@@ -1,6 +1,10 @@
 import type { AanvraagSamenvatting } from "@/lib/aanvraag";
 
-export async function downloadAanvraagPdf(samenvatting: AanvraagSamenvatting) {
+export function aanvraagPdfBestandsnaam(): string {
+  return `caritas-boaz-aanvraag-${new Date().toISOString().slice(0, 10)}.pdf`;
+}
+
+async function bouwPdf(samenvatting: AanvraagSamenvatting) {
   const { jsPDF } = await import("jspdf");
   const pdf = new jsPDF({ unit: "mm", format: "a4" });
   const pageWidth = pdf.internal.pageSize.getWidth();
