@@ -57,7 +57,22 @@ function Geschiedenis() {
         <Container>
           <Reveal className="grid gap-6 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] lg:gap-16">
             <div><Eyebrow>Achtergrond</Eyebrow><h2 className="mt-4 text-3xl sm:text-4xl">Omzien naar elkaar</h2></div>
-            <p className="max-w-2xl text-muted-foreground sm:text-lg">Caritas BOAZ komt voort uit een lange traditie van naastenliefde binnen de parochies van Bloemendaal, Overveen, Aerdenhout en Zandvoort.</p>
+            <div className="max-w-2xl">
+              <p className="text-lg leading-relaxed text-muted-foreground">
+                Caritas BOAZ komt voort uit een lange traditie van naastenliefde binnen de parochies van Bloemendaal, Overveen, Aerdenhout en Zandvoort.
+              </p>
+              <div className="mt-8 space-y-6 border-l-[3px] border-clay/40 pl-6 text-[0.95rem] leading-relaxed text-muted-foreground sm:text-base">
+                <p>
+                  De PCI Caritas BOAZ is <strong className="font-semibold text-foreground">opgericht in 1855</strong> als het ‘Parochiaal Armbestuur te Overveen’. De zorg voor armen door christelijke kerken, waarvan de oudste vorm terug te vinden is in de Handelingen der Apostelen, kent een lange geschiedenis. De oudste vorm van christelijke armenzorg treft men in de Handelingen der Apostelen aan.
+                </p>
+                <p>
+                  Tot de 16e eeuw was de armenzorg uitsluitend in handen van de katholieke kerk. De Hervorming en de Tachtigjarige Oorlog brachten grote veranderingen met zich mee toen katholieke instellingen werden opgeheven. Daarmee kwam de armenzorg onder protestante diaconieën te vallen. De katholieke armen kregen geen hulp van de protestanten, hierin moest de overheid voorzien. Dit was de eerste vorm van armenzorg van overheidswege. In de gouden eeuw kwamen rijke stichtingen op, waaronder katholieke stichtingen de zorg voor wezen, weduwen en ouderen op zich namen, bijvoorbeeld door te voorzien in woonruimte. Hier vinden de hofjes hun oorsprong.
+                </p>
+                <p>
+                  Dankzij de vrijgevigheid van onze voorouders is het armbestuur mogelijk gemaakt en dat heeft geleid tot de PCI in zijn huidige vorm.
+                </p>
+              </div>
+            </div>
           </Reveal>
         </Container>
       </Section>
