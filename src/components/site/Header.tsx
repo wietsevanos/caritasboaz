@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import { NAV_LINKS } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { Container } from "./primitives";
-import logoAsset from "@/assets/logo.png.asset.json";
+import logoAsset from "@/assets/caritas-boaz-logo.png.asset.json";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -39,18 +39,17 @@ export function Header() {
         <div className="flex h-16 items-center justify-between gap-4 sm:h-[4.5rem]">
           <Link
             to="/"
-            className="flex shrink-0 items-center gap-2.5 whitespace-nowrap font-display text-[0.95rem] font-bold uppercase tracking-[0.12em] text-foreground sm:gap-3 sm:text-[1.05rem] sm:tracking-[0.16em]"
+            className="flex shrink-0 items-center"
             onClick={() => setOpen(false)}
+            aria-label="Caritas BOAZ — naar de homepagina"
           >
             <img
               src={logoAsset.url}
-              alt=""
-              className="h-8 w-8 rounded-sm object-contain sm:h-9 sm:w-9"
-              width="36"
-              height="36"
-              aria-hidden="true"
+              alt="Caritas BOAZ"
+              className="h-9 w-auto object-contain sm:h-11"
+              width="1080"
+              height="384"
             />
-            Caritas BOAZ
           </Link>
 
           <nav aria-label="Hoofdnavigatie" className="hidden lg:block">

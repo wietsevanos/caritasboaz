@@ -2,7 +2,7 @@ import { ArrowLeft } from "lucide-react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { AanvraagWizard } from "@/components/site/AanvraagWizard";
 import { Container } from "@/components/site/primitives";
-import logoAsset from "@/assets/logo.png.asset.json";
+import logoAsset from "@/assets/caritas-boaz-logo.png.asset.json";
 
 const TITLE = "Hulp aanvragen — Caritas BOAZ";
 const DESCRIPTION =
@@ -35,16 +35,14 @@ function HulpAanvragen() {
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
             <span>Terug</span>
           </Link>
-          <div className="flex items-center gap-2.5 font-display text-xs font-bold uppercase tracking-[0.12em] text-foreground sm:text-sm sm:tracking-[0.16em]">
+          <div className="flex items-center">
             <img
               src={logoAsset.url}
-              alt=""
-              className="h-8 w-8 rounded-sm object-contain sm:h-9 sm:w-9"
-              width="36"
-              height="36"
-              aria-hidden="true"
+              alt="Caritas BOAZ"
+              className="h-8 w-auto object-contain sm:h-10"
+              width="1080"
+              height="384"
             />
-            <span>Caritas BOAZ</span>
           </div>
           <span className="absolute right-8 hidden text-xs font-medium text-muted-foreground md:block">
             Aanvraag financiële ondersteuning
