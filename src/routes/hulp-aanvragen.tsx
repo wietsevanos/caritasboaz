@@ -40,8 +40,8 @@ function HulpAanvragen() {
               src={logoAsset.url}
               alt="Caritas BOAZ"
               className="h-8 w-auto object-contain sm:h-10"
-              width="1080"
-              height="384"
+              width="1920"
+              height="683"
             />
           </div>
           <span className="absolute right-8 hidden text-xs font-medium text-muted-foreground md:block">
