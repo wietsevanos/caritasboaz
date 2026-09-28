@@ -9,7 +9,7 @@ export function BrandName({ className }: BrandNameProps) {
     <span
       aria-label="Caritas BOAZ"
       className={cn(
-        "inline-flex items-baseline whitespace-nowrap font-display text-xl font-bold leading-none tracking-normal sm:text-2xl",
+        "inline-block whitespace-nowrap font-display text-xl font-bold leading-none tracking-normal sm:text-2xl",
         className,
       )}
     >
