@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Container } from "./primitives";
-import logoAsset from "@/assets/logo.png.asset.json";
+import logoAsset from "@/assets/caritas-boaz-logo.png.asset.json";
 
 const FOOTER_LINKS = [
   { to: "/over-ons", label: "Over ons" },
@@ -15,23 +15,23 @@ export function Footer() {
     <footer className="bg-footer text-footer-foreground">
       <Container size="wide">
         <div className="flex flex-col gap-6 pt-8 pb-6 sm:gap-9 sm:pt-10 sm:pb-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
-          <div className="flex items-start gap-3 sm:gap-4">
-            <img
-              src={logoAsset.url}
-              alt=""
-              className="h-11 w-11 rounded-sm object-contain sm:h-16 sm:w-16"
-              width="64"
-              height="64"
-              aria-hidden="true"
-            />
-            <div className="min-w-0 sm:pt-1">
-              <p className="font-display text-base font-bold uppercase tracking-[0.14em] sm:text-xl">
-                Caritas BOAZ
-              </p>
-              <p className="mt-1 text-xs leading-relaxed text-footer-muted sm:mt-1.5 sm:text-sm sm:leading-snug">
-                Bloemendaal · Overveen · Aerdenhout · Zandvoort
-              </p>
-            </div>
+          <div className="min-w-0">
+            <Link
+              to="/"
+              aria-label="Caritas BOAZ — naar de homepagina"
+              className="inline-flex rounded-sm bg-background px-3 py-2 transition-opacity hover:opacity-90"
+            >
+              <img
+                src={logoAsset.url}
+                alt="Caritas BOAZ"
+                className="h-12 w-auto object-contain sm:h-14"
+                width="1080"
+                height="384"
+              />
+            </Link>
+            <p className="mt-3 text-xs leading-relaxed text-footer-muted sm:text-sm sm:leading-snug">
+              Bloemendaal · Overveen · Aerdenhout · Zandvoort
+            </p>
           </div>
 
           <nav aria-label="Footernavigatie">
