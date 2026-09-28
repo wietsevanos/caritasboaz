@@ -48,7 +48,7 @@ export function Header() {
               alt="Caritas BOAZ"
               className="h-12 w-auto object-contain sm:h-16"
               width="1920"
-              height="683"
+              height="318"
             />
           </Link>
 
