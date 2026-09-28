@@ -46,9 +46,9 @@ export function Header() {
             <img
               src={logoAsset.url}
               alt="Caritas BOAZ"
-              className="h-9 w-auto object-contain sm:h-11"
+              className="h-12 w-auto object-contain sm:h-16"
               width="1920"
-              height="683"
+              height="318"
             />
           </Link>
 

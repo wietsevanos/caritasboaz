@@ -24,9 +24,9 @@ export function Footer() {
               <img
                 src={logoAsset.url}
                 alt="Caritas BOAZ"
-                className="h-12 w-auto object-contain sm:h-14"
+                className="h-14 w-auto object-contain sm:h-16"
                 width="1920"
-                height="683"
+                height="318"
               />
             </Link>
             <p className="mt-3 text-xs leading-relaxed text-footer-muted sm:text-sm sm:leading-snug">
