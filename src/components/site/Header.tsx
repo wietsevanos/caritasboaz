@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import { NAV_LINKS } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { Container } from "./primitives";
-import logoAsset from "@/assets/caritas-boaz-logo.png.asset.json";
+import { BrandName } from "./BrandName";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -43,13 +43,7 @@ export function Header() {
             onClick={() => setOpen(false)}
             aria-label="Caritas BOAZ — naar de homepagina"
           >
-            <img
-              src={logoAsset.url}
-              alt="Caritas BOAZ"
-              className="h-8 w-auto object-contain sm:h-10"
-              width="1920"
-              height="318"
-            />
+            <BrandName />
           </Link>
 
           <nav aria-label="Hoofdnavigatie" className="hidden lg:block">

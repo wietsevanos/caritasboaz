@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Container } from "./primitives";
-import logoAsset from "@/assets/caritas-boaz-logo.png.asset.json";
+import { BrandName } from "./BrandName";
 
 const FOOTER_LINKS = [
   { to: "/over-ons", label: "Over ons" },
@@ -19,15 +19,9 @@ export function Footer() {
             <Link
               to="/"
               aria-label="Caritas BOAZ — naar de homepagina"
-              className="inline-flex rounded-sm bg-background px-3 py-2 transition-opacity hover:opacity-90"
+              className="inline-flex rounded-sm bg-background px-4 py-3 transition-opacity hover:opacity-90"
             >
-              <img
-                src={logoAsset.url}
-                alt="Caritas BOAZ"
-                className="h-9 w-auto object-contain sm:h-11"
-                width="1920"
-                height="318"
-              />
+              <BrandName className="text-2xl sm:text-[1.65rem]" />
             </Link>
             <p className="mt-3 text-xs leading-relaxed text-footer-muted sm:text-sm sm:leading-snug">
               Bloemendaal · Overveen · Aerdenhout · Zandvoort
