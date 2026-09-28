@@ -39,7 +39,7 @@ function HulpAanvragen() {
             <img
               src={logoAsset.url}
               alt="Caritas BOAZ"
-              className="h-10 w-auto object-contain sm:h-12"
+              className="h-7 w-auto object-contain sm:h-8"
               width="1920"
               height="318"
             />
