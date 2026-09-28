@@ -14,7 +14,7 @@ export function BrandName({ className }: BrandNameProps) {
       )}
     >
       <span className="text-foreground">Caritas</span>{" "}
-      <span aria-hidden="true" className="text-sand-strong">B</span>
+      <span aria-hidden="true" className="text-bronze">B</span>
       <span aria-hidden="true" className="text-sky-strong">O</span>
       <span aria-hidden="true" className="text-clay">A</span>
       <span aria-hidden="true" className="text-sage-strong">Z</span>
