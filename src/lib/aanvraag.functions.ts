@@ -14,14 +14,13 @@ export type VerzendResultaat =
   | { status: "ongeldig"; melding: string };
 
 /**
- * TESTFASE: alle aanvragen gaan naar dit adres, niet naar de commissies.
- * Zet dit op `null` zodra het afzenderdomein van Caritas BOAZ is geverifieerd;
- * dan gaat de aanvraag automatisch naar samenvatting.commissie.email.
+ * Definitieve bestemmingen: elke aanvraag gaat automatisch naar de commissie
+ * die bij de plaats hoort (bloemendaal.overveen@ / aerdenhout.zandvoort@caritasboaz.nl).
  */
-const TEST_ONTVANGER: string | null = "wietsevanos@gmail.com";
+const TEST_ONTVANGER: string | null = null;
 
-/** Resend-testafzender: werkt zonder eigen domein of DNS-instellingen. */
-const AFZENDER = "Caritas BOAZ <onboarding@resend.dev>";
+/** Afzender op het eigen domein van Caritas BOAZ (na verificatie in Resend). */
+const AFZENDER = "Caritas BOAZ <aanvraag@caritasboaz.nl>";
 
 const GATEWAY_URL = "https://connector-gateway.lovable.dev/resend";
 
