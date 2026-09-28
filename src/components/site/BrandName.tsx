@@ -9,15 +9,15 @@ export function BrandName({ className }: BrandNameProps) {
     <span
       aria-label="Caritas BOAZ"
       className={cn(
-        "inline-flex items-baseline whitespace-nowrap font-display text-xl font-bold leading-none tracking-normal sm:text-2xl",
+        "inline-block whitespace-nowrap font-display text-xl font-bold leading-none tracking-normal sm:text-2xl",
         className,
       )}
     >
-      <span className="text-foreground">caritas</span>
-      <span aria-hidden="true" className="text-sand-strong">b</span>
-      <span aria-hidden="true" className="text-sky-strong">o</span>
-      <span aria-hidden="true" className="text-clay">a</span>
-      <span aria-hidden="true" className="text-sage-strong">z</span>
+      <span className="text-foreground">Caritas</span>{" "}
+      <span aria-hidden="true" className="text-sand-strong">B</span>
+      <span aria-hidden="true" className="text-sky-strong">O</span>
+      <span aria-hidden="true" className="text-clay">A</span>
+      <span aria-hidden="true" className="text-sage-strong">Z</span>
     </span>
   );
 }
