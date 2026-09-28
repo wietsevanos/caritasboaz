@@ -11,7 +11,8 @@ import {
 export type VerzendResultaat =
   | { status: "verzonden"; commissie: string; datum: string }
   | { status: "mail-niet-ingesteld"; commissie: string }
-  | { status: "ongeldig"; melding: string };
+  | { status: "ongeldig"; melding: string }
+  | { status: "mislukt" };
 
 /**
  * Definitieve bestemmingen: elke aanvraag gaat automatisch naar de commissie
@@ -162,9 +163,12 @@ export const verzendAanvraag = createServerFn({ method: "POST" })
     });
 
     if (!response.ok) {
+      // Verwachte situatie (bijv. afzenderdomein nog niet geverifieerd):
+      // netjes melden in plaats van een fout gooien, zodat de bezoeker
+      // gewoon een duidelijke melding krijgt en de gegevens bewaard blijven.
       const body = await response.text();
       console.error(`Resend verzending mislukt [${response.status}]: ${body}`);
-      throw new Error(`E-mail verzenden mislukt [${response.status}]`);
+      return { status: "mislukt" };
     }
 
     return {

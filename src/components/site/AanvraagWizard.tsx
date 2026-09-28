@@ -177,6 +177,10 @@ export function AanvraagWizard() {
         setStatus("mislukt");
         return;
       }
+      if (resultaat.status === "mislukt") {
+        setStatus("mislukt");
+        return;
+      }
       setStatus("niet-ingesteld");
     } catch {
       setStatus("mislukt");
