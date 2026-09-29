@@ -16,6 +16,7 @@ import { Route as HulpAanvragenRouteImport } from './routes/hulp-aanvragen'
 import { Route as OverOnsRouteImport } from './routes/over-ons'
 import { Route as PrivacyverklaringRouteImport } from './routes/privacyverklaring'
 import { Route as VoorbeeldenRouteImport } from './routes/voorbeelden'
+import { Route as ApiPublicVerzendAanvraagRouteImport } from './routes/api/public/verzend-aanvraag'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,6 +53,12 @@ const VoorbeeldenRoute = VoorbeeldenRouteImport.update({
   path: '/voorbeelden',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicVerzendAanvraagRoute =
+  ApiPublicVerzendAanvraagRouteImport.update({
+    id: '/api/public/verzend-aanvraag',
+    path: '/api/public/verzend-aanvraag',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +68,7 @@ export interface FileRoutesByFullPath {
   '/over-ons': typeof OverOnsRoute
   '/privacyverklaring': typeof PrivacyverklaringRoute
   '/voorbeelden': typeof VoorbeeldenRoute
+  '/api/public/verzend-aanvraag': typeof ApiPublicVerzendAanvraagRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +78,7 @@ export interface FileRoutesByTo {
   '/over-ons': typeof OverOnsRoute
   '/privacyverklaring': typeof PrivacyverklaringRoute
   '/voorbeelden': typeof VoorbeeldenRoute
+  '/api/public/verzend-aanvraag': typeof ApiPublicVerzendAanvraagRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,6 +89,7 @@ export interface FileRoutesById {
   '/over-ons': typeof OverOnsRoute
   '/privacyverklaring': typeof PrivacyverklaringRoute
   '/voorbeelden': typeof VoorbeeldenRoute
+  '/api/public/verzend-aanvraag': typeof ApiPublicVerzendAanvraagRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +101,7 @@ export interface FileRouteTypes {
     | '/over-ons'
     | '/privacyverklaring'
     | '/voorbeelden'
+    | '/api/public/verzend-aanvraag'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,6 +111,7 @@ export interface FileRouteTypes {
     | '/over-ons'
     | '/privacyverklaring'
     | '/voorbeelden'
+    | '/api/public/verzend-aanvraag'
   id:
     | '__root__'
     | '/'
@@ -109,6 +121,7 @@ export interface FileRouteTypes {
     | '/over-ons'
     | '/privacyverklaring'
     | '/voorbeelden'
+    | '/api/public/verzend-aanvraag'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -119,6 +132,7 @@ export interface RootRouteChildren {
   OverOnsRoute: typeof OverOnsRoute
   PrivacyverklaringRoute: typeof PrivacyverklaringRoute
   VoorbeeldenRoute: typeof VoorbeeldenRoute
+  ApiPublicVerzendAanvraagRoute: typeof ApiPublicVerzendAanvraagRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -172,6 +186,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VoorbeeldenRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/verzend-aanvraag': {
+      id: '/api/public/verzend-aanvraag'
+      path: '/api/public/verzend-aanvraag'
+      fullPath: '/api/public/verzend-aanvraag'
+      preLoaderRoute: typeof ApiPublicVerzendAanvraagRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -183,6 +204,7 @@ const rootRouteChildren: RootRouteChildren = {
   OverOnsRoute: OverOnsRoute,
   PrivacyverklaringRoute: PrivacyverklaringRoute,
   VoorbeeldenRoute: VoorbeeldenRoute,
+  ApiPublicVerzendAanvraagRoute: ApiPublicVerzendAanvraagRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
