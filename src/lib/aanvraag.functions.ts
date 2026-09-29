@@ -172,8 +172,21 @@ export const verzendAanvraag = createServerFn({ method: "POST" })
       body: JSON.stringify({
         from: AFZENDER,
         to: ontvangers,
-        subject: "Nieuwe hulpaanvraag Caritas BOAZ",
+        reply_to: (aanvraag.eigenEmail || aanvraag.hulpverlenerEmail || "").trim() || undefined,
+        subject: `Hulpaanvraag via website – ${samenvatting.commissie.naam}`,
         html: maakHtml(samenvatting, TEST_ONTVANGER),
+        // Platte-tekstversie naast HTML verlaagt de spamscore.
+        text: [
+          "Nieuwe hulpaanvraag Caritas BOAZ",
+          `Bestemd voor ${samenvatting.commissie.naam}.`,
+          ...samenvatting.secties.flatMap((s) => [
+            "",
+            s.titel,
+            ...s.regels.map((r) => `${r.label}: ${r.waarde}`),
+          ]),
+          "",
+          "De handtekening en de volledige aanvraag staan in de bijlagen.",
+        ].join("\n"),
         attachments: bijlagen,
       }),
     });
