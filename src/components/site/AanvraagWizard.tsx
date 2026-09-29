@@ -163,7 +163,15 @@ export function AanvraagWizard() {
           pdfBase64 = undefined;
         }
       }
-      const resultaat = await verzend({ data: { aanvraag: data, pdfBase64 } });
+      // De verzending loopt via de gepubliceerde Lovable-versie van de site,
+      // zodat dit ook werkt als de site zelf statisch (DirectAdmin) draait.
+      // De Resend-sleutel blijft daardoor server-side.
+      const response = await fetch(AANVRAAG_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ aanvraag: data, pdfBase64 }),
+      });
+      const resultaat = (await response.json()) as VerzendResultaat;
       if (resultaat.status === "verzonden") {
         setBevestigdeCommissie(resultaat.commissie);
         setFase("verzonden");
