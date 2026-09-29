@@ -1,0 +1,40 @@
+name: Build statische site voor DirectAdmin
+
+# Bouwt bij elke wijziging op main de statische site en zet alleen de
+# kant-en-klare bestanden (index.html, pagina's, CSS, JS, assets, .htaccess)
+# in de branch "directadmin". DirectAdmin deployt die branch direct naar public_html.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: directadmin-build
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile || bun install
+      - run: bun run build
+      - name: Controleer output
+        run: |
+          test -f dist/client/index.html
+          test -f dist/client/.htaccess
+          ls -la dist/client
+      - name: Publiceer naar branch directadmin
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: directadmin
+          publish_dir: ./dist/client
+          force_orphan: true
+          enable_jekyll: true
+          commit_message: "Statische build"
