@@ -10,3 +10,11 @@ ErrorDocument 404 /index.html
     Header set Cache-Control "no-cache"
   </FilesMatch>
 </IfModule>
+
+# Altijd via https (nodig voor het verzenden van het formulier).
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
