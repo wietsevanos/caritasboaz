@@ -26,15 +26,15 @@ jobs:
       - run: bun run build
       - name: Controleer output
         run: |
-          test -f dist/client/index.html
-          test -f dist/client/.htaccess
-          ls -la dist/client
+          test -f dist/index.html
+          test -f dist/.htaccess
+          ls -la dist
       - name: Publiceer naar branch directadmin
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: directadmin
-          publish_dir: ./dist/client
+          publish_dir: ./dist
           force_orphan: true
           enable_jekyll: true
           commit_message: "Statische build"
