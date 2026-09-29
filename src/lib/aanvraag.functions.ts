@@ -20,10 +20,11 @@ export type VerzendResultaat =
  */
 const TEST_ONTVANGER: string | null = null;
 
-/** Afzender op het eigen domein van Caritas BOAZ (na verificatie in Resend). */
-const AFZENDER = "Caritas BOAZ <aanvraag@caritasboaz.nl>";
+/** Afzender op het in Resend geverifieerde domein pcicaritasboaz.nl. */
+const AFZENDER = "Caritas BOAZ <aanvragen@pcicaritasboaz.nl>";
 
-const GATEWAY_URL = "https://connector-gateway.lovable.dev/resend";
+/** Directe Resend API; sleutel staat alleen als server-secret RESEND_SENDING_KEY. */
+const RESEND_URL = "https://api.resend.com";
 
 function escapeHtml(value: string): string {
   return value
@@ -100,9 +101,8 @@ export const verzendAanvraag = createServerFn({ method: "POST" })
       return { status: "ongeldig", melding: "Kies een plaats om verder te gaan." };
     }
 
-    const lovableKey = process.env["LOVABLE_API_KEY"];
-    const resendKey = process.env["RESEND_API_KEY"];
-    if (!lovableKey || !resendKey) {
+    const resendKey = process.env["RESEND_SENDING_KEY"];
+    if (!resendKey) {
       return {
         status: "mail-niet-ingesteld",
         commissie: samenvatting.commissie.naam,
@@ -146,12 +146,11 @@ export const verzendAanvraag = createServerFn({ method: "POST" })
       bijlagen.push({ filename: bestand.name, content: bestand.content });
     }
 
-    const response = await fetch(`${GATEWAY_URL}/emails`, {
+    const response = await fetch(`${RESEND_URL}/emails`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${lovableKey}`,
-        "X-Connection-Api-Key": resendKey,
+        Authorization: `Bearer ${resendKey}`,
       },
       body: JSON.stringify({
         from: AFZENDER,
