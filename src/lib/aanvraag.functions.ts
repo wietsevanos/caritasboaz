@@ -205,4 +205,16 @@ export async function verzendAanvraagMail(data: {
       commissie: samenvatting.commissie.naam,
       datum: new Date().toISOString(),
     };
+}
+
+/**
+ * Verzendt de aanvraag per e-mail. In de testfase gaat elke aanvraag naar
+ * TEST_ONTVANGER; daarna automatisch naar de commissie die bij de plaats hoort.
+ */
+export const verzendAanvraag = createServerFn({ method: "POST" })
+  .inputValidator(
+    (input: { aanvraag: AanvraagData; pdfBase64?: string | undefined }) => input,
+  )
+  .handler(async ({ data }): Promise<VerzendResultaat> => {
+    return verzendAanvraagMail(data);
   });
