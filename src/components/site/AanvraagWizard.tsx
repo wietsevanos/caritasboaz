@@ -43,7 +43,7 @@ type Verzendstatus = "idle" | "bezig" | "mislukt" | "niet-ingesteld";
  * Overschrijfbaar via VITE_AANVRAAG_API_URL.
  */
 const AANVRAAG_API_URL =
-  import.meta.env.VITE_AANVRAAG_API_URL ??
+  import.meta.env['VITE_AANVRAAG_API_URL'] ??
   "https://caritasboaz.lovable.app/api/public/verzend-aanvraag";
 
 export function AanvraagWizard() {
