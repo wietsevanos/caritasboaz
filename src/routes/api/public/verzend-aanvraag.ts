@@ -14,6 +14,8 @@ import type { AanvraagData } from "@/lib/aanvraag";
 const TOEGESTANE_ORIGINS = new Set([
   "https://pcicaritasboaz.nl",
   "https://www.pcicaritasboaz.nl",
+  "http://pcicaritasboaz.nl",
+  "http://www.pcicaritasboaz.nl",
   "https://caritasboaz.lovable.app",
   "http://localhost:8080",
 ]);
