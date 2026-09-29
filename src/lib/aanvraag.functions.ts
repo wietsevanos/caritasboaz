@@ -20,6 +20,17 @@ export type VerzendResultaat =
  */
 const TEST_ONTVANGER: string | null = null;
 
+/**
+ * Testfase: extra ontvangers per commissie. Aanvragen voor Bloemendaal/Overveen
+ * gaan (voorlopig) óók naar wietsevanos@gmail.com. Haal dit weg zodra de test
+ * is afgerond — de aanvraag gaat dan alleen nog naar de commissie.
+ */
+const EXTRA_ONTVANGERS: Partial<
+  Record<import("./aanvraag").CommissieId, string[]>
+> = {
+  "bloemendaal-overveen": ["wietsevanos@gmail.com"],
+};
+
 /** Afzender op het in Resend geverifieerde domein pcicaritasboaz.nl. */
 const AFZENDER = "Caritas BOAZ <aanvragen@pcicaritasboaz.nl>";
 
@@ -109,7 +120,13 @@ export const verzendAanvraag = createServerFn({ method: "POST" })
       };
     }
 
-    const ontvanger = TEST_ONTVANGER ?? samenvatting.commissie.email;
+    const primaireOntvanger = TEST_ONTVANGER ?? samenvatting.commissie.email;
+    const ontvangers = [
+      primaireOntvanger,
+      ...(TEST_ONTVANGER
+        ? []
+        : (EXTRA_ONTVANGERS[samenvatting.commissie.id] ?? [])),
+    ];
     const datumSlug = new Date().toISOString().slice(0, 10);
 
     type Bijlage = {
@@ -154,7 +171,7 @@ export const verzendAanvraag = createServerFn({ method: "POST" })
       },
       body: JSON.stringify({
         from: AFZENDER,
-        to: [ontvanger],
+        to: ontvangers,
         subject: "Nieuwe hulpaanvraag Caritas BOAZ",
         html: maakHtml(samenvatting, TEST_ONTVANGER),
         attachments: bijlagen,
