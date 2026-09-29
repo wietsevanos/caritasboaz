@@ -171,7 +171,7 @@ export const verzendAanvraag = createServerFn({ method: "POST" })
       },
       body: JSON.stringify({
         from: AFZENDER,
-        to: [ontvanger],
+        to: ontvangers,
         subject: "Nieuwe hulpaanvraag Caritas BOAZ",
         html: maakHtml(samenvatting, TEST_ONTVANGER),
         attachments: bijlagen,
