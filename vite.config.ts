@@ -11,5 +11,19 @@ export default defineConfig({
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
+    // Alle pagina's worden bij de build als statische HTML weggeschreven,
+    // zodat de site ook op gewone webhosting (DirectAdmin) werkt.
+    // Alleen de verzending van het aanvraagformulier loopt nog via de
+    // gepubliceerde Lovable-versie (/api/public/verzend-aanvraag).
+    pages: [
+      { path: "/" },
+      { path: "/over-ons" },
+      { path: "/geschiedenis" },
+      { path: "/voorbeelden" },
+      { path: "/hulp-aanvragen" },
+      { path: "/contact" },
+      { path: "/privacyverklaring" },
+    ],
+    prerender: { enabled: true, autoStaticPathsDiscovery: false },
   },
 });

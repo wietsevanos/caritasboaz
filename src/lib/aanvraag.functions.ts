@@ -91,14 +91,14 @@ ${secties}
 }
 
 /**
- * Verzendt de aanvraag per e-mail. In de testfase gaat elke aanvraag naar
- * TEST_ONTVANGER; daarna automatisch naar de commissie die bij de plaats hoort.
+ * Gedeelde verzendlogica: valideert de aanvraag en stuurt de e-mail via Resend.
+ * Wordt gebruikt door de serverfunctie én door de publieke API-route die de
+ * statische site (DirectAdmin) aanroept.
  */
-export const verzendAanvraag = createServerFn({ method: "POST" })
-  .inputValidator(
-    (input: { aanvraag: AanvraagData; pdfBase64?: string | undefined }) => input,
-  )
-  .handler(async ({ data }): Promise<VerzendResultaat> => {
+export async function verzendAanvraagMail(data: {
+  aanvraag: AanvraagData;
+  pdfBase64?: string | undefined;
+}): Promise<VerzendResultaat> {
     const aanvraag: AanvraagData = { ...LEGE_AANVRAAG, ...data.aanvraag };
 
     for (const stap of STAPPEN) {
@@ -205,4 +205,16 @@ export const verzendAanvraag = createServerFn({ method: "POST" })
       commissie: samenvatting.commissie.naam,
       datum: new Date().toISOString(),
     };
+}
+
+/**
+ * Verzendt de aanvraag per e-mail. In de testfase gaat elke aanvraag naar
+ * TEST_ONTVANGER; daarna automatisch naar de commissie die bij de plaats hoort.
+ */
+export const verzendAanvraag = createServerFn({ method: "POST" })
+  .inputValidator(
+    (input: { aanvraag: AanvraagData; pdfBase64?: string | undefined }) => input,
+  )
+  .handler(async ({ data }): Promise<VerzendResultaat> => {
+    return verzendAanvraagMail(data);
   });

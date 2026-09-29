@@ -10,3 +10,5 @@
 <!-- LOVABLE:END -->
 
 - Render the Caritas BOAZ identity through the shared `BrandName` text component, so every placement stays consistent without image-logo assets.
+- De site wordt statisch geprerenderd (alle routes in `vite.config.ts` `pages`, `autoStaticPathsDiscovery: false`) zodat hij op DirectAdmin draait; nieuwe routes moeten daar aan worden toegevoegd.
+- Formulierverzending loopt via `POST /api/public/verzend-aanvraag` op de gepubliceerde Lovable-versie (CORS-beperkt tot eigen domeinen), omdat de statische site geen server-side code kan draaien en de Resend-sleutel server-side moet blijven.

@@ -1,5 +1,4 @@
 import { useMemo, useRef, useState } from "react";
-import { useServerFn } from "@tanstack/react-start";
 import { ArrowLeft, ArrowRight, Check, Download, FileText, LockKeyhole, PenLine, ShieldCheck } from "lucide-react";
 import { Button, ButtonLink } from "@/components/site/primitives";
 import { SignatureField } from "@/components/site/SignatureField";
@@ -30,12 +29,22 @@ import {
   type Fouten,
   type StapId,
 } from "@/lib/aanvraag";
-import { verzendAanvraag } from "@/lib/aanvraag.functions";
+import type { VerzendResultaat } from "@/lib/aanvraag.functions";
 import { downloadAanvraagPdf, maakAanvraagPdfBase64 } from "@/lib/aanvraag-pdf";
 import { cn } from "@/lib/utils";
 
 type Fase = "intro" | "stappen" | "verzonden";
 type Verzendstatus = "idle" | "bezig" | "mislukt" | "niet-ingesteld";
+
+/**
+ * Verzendadres van het formulier. De site zelf is statisch (DirectAdmin) en
+ * kan geen e-mail versturen; de verzending loopt via de gepubliceerde
+ * Lovable-versie, waar de Resend-sleutel veilig server-side staat.
+ * Overschrijfbaar via VITE_AANVRAAG_API_URL.
+ */
+const AANVRAAG_API_URL =
+  import.meta.env.VITE_AANVRAAG_API_URL ??
+  "https://caritasboaz.lovable.app/api/public/verzend-aanvraag";
 
 export function AanvraagWizard() {
   const [fase, setFase] = useState<Fase>("intro");
@@ -50,7 +59,6 @@ export function AanvraagWizard() {
   const [bevestigdeCommissie, setBevestigdeCommissie] = useState<string>("");
   const [opgeslagen, setOpgeslagen] = useState(false);
   const topRef = useRef<HTMLDivElement | null>(null);
-  const verzend = useServerFn(verzendAanvraag);
 
   const stap = STAPPEN[stapIndex]!;
   const labels = useMemo(() => STAPPEN.map((item) => item.kort), []);
@@ -163,7 +171,15 @@ export function AanvraagWizard() {
           pdfBase64 = undefined;
         }
       }
-      const resultaat = await verzend({ data: { aanvraag: data, pdfBase64 } });
+      // De verzending loopt via de gepubliceerde Lovable-versie van de site,
+      // zodat dit ook werkt als de site zelf statisch (DirectAdmin) draait.
+      // De Resend-sleutel blijft daardoor server-side.
+      const response = await fetch(AANVRAAG_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ aanvraag: data, pdfBase64 }),
+      });
+      const resultaat = (await response.json()) as VerzendResultaat;
       if (resultaat.status === "verzonden") {
         setBevestigdeCommissie(resultaat.commissie);
         setFase("verzonden");
