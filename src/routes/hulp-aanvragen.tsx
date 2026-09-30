@@ -42,9 +42,8 @@ function HulpAanvragen() {
         </Container>
       </header>
 
-      <div aria-hidden="true" className="relative z-10 grid h-1 grid-cols-[1fr_5rem]">
-        <span className="bg-primary" />
-        <span className="bg-clay" />
+      <div aria-hidden="true" className="relative z-10 h-1">
+        <span className="block h-full bg-primary" />
       </div>
 
       <Container size="wide" className="relative z-10 py-7 sm:py-10 lg:py-14">
