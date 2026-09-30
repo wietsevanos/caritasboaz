@@ -71,22 +71,24 @@ function Geschiedenis() {
         </Container>
       </Section>
 
-      <Section tone="sand" className="pb-16 pt-24 sm:pb-20 sm:pt-28">
+      <Section tone="white" className="pb-20 pt-16 sm:pb-24 sm:pt-20 lg:pb-28 lg:pt-24">
         <Container>
-          <Reveal className="mx-auto max-w-xl text-center">
-            <p className="font-display text-3xl tracking-wide text-foreground sm:text-4xl">
-              P.C.I.
-            </p>
-            <span
-              aria-hidden="true"
-              className="anim-line mx-auto mt-6 block h-[2px] w-16 bg-clay"
-            />
-            <p className="mt-6 text-sm font-semibold uppercase tracking-[0.2em] text-clay">
-              Parochiële Caritas Instelling
-            </p>
-            <p className="mt-4 leading-relaxed text-muted-foreground">
-              Vier letters met een lange traditie: de caritas die van oudsher verbonden is met de parochie en omziet naar mensen in nood.
-            </p>
+          <Reveal>
+            <div className="mx-auto max-w-3xl rounded-md border border-clay/15 bg-sand px-8 py-14 text-center shadow-sm sm:px-14 sm:py-16">
+              <p className="font-display text-4xl tracking-wide text-foreground sm:text-5xl">
+                P.C.I.
+              </p>
+              <span
+                aria-hidden="true"
+                className="anim-line mx-auto mt-7 block h-[2px] w-16 bg-clay"
+              />
+              <p className="mt-7 text-sm font-semibold uppercase tracking-[0.2em] text-clay">
+                Parochiële Caritas Instelling
+              </p>
+              <p className="mx-auto mt-5 max-w-md leading-relaxed text-muted-foreground">
+                Vier letters met een lange traditie: de caritas die van oudsher verbonden is met de parochie en omziet naar mensen in nood.
+              </p>
+            </div>
           </Reveal>
         </Container>
       </Section>
