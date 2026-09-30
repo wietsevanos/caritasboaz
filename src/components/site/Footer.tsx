@@ -26,6 +26,9 @@ export function Footer() {
             <p className="mt-3 text-xs leading-relaxed text-footer-muted sm:text-sm sm:leading-snug">
               Bloemendaal · Overveen · Aerdenhout · Zandvoort
             </p>
+            <p className="mt-2 text-xs leading-relaxed text-footer-muted sm:text-sm sm:leading-snug">
+              Caritas BOAZ is een Parochiële Caritas Instelling (PCI).
+            </p>
           </div>
 
           <nav aria-label="Footernavigatie">
