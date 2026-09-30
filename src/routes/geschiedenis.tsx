@@ -57,9 +57,6 @@ function Geschiedenis() {
               </p>
               <div className="mt-8 space-y-6 border-l-[3px] border-clay/40 pl-6 text-[0.95rem] leading-relaxed text-muted-foreground sm:text-base">
                 <p>
-                  PCI staat voor <strong className="font-semibold text-foreground">Parochiële Caritas Instelling</strong> — de caritas die van oudsher verbonden is met de parochie en omziet naar mensen in nood.
-                </p>
-                <p>
                   De PCI Caritas BOAZ is <strong className="font-semibold text-foreground">opgericht in 1855</strong> als het ‘Parochiaal Armbestuur te Overveen’. De zorg voor armen door christelijke kerken, waarvan de oudste vorm terug te vinden is in de Handelingen der Apostelen, kent een lange geschiedenis. De oudste vorm van christelijke armenzorg treft men in de Handelingen der Apostelen aan.
                 </p>
                 <p>
@@ -70,6 +67,22 @@ function Geschiedenis() {
                 </p>
               </div>
             </div>
+          </Reveal>
+        </Container>
+      </Section>
+
+      <Section tone="sand">
+        <Container>
+          <Reveal className="mx-auto max-w-xl text-center">
+            <p className="font-display text-3xl tracking-wide text-foreground sm:text-4xl">
+              P.C.I.
+            </p>
+            <p className="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-clay">
+              Parochiële Caritas Instelling
+            </p>
+            <p className="mt-4 leading-relaxed text-muted-foreground">
+              Vier letters met een lange traditie: de caritas die van oudsher verbonden is met de parochie en omziet naar mensen in nood.
+            </p>
           </Reveal>
         </Container>
       </Section>
