@@ -245,20 +245,17 @@
 }
 
 @keyframes boaz-line {
-  0%,
-  100% {
-    transform: scaleX(0.35);
-    opacity: 0.45;
+  0% {
+    background-position: 150% 0;
   }
-  50% {
-    transform: scaleX(1);
-    opacity: 1;
+  100% {
+    background-position: -150% 0;
   }
 }
 
 @utility anim-line {
-  transform-origin: center;
-  animation: boaz-line 7s ease-in-out infinite;
+  background-size: 200% 100%;
+  animation: boaz-line 8s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

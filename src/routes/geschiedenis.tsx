@@ -74,18 +74,18 @@ function Geschiedenis() {
       <Section tone="white" className="pb-20 pt-16 sm:pb-24 sm:pt-20 lg:pb-28 lg:pt-24">
         <Container>
           <Reveal>
-            <div className="mx-auto max-w-3xl rounded-md border border-clay/15 bg-sand px-8 py-14 text-center shadow-sm sm:px-14 sm:py-16 lg:max-w-none">
-              <p className="font-display text-4xl tracking-wide text-foreground sm:text-5xl">
+            <div className="mx-auto max-w-3xl rounded-md border border-clay/15 bg-sand px-8 py-16 text-center shadow-sm sm:px-14 sm:py-20 lg:max-w-none lg:px-24 lg:py-24">
+              <p className="font-display text-5xl tracking-wide text-foreground sm:text-6xl">
                 P.C.I.
               </p>
               <span
                 aria-hidden="true"
-                className="anim-line mx-auto mt-7 block h-[2px] w-16 bg-clay"
+                className="anim-line mx-auto mt-8 block h-px w-44 bg-gradient-to-r from-transparent via-clay to-transparent sm:w-56"
               />
-              <p className="mt-7 text-sm font-semibold uppercase tracking-[0.2em] text-clay">
+              <p className="mt-8 text-sm font-semibold uppercase tracking-[0.24em] text-clay">
                 Parochiële Caritas Instelling
               </p>
-              <p className="mx-auto mt-5 max-w-md leading-relaxed text-muted-foreground">
+              <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
                 De P.C.I. is van oudsher verbonden met de parochie. Caritas staat voor omzien naar elkaar en er zijn voor mensen die hulp of ondersteuning nodig hebben.
               </p>
             </div>
