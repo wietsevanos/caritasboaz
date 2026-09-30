@@ -86,7 +86,7 @@ function Geschiedenis() {
                 Parochiële Caritas Instelling
               </p>
               <p className="mx-auto mt-5 max-w-md leading-relaxed text-muted-foreground">
-                Vier letters met een lange traditie: de caritas die van oudsher verbonden is met de parochie en omziet naar mensen in nood.
+                De P.C.I. is van oudsher verbonden met de parochie. Caritas staat voor omzien naar elkaar en er zijn voor mensen die hulp of ondersteuning nodig hebben.
               </p>
             </div>
           </Reveal>
