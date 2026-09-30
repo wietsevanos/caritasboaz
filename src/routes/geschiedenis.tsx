@@ -4,7 +4,6 @@ import {
   Eyebrow,
   Reveal,
   Section,
-  SectionHeading,
 } from "@/components/site/primitives";
 import { HelpCtaSection } from "@/components/site/HelpCtaSection";
 import communityCircleAsset from "@/assets/community-circle.png.asset.json";
