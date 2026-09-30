@@ -244,6 +244,23 @@
   animation: boaz-pulse 7s ease-in-out infinite;
 }
 
+@keyframes boaz-line {
+  0%,
+  100% {
+    transform: scaleX(0.35);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@utility anim-line {
+  transform-origin: center;
+  animation: boaz-line 7s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
