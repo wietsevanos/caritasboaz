@@ -28,11 +28,6 @@ export const Route = createFileRoute("/geschiedenis")({
   component: Geschiedenis,
 });
 
-/**
- * Deze pagina is voorbereid op inhoud uit het historische boekje.
- * Vul TIMELINE en de tekstblokken aan zodra de teksten beschikbaar zijn.
- */
-const TIMELINE: Array<{ period: string; title: string; text: string }> = [];
 
 function Geschiedenis() {
   return (
