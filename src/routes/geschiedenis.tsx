@@ -78,6 +78,9 @@ function Geschiedenis() {
             <p className="mt-5 font-display text-xl leading-relaxed sm:text-2xl">
               In die traditie helpen we nog steeds mensen in Bloemendaal, Overveen, Aerdenhout en Zandvoort.
             </p>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
+              Ook mensen uit de omstreken die bij geen van deze plaatsen horen, kunnen bij ons terecht.
+            </p>
           </Reveal>
         </Container>
       </Section>
