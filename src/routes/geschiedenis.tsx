@@ -71,13 +71,17 @@ function Geschiedenis() {
         </Container>
       </Section>
 
-      <Section tone="sand">
+      <Section tone="sand" className="pb-16 pt-24 sm:pb-20 sm:pt-28">
         <Container>
           <Reveal className="mx-auto max-w-xl text-center">
             <p className="font-display text-3xl tracking-wide text-foreground sm:text-4xl">
               P.C.I.
             </p>
-            <p className="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-clay">
+            <span
+              aria-hidden="true"
+              className="anim-line mx-auto mt-6 block h-[2px] w-16 bg-clay"
+            />
+            <p className="mt-6 text-sm font-semibold uppercase tracking-[0.2em] text-clay">
               Parochiële Caritas Instelling
             </p>
             <p className="mt-4 leading-relaxed text-muted-foreground">
