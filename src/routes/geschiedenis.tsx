@@ -74,41 +74,12 @@ function Geschiedenis() {
 
       <Section tone="white">
         <Container>
-          <SectionHeading
-            eyebrow="Tijdlijn"
-            title="Belangrijke momenten"
-            intro="De inhoud van de tijdlijn wordt later aangevuld met informatie uit het boekje van Henriëtte."
-          />
-          {TIMELINE.length > 0 ? (
-            <ol className="mt-14 space-y-px">
-              {TIMELINE.map((item, i) => (
-                <Reveal
-                  as="li"
-                  key={item.period}
-                  delay={i * 80}
-                  className="group grid gap-4 border-t border-border py-8 last:border-b sm:grid-cols-[8rem_minmax(0,1fr)] sm:gap-10"
-                >
-                  <span className="font-display text-lg font-semibold text-primary-soft">
-                    {item.period}
-                  </span>
-                  <div className="max-w-2xl">
-                    <h3 className="text-xl sm:text-2xl">{item.title}</h3>
-                    <p className="mt-3 text-muted-foreground">{item.text}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </ol>
-          ) : (
-            <Reveal className="mt-12 border-l-[3px] border-clay bg-muted p-8 sm:p-10">
-              <p className="font-display text-lg font-semibold">
-                De tijdlijn wordt binnenkort gevuld.
-              </p>
-              <p className="mt-3 max-w-2xl text-muted-foreground">
-                De historische informatie en belangrijke momenten worden later
-                zorgvuldig toegevoegd op basis van het boekje van Henriëtte.
-              </p>
-            </Reveal>
-          )}
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <Eyebrow className="justify-center">Vandaag</Eyebrow>
+            <p className="mt-5 font-display text-xl leading-relaxed sm:text-2xl">
+              In die traditie helpen we nog steeds mensen in Bloemendaal, Overveen, Aerdenhout en Zandvoort.
+            </p>
+          </Reveal>
         </Container>
       </Section>
 
