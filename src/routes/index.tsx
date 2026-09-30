@@ -89,7 +89,7 @@ function Home() {
             <Reveal>
               <Eyebrow>Introductie</Eyebrow>
               <h2 id="introductie" className="mt-5 text-[1.9rem] sm:text-4xl lg:text-[2.7rem]">
-                Er voor mensen in onze omgeving.
+                We zijn er voor mensen in onze omgeving.
               </h2>
               <p className="mt-6 max-w-xl text-muted-foreground sm:text-lg">
                 Soms komt iemand tijdelijk in een situatie terecht waarin
