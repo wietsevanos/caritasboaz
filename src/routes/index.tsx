@@ -7,7 +7,6 @@ import {
   Section,
 } from "@/components/site/primitives";
 import togetherIllustrationAsset from "@/assets/caritas-samen-in-verbinding.png.asset.json";
-import generationsTogetherAsset from "@/assets/generations-together.jpg";
 
 const TITLE = "Caritas BOAZ — samen helpen wanneer hulp nodig is";
 const DESCRIPTION =
@@ -124,7 +123,7 @@ function Home() {
               </div>
             </div>
             <Reveal delay={120}>
-              <img src={generationsTogetherAsset} alt="Kinderen, volwassenen en ouderen samen" className="aspect-[16/10] w-full rounded-sm object-cover" loading="lazy" width={1600} height={912} />
+              <img src="/images/ondersteuning-dichtbij.png" alt="Mensen die elkaar steunen door hun handen samen te leggen" className="aspect-[16/10] w-full rounded-sm object-cover" loading="lazy" width={1076} height={517} />
             </Reveal>
           </div>
         </Container>
