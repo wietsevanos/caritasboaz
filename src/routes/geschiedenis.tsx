@@ -74,7 +74,7 @@ function Geschiedenis() {
       <Section tone="white" className="pb-20 pt-16 sm:pb-24 sm:pt-20 lg:pb-28 lg:pt-24">
         <Container>
           <Reveal>
-            <div className="mx-auto max-w-3xl rounded-md border border-clay/15 bg-sand px-8 py-14 text-center shadow-sm sm:px-14 sm:py-16">
+            <div className="mx-auto max-w-3xl rounded-md border border-clay/15 bg-sand px-8 py-14 text-center shadow-sm sm:px-14 sm:py-16 lg:max-w-none">
               <p className="font-display text-4xl tracking-wide text-foreground sm:text-5xl">
                 P.C.I.
               </p>
