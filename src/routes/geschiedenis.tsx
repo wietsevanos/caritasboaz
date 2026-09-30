@@ -80,7 +80,7 @@ function Geschiedenis() {
               </p>
               <span
                 aria-hidden="true"
-                className="anim-line mx-auto mt-8 block h-px w-44 bg-gradient-to-r from-transparent via-clay to-transparent sm:w-56"
+                className="anim-line mx-auto mt-6 block h-[2px] w-16 bg-clay"
               />
               <p className="mt-8 text-sm font-semibold uppercase tracking-[0.24em] text-clay">
                 Parochiële Caritas Instelling

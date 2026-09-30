@@ -246,16 +246,19 @@
 
 @keyframes boaz-line {
   0% {
-    background-position: 150% 0;
+    transform: scaleX(0);
+  }
+  50% {
+    transform: scaleX(1);
   }
   100% {
-    background-position: -150% 0;
+    transform: scaleX(0);
   }
 }
 
 @utility anim-line {
-  background-size: 200% 100%;
-  animation: boaz-line 8s linear infinite;
+  transform-origin: center;
+  animation: boaz-line 7s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
